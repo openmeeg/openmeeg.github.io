@@ -6,7 +6,7 @@ What is OpenMEEG?
 -----------------
 
     * The OpenMEEG software is developed within the `Athena project-team <http://www-sop.inria.fr/athena>`_ at INRIA Sophia-Antipolis.
-    * In was initiated in 2006 by the Odyssee Project Team (INRIA/ENPC/ENS Ulm).
+    * It was initiated in 2006 by the Odyssee Project Team (INRIA/ENPC/ENS Ulm).
     * OpenMEEG solves forward problems related to Magneto- and Electro-encephalography (MEG and EEG).
     * The forward problem uses the symmetric Boundary Element Method (symmetric BEM), providing excellent accuracy (see :ref:`publications`).
 

@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
-svn ci -m ""
-ssh maldives.inria.fr "svn up /net/servers/www-sop/teams/athena/software/OpenMEEG"
+touch build/html/.nojekyll
+ghp-import -p build/html -r origin

@@ -1,3 +1,0 @@
-<div class="warning">
-    Sorry, no more news at the present time...
-</div>

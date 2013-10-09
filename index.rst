@@ -64,4 +64,4 @@ Table of contents
    hackers_guide
    publications
    whats_new
-   contact
+   tutorial

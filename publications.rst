@@ -3,13 +3,13 @@
 Publications on OpenMEEG
 ------------------------
 
-    - [1] Kybic J, Clerc M, Abboud T, Faugeras O, Keriven R, Papadopoulo T. A common formalism for the integral formulations of the forward EEG problem. IEEE Transactions on Medical Imaging, 24:12-28, 2005. [PDF]
+    - [1] Kybic J., Clerc M., Abboud T., Faugeras O., Keriven R., Papadopoulo T. `A common formalism for the integral formulations of the forward EEG problem <http://ieeexplore.ieee.org/xpls/abs_all.jsp?isnumber=30034&arnumber=1375158&count=10&index=1>`_. IEEE Transactions on Medical Imaging, 24:12-28, 2005. `[PDF] <ftp://ftp-sop.inria.fr/odyssee/Publications/2005/kybic-clerc-etal:05.pdf>`_
 
-    - [2] A. Gramfort, Papadopoulo T., Olivi E., Clerc M.. OpenMEEG: opensource software for quasistatic bioelectromagnetics, BioMedical Engineering OnLine 45:9, 2010
+    - [2] Gramfort A., Papadopoulo T., Olivi E., Clerc M.. `OpenMEEG: opensource software for quasistatic bioelectromagnetics <http://www.biomedical-engineering-online.com/content/9/1/45>`_, BioMedical Engineering OnLine 45:9, 2010 
 
-    - [3] A. Gramfort, Papadopoulo T., Olivi E., Clerc M.. Forward Field Computation with OpenMEEG, Computational Intelligence and Neuroscience, Volume 2011 (2011), Article ID 923703, 13 pages `DOI http://dx.doi.org/10.1155/2011/923703`_
+    - [3] Gramfort A., Papadopoulo T., Olivi E., Clerc M.. `Forward Field Computation with OpenMEEG <http://www.hindawi.com/journals/cin/2011/923703/>`_, Computational Intelligence and Neuroscience, Volume 2011 (2011), Article ID 923703, 13 pages `DOI <http://dx.doi.org/10.1155/2011/923703>`_
     
-    - [4] Clerc M., A. Gramfort, Olivi E., Papadopoulo T.. The symmetric BEM: bringing in more variables for better accuracy. Proceedings of Biomag 2010. [PDF]
+    - [4] Clerc M., A. Gramfort, Olivi E., Papadopoulo T. `The symmetric BEM: bringing in more variables for better accuracy <http://hal.inria.fr/inria-00497081>`_. Proceedings of Biomag 2010. `[PDF] <http://hal.inria.fr/docs/00/49/70/81/PDF/ConfBiomag-122.pdf>`_
 
 Please cite publications [1] and [2] to comply to the Cecill-B license.
 

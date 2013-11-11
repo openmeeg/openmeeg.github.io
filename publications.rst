@@ -7,7 +7,9 @@ Publications on OpenMEEG
 
     - [2] A. Gramfort, Papadopoulo T., Olivi E., Clerc M.. OpenMEEG: opensource software for quasistatic bioelectromagnetics, BioMedical Engineering OnLine 45:9, 2010
 
-    - [3] Clerc M., A. Gramfort, Olivi E., Papadopoulo T.. The symmetric BEM: bringing in more variables for better accuracy. Proceedings of Biomag 2010. [PDF]
+    - [3] A. Gramfort, Papadopoulo T., Olivi E., Clerc M.. Forward Field Computation with OpenMEEG, Computational Intelligence and Neuroscience, Volume 2011 (2011), Article ID 923703, 13 pages `DOI http://dx.doi.org/10.1155/2011/923703`_
+    
+    - [4] Clerc M., A. Gramfort, Olivi E., Papadopoulo T.. The symmetric BEM: bringing in more variables for better accuracy. Proceedings of Biomag 2010. [PDF]
 
 Please cite publications [1] and [2] to comply to the Cecill-B license.
 

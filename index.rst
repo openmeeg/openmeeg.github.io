@@ -63,4 +63,5 @@ Table of contents
    compile
    publications
    whats_new
+   license
    tutorial

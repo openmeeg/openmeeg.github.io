@@ -17,14 +17,17 @@
 
 {% block relbar1 %}
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
-    <div style='float:left'>
+    <div style='float:left; display:inline-block'>
         <a href="{{ pathto('index') }}"><img src="{{ pathto("_static/logo.png", 1) }}" border="0" alt="openmeeg"/></a>
     </div>
-    <div id="title">
+    <div id="title" style="display:inline-block">
         OpenMEEG
          <br/>
         A C++ package for low-frequency bio-electromagnetism <br/>
-        solving forward problems in the field of EEG and MEG.
+        solving forward problems in the field of EEG and MEG
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="http://www.inria.fr"><img src="{{ pathto("_static/inria.png", 1) }}" width="200px" border="0" alt="INRIA"/></a>
     </div>
 </div>
 {{ super() }}

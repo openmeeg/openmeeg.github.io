@@ -40,12 +40,6 @@ See the following publication for more details on this comparison between differ
    :alt: Sphere model with 5 dipoles (zoom)
    :width: 200px
 
-.. |rdm_def| image:: _static/rdm_def.png
-   :alt: Relative difference measure (RDM)
-
-.. |mag_def| image:: _static/mag_def.png
-   :alt: Magnitude error (MAG)
-
 .. |mag_bench| image:: _static/bem_comparison_mags.png
    :alt: BEM Comparison MAGs
 

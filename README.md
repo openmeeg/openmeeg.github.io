@@ -1,4 +1,4 @@
 Openmeeg website
 ================
 
-The source code of the `openmeeg website <http://openmeeg.github.io/>`_
+The source code of the [openmeeg website](<http://openmeeg.github.io/>)

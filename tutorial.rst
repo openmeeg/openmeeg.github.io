@@ -1,15 +1,17 @@
 Context
 =======
 
-|image1|
+.. image:: _static/surf3.png
+    :width: 400px
 
 The forward problem consists in simulating the electric potential (EEG)
 and magnetic fields (MEG) on the sensors due to electrical sources
 within the brain.
 
-|image2|
+.. image:: _static/dipole.png
+    :width: 400px
 
- : the potential is computed on **all surfaces ** of the head model
+The potential is computed on **all surfaces ** of the head model
 (scalp, outer skull and inner skull for a three-layer model). Let
 :math:`\mathbf{X}` contain the values of the potential on the
 discretized surfaces, as well as the values of the normal current. The
@@ -17,7 +19,7 @@ Boundary Element Method leads to a linear system:
 
 .. math:: \mathbf{HeadMat} . \mathbf{X} = \mathbf{SourceMat}
 
- See sections [sect: command assemble HeadMat], [sect: command assemble
+See sections [sect: command assemble HeadMat], [sect: command assemble
 SourceMat] and [sect: command invert HeadMat].
 
 |  : the matrices relating the head model surfaces and the sensor data

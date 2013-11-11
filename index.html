@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>OpenMEEG Home</title>
+    
+    <link rel="stylesheet" href="_static/navy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="top" title="None" href="#" />
+    <link rel="next" title="Contact us" href="contact.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
+    <div style='float:left; display:inline-block'>
+        <a href="#"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
+    </div>
+    <div id="title" style="display:inline-block">
+        OpenMEEG
+         <br/>
+        A C++ package for low-frequency bio-electromagnetism <br/>
+        solving forward problems in the field of EEG and MEG
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="http://www.inria.fr"><img src="_static/inria.png" width="200px" border="0" alt="INRIA"/></a>
+    </div>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="contact.html" title="Contact us"
+             accesskey="N">next</a></li>
+        <li><a href="#">Home</a>&nbsp;|&nbsp;</li>
+        <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+        <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
+        <li><a href="http://openmeeg.gforge.inria.fr/download/">Download</a>&nbsp;|&nbsp;</li>
+        <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+        <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
+        <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
+        <li><a href="compile.html">Compilation</a>&nbsp;|&nbsp;</li>
+        <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
+        <!-- <li><a href="search.html">Search</a></li> -->
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">OpenMEEG Home</a><ul>
+<li><a class="reference internal" href="#what-is-openmeeg">What is OpenMEEG?</a></li>
+<li><a class="reference internal" href="#using-openmeeg">Using OpenMEEG</a></li>
+<li><a class="reference internal" href="#cite-openmeeg">Cite OpenMEEG</a></li>
+<li><a class="reference internal" href="#table-of-contents">Table of contents</a><ul>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="contact.html"
+                        title="next chapter">Contact us</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="openmeeg-home">
+<h1>OpenMEEG Home<a class="headerlink" href="#openmeeg-home" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-openmeeg">
+<h2>What is OpenMEEG?<a class="headerlink" href="#what-is-openmeeg" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>The OpenMEEG software is developed within the <a class="reference external" href="http://www-sop.inria.fr/athena">Athena project-team</a> at INRIA Sophia-Antipolis.</li>
+<li>It was initiated in 2006 by the Odyssee Project Team (INRIA/ENPC/ENS Ulm).</li>
+<li>OpenMEEG solves forward problems related to Magneto- and Electro-encephalography (MEG and EEG).</li>
+<li>The forward problem uses the symmetric Boundary Element Method (symmetric BEM), providing excellent accuracy (see <a class="reference internal" href="publications.html#publications"><em>Publications on OpenMEEG</em></a>).</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="using-openmeeg">
+<h2>Using OpenMEEG<a class="headerlink" href="#using-openmeeg" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p class="first">From Matlab using <a class="reference external" href="http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem">Brainstorm</a> or <a class="reference external" href="http://fieldtrip.fcdonders.nl">Fieldtrip</a></p>
+</li>
+<li><p class="first">For general lead fields computation (EEG, MEG, EIT, Internal potential):</p>
+<blockquote>
+<div><ul class="simple">
+<li>From <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg/master/examples/compute_leadfields.py">Python</a></li>
+<li>From a <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg/master/examples/compute_leadfields.sh">Bash</a> script on Unix systems (Linux/Mac).</li>
+<li>From a <a class="reference external" href="https://github.com/openmeeg/openmeeg/raw/master/examples/compute_leadfields.bat">BAT</a> file on Windows.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p><a class="reference external" href="ftp://ftp-sop.inria.fr/odyssee/Publications/2010/OpenMEEGHandsOnTutorial2010.pdf">A PDF tutorial</a></p>
+<div class="logo" style="text-align: center; margin: -7px 0 -10px 0;"><a class="reference external image-reference" href="http://neuroimage.usc.edu/brainstorm"><img alt="_images/logo_brainstorm.png" src="_images/logo_brainstorm.png" style="width: 250px;" /></a>
+<a class="reference external image-reference" href="http://fieldtrip.fcdonders.nl"><img alt="_images/logo_fieldtrip.png" src="_images/logo_fieldtrip.png" /></a>
+<a class="reference external image-reference" href="http://python.org"><img alt="_images/python-logo.gif" src="_images/python-logo.gif" /></a>
+</div></div>
+<div class="section" id="cite-openmeeg">
+<h2>Cite OpenMEEG<a class="headerlink" href="#cite-openmeeg" title="Permalink to this headline">¶</a></h2>
+<p>The references to be acknowledged are:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Gramfort A., Papadopoulo T., Olivi E., ClercM. <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">OpenMEEG: opensource
+software for quasistatic bioelectromagnetics</a>,
+BioMedical Engineering OnLine 45:9, 2010</li>
+<li>Kybic J., Clerc M., Abboud T., Faugeras O., Keriven R., Papadopoulo T. <a class="reference external" href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?isnumber=30034&amp;arnumber=1375158&amp;count=10&amp;index=1">A common formalism for the integral formulations of the forward EEG problem</a>. IEEE Transactions on Medical Imaging, 24:12-28, 2005. <a class="reference external" href="ftp://ftp-sop.inria.fr/odyssee/Publications/2005/kybic-clerc-etal:05.pdf">[PDF]</a></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="table-of-contents">
+<h2>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contact.html">Contact us</a></li>
+<li class="toctree-l1"><a class="reference internal" href="why_openmeeg.html">Why use OpenMEEG?</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compile.html">Compiling OpenMEEG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html">Publications on OpenMEEG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publications.html#publications-using-openmeeg">Publications using OpenMEEG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What&#8217;s new</a></li>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html">Context</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html#data">Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html#commands">Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial.html#data-format">Data format</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, OpenMEEG Developers.
+      Last updated on Nov 11, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

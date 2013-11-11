@@ -1,0 +1,145 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Why use OpenMEEG?</title>
+    
+    <link rel="stylesheet" href="_static/navy.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="top" title="None" href="index.html" />
+    <link rel="next" title="Compiling OpenMEEG" href="compile.html" />
+    <link rel="prev" title="Contact us" href="contact.html" /> 
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
+    <div style='float:left; display:inline-block'>
+        <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
+    </div>
+    <div id="title" style="display:inline-block">
+        OpenMEEG
+         <br/>
+        A C++ package for low-frequency bio-electromagnetism <br/>
+        solving forward problems in the field of EEG and MEG
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="http://www.inria.fr"><img src="_static/inria.png" width="200px" border="0" alt="INRIA"/></a>
+    </div>
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="compile.html" title="Compiling OpenMEEG"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="contact.html" title="Contact us"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
+        <li><a href="#">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+        <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
+        <li><a href="http://openmeeg.gforge.inria.fr/download/">Download</a>&nbsp;|&nbsp;</li>
+        <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+        <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
+        <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
+        <li><a href="compile.html">Compilation</a>&nbsp;|&nbsp;</li>
+        <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
+        <!-- <li><a href="search.html">Search</a></li> -->
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Why use OpenMEEG?</a><ul>
+<li><a class="reference internal" href="#how-do-you-measure-precision">How do you measure precision?</a></li>
+<li><a class="reference internal" href="#benchmark-openmeeg-outperforms-other-implementations">Benchmark: OpenMEEG outperforms other implementations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="contact.html"
+                        title="previous chapter">Contact us</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="compile.html"
+                        title="next chapter">Compiling OpenMEEG</a></p>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="why-use-openmeeg">
+<span id="why-openmeeg"></span><h1>Why use OpenMEEG?<a class="headerlink" href="#why-use-openmeeg" title="Permalink to this headline">¶</a></h1>
+<p>OpenMEEG offers better precision.</p>
+<div class="section" id="how-do-you-measure-precision">
+<h2>How do you measure precision?<a class="headerlink" href="#how-do-you-measure-precision" title="Permalink to this headline">¶</a></h2>
+<p>Relative difference measure (RDM) <em>(should be close to 0)</em> and Magnitude error (MAG) <em>(should be close to 1)</em>:</p>
+<div class="math">
+<p><img src="_images/math/d6413479479ce60a54701ce6131751c9e67c41b1.png" alt="\mathbf{MAG} = \left\| \frac{V_{bem}}{\|V_{bem}\|_2} - \frac{V_{exact}}{\|V_{exact}\|_2} \right\| \,,\, \mathbf{RDM} = \frac{\|V_{bem}\|_2}{\|V_{exact}\|_2}"/></p>
+</div><p>A sample sphere model with 5 dipoles:</p>
+<p><div style="text-align: center; margin: -7px 0 -10px 0;">   <img alt="Sphere model with 5 dipoles" src="_images/sphere_dipoles_3D.png" style="width: 250px;" />   <img alt="Sphere model with 5 dipoles (zoom)" src="_images/sphere_dipoles_3D_zoom.png" style="width: 200px;" />   </div></p>
+</div>
+<div class="section" id="benchmark-openmeeg-outperforms-other-implementations">
+<h2>Benchmark: OpenMEEG outperforms other implementations<a class="headerlink" href="#benchmark-openmeeg-outperforms-other-implementations" title="Permalink to this headline">¶</a></h2>
+<p><div style="text-align: center; margin: -7px 0 -10px 0;">   <img alt="BEM Comparison MAGs" src="_images/bem_comparison_mags.png" />   <img alt="BEM Comparison RDMs" src="_images/bem_comparison_rdms.png" />   </div></p>
+<p>See the following publication for more details on this comparison between different forward solvers:</p>
+<blockquote>
+<div><ol class="upperalpha simple">
+<li>Gramfort, T. Papadopoulo, E. Olivi, M. Clerc. OpenMEEG: opensource software for quasistatic bioelectromagnetics, <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">BioMedical Engineering OnLine 45:9, 2010</a></li>
+</ol>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2009-2013, OpenMEEG Developers.
+      Last updated on Nov 11, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
+    </div>
+  </body>
+</html>

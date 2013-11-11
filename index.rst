@@ -13,27 +13,26 @@ What is OpenMEEG?
 Using OpenMEEG
 --------------
 
-    * From Matlab `using Brainstorm <http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem>`_.
-
-    * From Matlab for `EEG <fieldtrip/openmeeg_eeg_leadfield_example.html>`_ and `MEG <fieldtrip/openmeeg_meg_leadfield_example.html>`_ using Fieldtrip.
+    * From Matlab using `Brainstorm <http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem>`_ or `Fieldtrip <http://fieldtrip.fcdonders.nl>`_
 
     * For general lead fields computation (EEG, MEG, EIT, Internal potential):
 
-        * From `Python <examples/compute_leadfields.py>`_ (wrapping done using Swig)
-        * From a `Bash <examples/compute_leadfields.sh>`_ script on Unix systems.
-        * From a `BAT <examples/compute_leadfields.bat>`_ file on Windows.
+        * From `Python <https://raw.github.com/openmeeg/openmeeg/master/examples/compute_leadfields.py>`_
+        * From a `Bash <https://raw.github.com/openmeeg/openmeeg/master/examples/compute_leadfields.sh>`_ script on Unix systems (Linux/Mac).
+        * From a `BAT <https://github.com/openmeeg/openmeeg/raw/master/examples/compute_leadfields.bat>`_ file on Windows.
 
 `A PDF tutorial <ftp://ftp-sop.inria.fr/odyssee/Publications/2010/OpenMEEGHandsOnTutorial2010.pdf>`_
 
 .. raw:: html
 
-  <div class="logo">
+  <div class="logo" style="text-align: center; margin: -7px 0 -10px 0;">
+
+.. image:: _static/logo_brainstorm.png
+   :width: 250px
+   :target: http://neuroimage.usc.edu/brainstorm
 
 .. image:: _static/logo_fieldtrip.png
    :target: http://fieldtrip.fcdonders.nl
-
-.. image:: _static/logo_brainstorm.png
-   :target: http://neuroimage.usc.edu/brainstorm
 
 .. image:: _static/python-logo.gif
    :target: http://python.org

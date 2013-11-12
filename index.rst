@@ -46,7 +46,7 @@ Cite OpenMEEG
 
 The references to be acknowledged are:
 
-    - Gramfort A., Papadopoulo T., Olivi E., ClercM. `OpenMEEG: opensource
+    - Gramfort A., Papadopoulo T., Olivi E., Clerc M. `OpenMEEG: opensource
       software for quasistatic bioelectromagnetics <http://www.biomedical-engineering-online.com/content/9/1/45>`_,
       BioMedical Engineering OnLine 45:9, 2010
 

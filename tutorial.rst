@@ -336,25 +336,12 @@ Geometry description file
 
 -  the number of domains of homogeneous conductivity,
 
--  the positions of the domains with respect to the surfaces (inside or
+-  the positions of the domains with respect to the interfaces (inside or
    outside)
 
 The geometry description file should have as extension: \*.geom
 
 |image4|
-
-The domains are to be described in the following way (first the external
-surface and then the internal surface) :
-
-+-------------------------+-------------------------------+
-| Domain Brain -1         |                               |
-+-------------------------+-------------------------------+
-| Domain Skull **1 -2**   | *and not Domain Skull -2 1*   |
-+-------------------------+-------------------------------+
-| Domain Skin **2 -3**    | *and not Domain Skin -3 2*    |
-+-------------------------+-------------------------------+
-| Domain Air 3            |                               |
-+-------------------------+-------------------------------+
 
 “Meshes paths” can be
 
@@ -369,6 +356,12 @@ For the meshes, the following formats are allowed :
 
 -  \*.mesh : MESH format corresponding to BrainVisa versions 3.0.2 and
    later. Also handled by Anatomist.
+
+-  \*.gii : Gifti mesh format.
+
+-  \*.off : ASCII mesh format.
+
+-  \*.bnd : ASCII mesh format.
 
 -  \*.vtk : VTK mesh format.
 
@@ -420,7 +413,7 @@ Distributed dipoles
 ^^^^^^^^^^^^^^^^^^^
 
 Distributed dipoles are supported on a mesh, whose format must be
-\*.mesh, or \*.tri, or \*.vtk.
+\*.mesh, \*.tri, \*.vtk, \*.bnd, \*.off, or \*.gii.
 
 Source activation
 ~~~~~~~~~~~~~~~~~
@@ -500,7 +493,7 @@ An example of MEG sensor description:
 .. |image1| image:: _static/surf3.png
 .. |image2| image:: _static/dipole.png
 .. |image3| image:: _static/cortex.png
-.. |image4| image:: _static/geom.png
+.. |image4| image:: _static/geom2.png
 .. |image5| image:: _static/cond.png
 .. |image6| image:: _static/dipolePositions_en.png
 .. |image7| image:: _static/dipActiv.png

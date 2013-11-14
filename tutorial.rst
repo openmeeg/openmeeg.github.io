@@ -11,7 +11,7 @@ within the brain.
 .. image:: _static/dipole.png
     :width: 400px
 
-The potential is computed on **all surfaces ** of the head model
+The potential is computed on **all surfaces** of the head model
 (scalp, outer skull and inner skull for a three-layer model). Let
 :math:`\mathbf{X}` contain the values of the potential on the
 discretized surfaces, as well as the values of the normal current. The
@@ -19,21 +19,20 @@ Boundary Element Method leads to a linear system:
 
 .. math:: \mathbf{HeadMat} . \mathbf{X} = \mathbf{SourceMat}
 
-See sections [sect: command assemble HeadMat], [sect: command assemble
-SourceMat] and [sect: command invert HeadMat].
+See sections :ref:`command_assemble_headmat`, :ref:`command_assemble_sourcemat`
+and :ref:`command_invert_headmat`.
 
-|  : the matrices relating the head model surfaces and the sensor data
+The matrices relating the head model surfaces and the sensor data
 must be computed. These are different for EEG and for MEG.
-| For EEG, the potential is interpolated from the surface discretization
-points to the sensor positions through a simple linear transformation :
-| 
+For EEG, the potential is interpolated from the surface discretization
+points to the sensor positions through a simple linear transformation:
 
 .. math::
 
-   \left[ \mbox{potential at sensors} \right] =
-       \left[ \mbox{interpolation matrix} \right] \times \left[ \mbox{potential at interfaces} \right] \mbox{in the case of EEG.}
+   \left[ potential at sensors \right] =
+       \left[ interpolation matrix \right] \times \left[ potential at interfaces \right] in the case of EEG.
 
- For MEG, the Biot and Savart equation allows to identify two
+For MEG, the Biot and Savart equation allows to identify two
 contributions to the magnetic field: one which comes directly from the
 sources, and an ohmic contribution which comes from the volume
 conductor. Hence two linear transformations must be computed, one from
@@ -94,10 +93,10 @@ Commands
 In the following, the binaries in , the options in , the inputs are in
 **black** and the outputs in .
 
+.. _command_assemble_headmat:
+
 Head Matrix assembly :math:`\mathbf{HeadMat}`:
 ----------------------------------------------
-
-[sect: command assemble HeadMat]
 
 Inputs:
 
@@ -114,10 +113,10 @@ The symmetric format only stores the lower half of a matrix.
 
 Note: the abbreviated option names or can be used instead of .
 
+.. _command_assemble_sourcemat:
+
 Source matrix assembly :math:`\mathbf{Source}`:
 -----------------------------------------------
-
-[sect: command assemble SourceMat]
 
 Inputs:
 
@@ -145,10 +144,10 @@ Output:
 | For distributed sources:
 |  Note: the abbreviated option names or can be used instead of .
 
+.. _command_invert_headmat:
+
 :math:`\mathbf{HeadMat}` matrix inversion:
 ------------------------------------------
-
-[sect: command invert HeadMat]
 
 Inputs:
 

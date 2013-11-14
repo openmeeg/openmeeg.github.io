@@ -72,9 +72,9 @@
 <li><a class="reference internal" href="#">Context</a></li>
 <li><a class="reference internal" href="#data">Data</a></li>
 <li><a class="reference internal" href="#commands">Commands</a><ul>
-<li><a class="reference internal" href="#head-matrix-assembly">Head Matrix assembly <span class="math">\mathbf{HeadMat}</span>:</a></li>
-<li><a class="reference internal" href="#source-matrix-assembly">Source matrix assembly <span class="math">\mathbf{Source}</span>:</a></li>
-<li><a class="reference internal" href="#matrix-inversion"><span class="math">\mathbf{HeadMat}</span> matrix inversion:</a></li>
+<li><a class="reference internal" href="#head-matrix-assembly">Head Matrix assembly <img class="math" src="_images/math/da985019c5b54f24658995a8ec24f1f9ba49d05c.png" alt="\mathbf{HeadMat}"/>:</a></li>
+<li><a class="reference internal" href="#source-matrix-assembly">Source matrix assembly <img class="math" src="_images/math/6d87db81b951c06a05650595ddb8083ef3c5846b.png" alt="\mathbf{Source}"/>:</a></li>
+<li><a class="reference internal" href="#matrix-inversion"><img class="math" src="_images/math/da985019c5b54f24658995a8ec24f1f9ba49d05c.png" alt="\mathbf{HeadMat}"/> matrix inversion:</a></li>
 <li><a class="reference internal" href="#linear-transformation-from-x-to-the-sensor-potential">Linear transformation from X to the sensor potential:</a></li>
 <li><a class="reference internal" href="#gain-matrix-computation">Gain matrix computation:</a></li>
 <li><a class="reference internal" href="#the-forward-problem">The forward problem:</a></li>
@@ -128,28 +128,24 @@
 and magnetic fields (MEG) on the sensors due to electrical sources
 within the brain.</p>
 <img alt="_images/dipole.png" src="_images/dipole.png" style="width: 400px;" />
-<p>The potential is computed on <a href="#id1"><span class="problematic" id="id2">**</span></a>all surfaces ** of the head model
+<p>The potential is computed on <strong>all surfaces</strong> of the head model
 (scalp, outer skull and inner skull for a three-layer model). Let
-<span class="math">\mathbf{X}</span> contain the values of the potential on the
+<img class="math" src="_images/math/5ecbbc0083da71f2cbc69e1377535094685b108a.png" alt="\mathbf{X}"/> contain the values of the potential on the
 discretized surfaces, as well as the values of the normal current. The
 Boundary Element Method leads to a linear system:</p>
 <div class="math">
-<p><span class="math">\mathbf{HeadMat} . \mathbf{X} = \mathbf{SourceMat}</span></p>
-</div><p>See sections [sect: command assemble HeadMat], [sect: command assemble
-SourceMat] and [sect: command invert HeadMat].</p>
-<div class="line-block">
-<div class="line">&nbsp;: the matrices relating the head model surfaces and the sensor data</div>
-</div>
-<p>must be computed. These are different for EEG and for MEG.
-| For EEG, the potential is interpolated from the surface discretization
-points to the sensor positions through a simple linear transformation&nbsp;:
-|</p>
+<p><img src="_images/math/f0376852a9e2a355a1bc912997db8ed5abedbfeb.png" alt="\mathbf{HeadMat} . \mathbf{X} = \mathbf{SourceMat}"/></p>
+</div><p>See sections <a class="reference internal" href="#command-assemble-headmat"><em>Head Matrix assembly :</em></a>, <a class="reference internal" href="#command-assemble-sourcemat"><em>Source matrix assembly :</em></a>
+and <a class="reference internal" href="#command-invert-headmat"><em> matrix inversion:</em></a>.</p>
+<p>The matrices relating the head model surfaces and the sensor data
+must be computed. These are different for EEG and for MEG.
+For EEG, the potential is interpolated from the surface discretization
+points to the sensor positions through a simple linear transformation:</p>
 <div class="math">
-<p><span class="math">\left[ \mbox{potential at sensors} \right] =
-      \left[ \mbox{interpolation matrix} \right] \times \left[ \mbox{potential at interfaces} \right] \mbox{in the case of EEG.}
-
-For MEG, the Biot and Savart equation allows to identify two</span></p>
-</div><p>contributions to the magnetic field: one which comes directly from the
+<p><img src="_images/math/9fde6bb141ff7c319fca5e128ca21c009217cd0e.png" alt="\left[ potential at sensors \right] =
+    \left[ interpolation matrix \right] \times \left[ potential at interfaces \right] in the case of EEG."/></p>
+</div><p>For MEG, the Biot and Savart equation allows to identify two
+contributions to the magnetic field: one which comes directly from the
 sources, and an ohmic contribution which comes from the volume
 conductor. Hence two linear transformations must be computed, one from
 the source locations to MEG sensors, the other from the head model
@@ -158,7 +154,7 @@ interfaces to the MEG sensors.</p>
 <p>&nbsp;: the matrix relating the sources (at fixed positions and orientations)
 to the sensors is now ready to be computed (section [sect: command
 gain]). This matrix is called the <strong>gain matrix</strong> and is denoted
-<span class="math">\mathbf{G}</span>. The gain matrix is then applied to the source
+<img class="math" src="_images/math/597c852cd8d4be79f01a80b6317d2096dd10c544.png" alt="\mathbf{G}"/>. The gain matrix is then applied to the source
 activation to simulate the forward problem (section [sect: command
 direct]).</p>
 </div>
@@ -204,8 +200,7 @@ Appendix&nbsp;[chap:format].</p>
 <p>In the following, the binaries in , the options in , the inputs are in
 <strong>black</strong> and the outputs in .</p>
 <div class="section" id="head-matrix-assembly">
-<h2>Head Matrix assembly <span class="math">\mathbf{HeadMat}</span>:<a class="headerlink" href="#head-matrix-assembly" title="Permalink to this headline">¶</a></h2>
-<p>[sect: command assemble HeadMat]</p>
+<span id="command-assemble-headmat"></span><h2>Head Matrix assembly <img class="math" src="_images/math/da985019c5b54f24658995a8ec24f1f9ba49d05c.png" alt="\mathbf{HeadMat}"/>:<a class="headerlink" href="#head-matrix-assembly" title="Permalink to this headline">¶</a></h2>
 <p>Inputs:</p>
 <ul class="simple">
 <li>subject.geom: geometry description file (see Appendix&nbsp;[sec:geom])</li>
@@ -213,15 +208,14 @@ Appendix&nbsp;[chap:format].</p>
 </ul>
 <p>Output:</p>
 <ul class="simple">
-<li>: binary file containing the matrix <span class="math">\mathbf{HeadMat}</span>
+<li>: binary file containing the matrix <img class="math" src="_images/math/da985019c5b54f24658995a8ec24f1f9ba49d05c.png" alt="\mathbf{HeadMat}"/>
 (symmetric format).</li>
 </ul>
 <p>The symmetric format only stores the lower half of a matrix.</p>
 <p>Note: the abbreviated option names or can be used instead of .</p>
 </div>
 <div class="section" id="source-matrix-assembly">
-<h2>Source matrix assembly <span class="math">\mathbf{Source}</span>:<a class="headerlink" href="#source-matrix-assembly" title="Permalink to this headline">¶</a></h2>
-<p>[sect: command assemble SourceMat]</p>
+<span id="command-assemble-sourcemat"></span><h2>Source matrix assembly <img class="math" src="_images/math/6d87db81b951c06a05650595ddb8083ef3c5846b.png" alt="\mathbf{Source}"/>:<a class="headerlink" href="#source-matrix-assembly" title="Permalink to this headline">¶</a></h2>
 <p>Inputs:</p>
 <ul>
 <li><p class="first">subject.geom: geometry description file (see Appendix&nbsp;[sec:geom])</p>
@@ -243,7 +237,7 @@ BrainVisa, or *.vtk)</p>
 </ul>
 <p>Output:</p>
 <ul class="simple">
-<li>: binary file containing <span class="math">\mathbf{SourceMat}</span></li>
+<li>: binary file containing <img class="math" src="_images/math/f05ddf12e9b047d77ff814a147e21d01110031bd.png" alt="\mathbf{SourceMat}"/></li>
 </ul>
 <div class="line-block">
 <div class="line">For dipolar sources:</div>
@@ -259,16 +253,15 @@ BrainVisa, or *.vtk)</p>
 </div>
 </div>
 <div class="section" id="matrix-inversion">
-<h2><span class="math">\mathbf{HeadMat}</span> matrix inversion:<a class="headerlink" href="#matrix-inversion" title="Permalink to this headline">¶</a></h2>
-<p>[sect: command invert HeadMat]</p>
+<span id="command-invert-headmat"></span><h2><img class="math" src="_images/math/da985019c5b54f24658995a8ec24f1f9ba49d05c.png" alt="\mathbf{HeadMat}"/> matrix inversion:<a class="headerlink" href="#matrix-inversion" title="Permalink to this headline">¶</a></h2>
 <p>Inputs:</p>
 <ul class="simple">
-<li>HeadMat.bin: binary file containing matrix <span class="math">\mathbf{HeadMat}</span>
+<li>HeadMat.bin: binary file containing matrix <img class="math" src="_images/math/da985019c5b54f24658995a8ec24f1f9ba49d05c.png" alt="\mathbf{HeadMat}"/>
 (symmetric format)</li>
 </ul>
 <p>Output:</p>
 <ul class="simple">
-<li>: binary file containing matrix <span class="math">\mathbf{HeadMat}^{-1}</span>
+<li>: binary file containing matrix <img class="math" src="_images/math/3f09d251165835d9551ebe3318deaa1e1da7a14c.png" alt="\mathbf{HeadMat}^{-1}"/>
 (symmetric format)</li>
 </ul>
 </div>
@@ -276,20 +269,20 @@ BrainVisa, or *.vtk)</p>
 <h2>Linear transformation from X to the sensor potential:<a class="headerlink" href="#linear-transformation-from-x-to-the-sensor-potential" title="Permalink to this headline">¶</a></h2>
 <p>[sect: command assemble sensors]</p>
 <div class="line-block">
-<div class="line"><a href="#id3"><span class="problematic" id="id4">**</span></a><a href="#id5"><span class="problematic" id="id6">**</span></a>:</div>
+<div class="line"><a href="#id1"><span class="problematic" id="id2">**</span></a><a href="#id3"><span class="problematic" id="id4">**</span></a>:</div>
 </div>
 <p>A linear interpolation is computed which relates X to the electrode
 potential through the linear transformation:</p>
 <div class="math">
-<p><span class="math">\mathbf{V_{electrode}} = \mathbf{Head2EEG} . \mathbf{X}
+<p><img src="_images/math/19f98d6f8a624b13cb61a995621937016a644aba.png" alt="\mathbf{V_{electrode}} = \mathbf{Head2EEG} . \mathbf{X}
 
-where:</span></p>
+where:"/></p>
 </div><ul class="simple">
-<li><span class="math">\mathbf{V_{electrode}}</span> is the column-vector of potential
+<li><img class="math" src="_images/math/f26b62cc8bb0a863623665dd64d0b1b005b3c366.png" alt="\mathbf{V_{electrode}}"/> is the column-vector of potential
 values at the sensors (output of EEG forward problem),</li>
-<li><span class="math">\mathbf{X}</span> is the column-vector containing the values of the
+<li><img class="math" src="_images/math/5ecbbc0083da71f2cbc69e1377535094685b108a.png" alt="\mathbf{X}"/> is the column-vector containing the values of the
 potential and the normal current on all the surface of the model,</li>
-<li><span class="math">\mathbf{Head2EEGMat}</span> is the linear transformation to be
+<li><img class="math" src="_images/math/30691074526edea8efa59d7a62e27b622f72ff46.png" alt="\mathbf{Head2EEGMat}"/> is the linear transformation to be
 computed.</li>
 </ul>
 <p>Inputs:</p>
@@ -301,20 +294,20 @@ electrodes (see Appendix&nbsp;[sec:sensors])</li>
 </ul>
 <p>Sortie:</p>
 <ul class="simple">
-<li>: file containing the matrix <span class="math">\mathbf{Head2EEGMat}</span> (sparse
+<li>: file containing the matrix <img class="math" src="_images/math/30691074526edea8efa59d7a62e27b622f72ff46.png" alt="\mathbf{Head2EEGMat}"/> (sparse
 format)</li>
 </ul>
 <p>The sparse format allows to store efficiently matrices containing a
 small proportion of non-zero values.</p>
 <p>Note: the abbreviated option names or can be used instead of .</p>
 <div class="line-block">
-<div class="line"><a href="#id7"><span class="problematic" id="id8">**</span></a><a href="#id9"><span class="problematic" id="id10">**</span></a>:</div>
+<div class="line"><a href="#id5"><span class="problematic" id="id6">**</span></a><a href="#id7"><span class="problematic" id="id8">**</span></a>:</div>
 <div class="line">In the case of MEG there are more matrices to assemble, as explained</div>
 </div>
 <p>in section&nbsp;[]. The magnetic field is related both to the sources
 directly, as well as to the electric potential, according to:</p>
 <div class="math">
-<p><span class="math">\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}</span></p>
+<p><img src="_images/math/a99b19142c7114e2276edeb7bf5516be1b53e890.png" alt="\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}"/></p>
 </div><div class="line-block">
 <div class="line">:</div>
 <div class="line">Inputs:</div>
@@ -327,7 +320,7 @@ Appendix&nbsp;[sec:sensors])</li>
 </ul>
 <p>Output:</p>
 <ul class="simple">
-<li>: binary file containing <span class="math">\mathbf{Head2MEGMat}</span></li>
+<li>: binary file containing <img class="math" src="_images/math/c3d29024d42a0d6bf69222b3d758a968bc259a38.png" alt="\mathbf{Head2MEGMat}"/></li>
 </ul>
 <p>Note: the abbreviated option names or can be used instead of .</p>
 <div class="line-block">
@@ -354,10 +347,10 @@ Appendix&nbsp;[sec:sensors])</p>
 <p>Output:</p>
 <ul>
 <li><div class="first line-block">
-<div class="line">: binary file containing <span class="math">\mathbf{DipSource2MEGMat}</span></div>
+<div class="line">: binary file containing <img class="math" src="_images/math/6ebdca34f986e0ad8d05a66f7d548a2bf7702460.png" alt="\mathbf{DipSource2MEGMat}"/></div>
 </div>
 </li>
-<li><p class="first">or : binary file containing <span class="math">\mathbf{SurfSource2MEGMat}</span></p>
+<li><p class="first">or : binary file containing <img class="math" src="_images/math/ab6ff0c5cbb5be99b0870cb9828cd9e5093c4e8e.png" alt="\mathbf{SurfSource2MEGMat}"/></p>
 </li>
 </ul>
 <div class="line-block">
@@ -381,15 +374,15 @@ activation of sources, at <strong>predefined positions and orientations</strong>
 the values of the fields of interest (electric potential or magnetic
 field) at predefined sensor positions (and orientations for MEG).</p>
 <div class="line-block">
-<div class="line"><a href="#id11"><span class="problematic" id="id12">**</span></a><a href="#id13"><span class="problematic" id="id14">**</span></a>:</div>
+<div class="line"><a href="#id9"><span class="problematic" id="id10">**</span></a><a href="#id11"><span class="problematic" id="id12">**</span></a>:</div>
 <div class="line">Inputs:</div>
 </div>
 <ul class="simple">
-<li>HeadMatInv.bin: binary file containing <span class="math">\mathbf{HeadMat}^{-1}</span>
+<li>HeadMatInv.bin: binary file containing <img class="math" src="_images/math/3f09d251165835d9551ebe3318deaa1e1da7a14c.png" alt="\mathbf{HeadMat}^{-1}"/>
 (symmetric format)</li>
 <li>SourceMat.bin: binary file containing either
-<span class="math">\mathbf{SurfSourceMat}</span> or <span class="math">\mathbf{DipSourceMat}</span></li>
-<li>Head2EEGMat.bin: binary file containing <span class="math">\mathbf{Head2EEGMat}</span>
+<img class="math" src="_images/math/88a6bacea6c575a365df328cdbcb117ef5692c5b.png" alt="\mathbf{SurfSourceMat}"/> or <img class="math" src="_images/math/4dc2ab53c1a328f269ccdf65da038fcc33244872.png" alt="\mathbf{DipSourceMat}"/></li>
+<li>Head2EEGMat.bin: binary file containing <img class="math" src="_images/math/30691074526edea8efa59d7a62e27b622f72ff46.png" alt="\mathbf{Head2EEGMat}"/>
 (sparse format)</li>
 </ul>
 <p>Output:</p>
@@ -397,18 +390,18 @@ field) at predefined sensor positions (and orientations for MEG).</p>
 <li>: binary file contining the gain matrix</li>
 </ul>
 <div class="line-block">
-<div class="line"><a href="#id15"><span class="problematic" id="id16">**</span></a><a href="#id17"><span class="problematic" id="id18">**</span></a>:</div>
+<div class="line"><a href="#id13"><span class="problematic" id="id14">**</span></a><a href="#id15"><span class="problematic" id="id16">**</span></a>:</div>
 <div class="line">Inputs:</div>
 </div>
 <ul class="simple">
-<li>HeadMatInv.bin: binary file containing <span class="math">\mathbf{HeadMat}^{-1}</span>
+<li>HeadMatInv.bin: binary file containing <img class="math" src="_images/math/3f09d251165835d9551ebe3318deaa1e1da7a14c.png" alt="\mathbf{HeadMat}^{-1}"/>
 (symmetric format)</li>
 <li>SourceMat.bin: binary file containing either
-<span class="math">\mathbf{SurfSourceMat}</span> or <span class="math">\mathbf{DipSourceMat}</span></li>
-<li>Head2MEGMat.bin: binary file containing <span class="math">\mathbf{Head2MEGMat}</span></li>
+<img class="math" src="_images/math/88a6bacea6c575a365df328cdbcb117ef5692c5b.png" alt="\mathbf{SurfSourceMat}"/> or <img class="math" src="_images/math/4dc2ab53c1a328f269ccdf65da038fcc33244872.png" alt="\mathbf{DipSourceMat}"/></li>
+<li>Head2MEGMat.bin: binary file containing <img class="math" src="_images/math/c3d29024d42a0d6bf69222b3d758a968bc259a38.png" alt="\mathbf{Head2MEGMat}"/></li>
 <li>Source2MEGMat.bin:binary file containing either
-<span class="math">\mathbf{DipSource2MEGMat}</span> or
-<span class="math">\mathbf{SurfSource2MEGMat}</span></li>
+<img class="math" src="_images/math/6ebdca34f986e0ad8d05a66f7d548a2bf7702460.png" alt="\mathbf{DipSource2MEGMat}"/> or
+<img class="math" src="_images/math/ab6ff0c5cbb5be99b0870cb9828cd9e5093c4e8e.png" alt="\mathbf{SurfSource2MEGMat}"/></li>
 </ul>
 <p>Output:</p>
 <ul class="simple">
@@ -580,8 +573,8 @@ to sensor name)</li>
     </div>
     <div class="footer">
         &copy; Copyright 2009-2013, OpenMEEG Developers.
-      Last updated on Nov 13, 2013.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Last updated on Nov 14, 2013.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>

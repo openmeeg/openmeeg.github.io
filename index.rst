@@ -62,6 +62,4 @@ Table of contents
    why_openmeeg
    compile
    publications
-   whats_new
    license
-   tutorial

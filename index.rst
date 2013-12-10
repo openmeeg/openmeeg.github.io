@@ -21,7 +21,7 @@ Using OpenMEEG
         * From a `Bash <https://raw.github.com/openmeeg/openmeeg/master/examples/compute_leadfields.sh>`_ script on Unix systems (Linux/Mac).
         * From a `BAT <https://github.com/openmeeg/openmeeg/raw/master/examples/compute_leadfields.bat>`_ file on Windows.
 
-`A PDF tutorial <ftp://ftp-sop.inria.fr/odyssee/Publications/2010/OpenMEEGHandsOnTutorial2010.pdf>`_
+`A PDF tutorial <http://openmeeg.gforge.inria.fr/download/tutorial-3.0.pdf>`_
 
 .. raw:: html
 

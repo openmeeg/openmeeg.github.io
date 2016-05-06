@@ -5,7 +5,7 @@ OpenMEEG Home
 What is OpenMEEG?
 -----------------
 
-    * The OpenMEEG software is developed within the `Athena project-team <http://www-sop.inria.fr/athena>`_ at INRIA Sophia-Antipolis.
+    * The OpenMEEG software is developed within the `Athena project-team <https://team.inria.fr/athena/>`_ at INRIA Sophia-Antipolis.
     * It was initiated in 2006 by the Odyssee Project Team (INRIA/ENPC/ENS Ulm).
     * OpenMEEG solves forward problems related to Magneto- and Electro-encephalography (MEG and EEG).
     * The forward problem uses the symmetric Boundary Element Method (symmetric BEM), providing excellent accuracy (see :ref:`publications`).
@@ -17,9 +17,9 @@ Using OpenMEEG
 
     * For general lead fields computation (EEG, MEG, EIT, Internal potential):
 
-        * From `Python <https://raw.github.com/openmeeg/openmeeg/master/examples/compute_leadfields.py>`_
-        * From a `Bash <https://raw.github.com/openmeeg/openmeeg/master/examples/compute_leadfields.sh>`_ script on Unix systems (Linux/Mac).
-        * From a `BAT <https://github.com/openmeeg/openmeeg/raw/master/examples/compute_leadfields.bat>`_ file on Windows.
+        * From `Python <https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.py>`_
+        * From a `Bash <https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.sh>`_ script on Unix systems (Linux/Mac).
+        * From a `BAT <https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.bat>`_ file on Windows.
 
 `A PDF tutorial <http://openmeeg.gforge.inria.fr/download/tutorial-3.0.pdf>`_
 

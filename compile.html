@@ -28,7 +28,7 @@
     <link rel="next" title="Publications on OpenMEEG" href="publications.html" />
     <link rel="prev" title="Why use OpenMEEG?" href="why_openmeeg.html" /> 
   </head>
-  <body>
+  <body role="document">
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
     <div style='float:left; display:inline-block'>
         <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
@@ -47,7 +47,7 @@
     </div>
 </div>
 
-    <div class="related">
+    <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
@@ -70,7 +70,7 @@
       </ul>
     </div>
 
-      <div class="sphinxsidebar">
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
@@ -87,7 +87,7 @@
   <h4>Next topic</h4>
   <p class="topless"><a href="publications.html"
                         title="next chapter">Publications on OpenMEEG</a></p>
-<div id="searchbox" style="display: none">
+<div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
       <input type="text" name="q" />
@@ -106,7 +106,7 @@
     <div class="document">
       <div class="documentwrapper">
         <div class="bodywrapper">
-          <div class="body">
+          <div class="body" role="main">
             
   <div class="section" id="compiling-openmeeg">
 <span id="compile"></span><h1>Compiling OpenMEEG<a class="headerlink" href="#compiling-openmeeg" title="Permalink to this headline">¶</a></h1>
@@ -125,13 +125,14 @@
 <div class="section" id="compiling-openmeeg-on-linux-or-mac-os">
 <h2>Compiling OpenMEEG on Linux or Mac OS<a class="headerlink" href="#compiling-openmeeg-on-linux-or-mac-os" title="Permalink to this headline">¶</a></h2>
 <p>Step by step commands to be run in the terminal:</p>
-<div class="highlight-python"><pre>git clone https://github.com/openmeeg/openmeeg.git # get the code
+<div class="highlight-python"><div class="highlight"><pre><span></span>git clone https://github.com/openmeeg/openmeeg.git # get the code
 cd openmeeg # go into the openmeeg directory
 mkdir build # create a build folder
 cd build
 cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON ..  # configure build with CMake
 make # build the project
-make test # test the build</pre>
+make test # test the build
+</pre></div>
 </div>
 <p>You can replace <em>cmake</em> by <em>ccmake</em> to configure visually your project.</p>
 <p>On windows you need to use the CMake GUI.</p>
@@ -144,10 +145,10 @@ make test # test the build</pre>
       </div>
       <div class="clearer"></div>
     </div>
-    <div class="footer">
+    <div class="footer" role="contentinfo">
         &copy; Copyright 2009-2013, OpenMEEG Developers.
-      Last updated on Feb 17, 2014.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
+      Last updated on May 06, 2016.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
     </div>
   </body>
 </html>

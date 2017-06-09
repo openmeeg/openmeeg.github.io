@@ -17,15 +17,16 @@
         VERSION:     '0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
       };
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="top" title="None" href="index.html" />
-    <link rel="next" title="Compiling OpenMEEG" href="compile.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Publications on OpenMEEG" href="publications.html" />
     <link rel="prev" title="Contact us" href="contact.html" /> 
   </head>
   <body role="document">
@@ -51,19 +52,18 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="compile.html" title="Compiling OpenMEEG"
+          <a href="publications.html" title="Publications on OpenMEEG"
              accesskey="N">next</a></li>
         <li class="right" >
           <a href="contact.html" title="Contact us"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
         <li><a href="#">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+        <li><a href="https://github.com/openmeeg/openmeeg/blob/master/README.rst#install-precompiled-binaries">Download</a>&nbsp;|&nbsp;</li>
         <li><a href="http://openmeeg.gforge.inria.fr/download/tutorial-3.0.pdf">Tutorial (pdf)</a>&nbsp;|&nbsp;</li>
-        <li><a href="http://openmeeg.gforge.inria.fr/download/">Download</a>&nbsp;|&nbsp;</li>
         <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
         <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
         <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
-        <li><a href="compile.html">Compilation</a>&nbsp;|&nbsp;</li>
         <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
         <!-- <li><a href="search.html">Search</a></li> -->
  
@@ -85,19 +85,16 @@
   <p class="topless"><a href="contact.html"
                         title="previous chapter">Contact us</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="compile.html"
-                        title="next chapter">Compiling OpenMEEG</a></p>
+  <p class="topless"><a href="publications.html"
+                        title="next chapter">Publications on OpenMEEG</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="Go" />
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
-    <p class="searchtip" style="font-size: 90%">
-    Enter search terms or a module, class or function name.
-    </p>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -115,7 +112,7 @@
 <h2>How do you measure precision?<a class="headerlink" href="#how-do-you-measure-precision" title="Permalink to this headline">¶</a></h2>
 <p>Relative difference measure (RDM) <em>(should be close to 0)</em> and Magnitude error (MAG) <em>(should be close to 1)</em>:</p>
 <div class="math">
-<p><img src="_images/math/d2c16e7c7d01e567740c52bf32e47a3d52299d1a.png" alt="\mathbf{MAG} = \left\| \frac{V_{bem}}{\|V_{bem}\|_2} - \frac{V_{exact}}{\|V_{exact}\|_2} \right\| \,,\, \mathbf{RDM} = \frac{\|V_{bem}\|_2}{\|V_{exact}\|_2}"/></p>
+<p><img src="_images/math/bb5405096192b6b2d1fd854151a05b639e7f5b9f.png" alt="\mathbf{MAG} = \left\| \frac{V_{bem}}{\|V_{bem}\|_2} - \frac{V_{exact}}{\|V_{exact}\|_2} \right\| \,,\, \mathbf{RDM} = \frac{\|V_{bem}\|_2}{\|V_{exact}\|_2}"/></p>
 </div><p>A sample sphere model with 5 dipoles:</p>
 <p><div style="text-align: center; margin: -7px 0 -10px 0;">   <a class="reference internal" href="_images/sphere_dipoles_3D.png"><img alt="Sphere model with 5 dipoles" src="_images/sphere_dipoles_3D.png" style="width: 250px;" /></a>   <a class="reference internal" href="_images/sphere_dipoles_3D_zoom.png"><img alt="Sphere model with 5 dipoles (zoom)" src="_images/sphere_dipoles_3D_zoom.png" style="width: 200px;" /></a>   </div></p>
 </div>
@@ -138,9 +135,9 @@
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &copy; Copyright 2009-2016, OpenMEEG Developers..
-      Last updated on May 06, 2016.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.3.3.
+        &#169; Copyright 2009-2017, OpenMEEG Developers..
+      Last updated on Jun 09, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
     </div>
   </body>
 </html>

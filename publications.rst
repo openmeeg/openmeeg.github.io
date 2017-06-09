@@ -33,3 +33,5 @@ Publications using OpenMEEG
     - Olivi E., Clerc M., Papadopoulo T.. Domain decomposition for coupling finite and boundary element methods in EEG. Proceedings of Biomag 2010.
 
     - Falcone J., Veau N., Bhatti P.. Investigating the Auditory Nerve Response to Virtual Electrode Stimulations through Numerical Modeling of the Cochlea. International Symposium on Objective Measures in Auditory Implants, 2010.
+
+    - Burle B., Spieser L., Roger C., Casini L., Hasbroucq T. & Vidal F.. Spatial and temporal resolution of EEG: is it really black and white ? A Scalp Current Density view. International Journal of Psychophysiology, 97, 210-220, 2015.

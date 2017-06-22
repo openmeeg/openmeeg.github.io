@@ -523,3 +523,8 @@ div.social-button {
     margin-left: 40px;
     margin-right: 40px;
 }
+
+.command      { color:red; }
+.opt      { color:green; }
+.input      { color:black; }
+.output      { color:blue; }

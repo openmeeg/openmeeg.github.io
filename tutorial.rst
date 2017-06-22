@@ -15,7 +15,7 @@ Tutorial
 .. role:: output
 
 Data format
-###########
+===========
 
 OpenMEEG handles several file formats corresponding to different types of objects: vectors, matrices, head geometries, meshes, dipoles, conductivities.
 
@@ -145,7 +145,7 @@ A **surfacic distribution** can be defined by a mesh that supports the dipoles. 
 
 
 OpenMEEG from the command line
-################################
+===============================
 
 Diagram for the low level pipeline for computing MEG and EEG leadfields (a.k.a., gain matrices) using OpenMEEG:
 
@@ -161,7 +161,7 @@ Full details are available in OpenMEEG documentation. In this section, command n
 in :command:`red`, options are in :opt:`green` and produced files are shown in :output:`blue`.
 
 om_assemble
-***********
+-----------
 
 General syntax:
 
@@ -180,7 +180,7 @@ for a short description of these files). :opt:`OptParam` depends on the actual :
 We now detail the possible :opt:`Options` (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble:
 
 General options for :command:`om_assemble`
-******************************************
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    - :opt:`-help` (:opt:`-h`,:opt:`--help`): summarizes all possible options.
 
@@ -269,7 +269,7 @@ Gain matrix type options: select the type of gain matrix to be computed by  :com
          using :command:`om_assemble` with option :opt:`-Head2InternalPotMat` and :opt:`-DipSource2InternalPotMat`.
 
 Examples
-########
+========
 
 Assuming a head model represented by the geometry file :input:`head.geom` and the conductivity file :input:`head.cond` and EEG sensors detailed in a file :input:`head.eegsensors`.
 
@@ -292,7 +292,7 @@ Considering now isolated dipolar sources detailed in the file :input:`sources.di
     om_gain -MEG head.hm_inv head.dsm head.h2mm head.ds2mm head.gain
 
 Commands
-########
+========
 
 In the following, the binaries in :command:`red`, the options in :opt:`green`, the inputs are in :input:`black` and the outputs in :output:`blue`.
 
@@ -362,7 +362,7 @@ Linear transformation from X to the sensor potential
 ----------------------------------------------------
 
 For EEG
-*******
+~~~~~~~
 
 A linear interpolation is computed which relates X to the electrode potential through the linear transformation:
 
@@ -393,7 +393,7 @@ The sparse format allows to store efficiently matrices containing a small propor
 .. note:: the abbreviated option names :opt:`-H2EM`or :opt:`-h2em`can be used instead of :opt:`-Head2EEGMat`.
 
 For MEG
-*******
+~~~~~~~
 
 In the case of MEG there are more matrices to assemble, as explained in section~\ref{}.
 The magnetic field is related both to the sources directly, as well as to the electric  potential, according to:
@@ -450,8 +450,8 @@ Gain matrix computation
 
 The gain matrix represents the linear transformation relating the activation of sources, at **predefined positions and orientations** to the values of the fields of interest (electric potential or magnetic field) at predefined sensor positions (and orientations for MEG).
 
-For EEG:
-********
+For EEG
+~~~~~~~
 
 Input:
 
@@ -465,8 +465,8 @@ Output:
 
 :command:`om_gain`:opt:`-EEG`HeadMatInv.bin SourceMat.bin Head2EEGMat.bin :output:`GainEEGMat.bin`
 
-For MEG:
-********
+For MEG
+~~~~~~~
 
 Input:
 
@@ -482,7 +482,7 @@ Output:
 :command:`om_gain`:opt:`-MEG`HeadMatInv.bin SourceMat.bin Head2MEGMat.bin Source2MEGMat.bin :output:`GainMEGMat.bin`
 
 Data
-####
+====
 
 This section describes the type of data that is required to run a forward problem with OpenMEEG.
 
@@ -574,7 +574,7 @@ The domains are to be described in the following way (first the external surface
         - \*.vtk~: VTK mesh format.
 
 Conductivity description file
-##############################
+==============================
 
 The conductivity description file defines the conductivity values corresponding to each domain listed in the Geometry Description File (section~\ref{sec:geom}).
 
@@ -587,10 +587,8 @@ The file extension should be: \*.cond .
    :alt: Conductivity
    :align: center
 
-%###################################################
-
 Source description
-##################
+==================
 
 Sources are defined by their geometry (position and orientation)  and their magnitude.
 OpenMEEG handles two types of source models: isolated dipoles, or distributed dipoles: these two models differ in their geometry description.
@@ -599,7 +597,7 @@ Source position and orientation
 --------------------------------
 
 Isolated dipoles
-*****************
+~~~~~~~~~~~~~~~~
 
 Isolated dipoles are represented by a text file (extension \*.dip or \*.txt), in which each line defines a dipole position and orientation, encoded in 6 real values:
 
@@ -617,12 +615,12 @@ The following example shows a file describing 5 isolated dipoles:
 .. note:: The referential of the coordinates should be the same as for the meshes (the MR coordinates in general).
 
 Distributed dipoles
-*******************
+~~~~~~~~~~~~~~~~~~~~~
 
 Distributed dipoles are supported on a mesh, whose format must be \*.mesh, or \*.tri, or \*.vtk.
 
 Source activation
-******************
+~~~~~~~~~~~~~~~~~~~~~
 
 Source activation files are text files, in which each line corresponds to a source, and each column to a time sample.
 

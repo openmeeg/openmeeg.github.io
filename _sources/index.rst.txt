@@ -67,6 +67,6 @@ Table of contents
 
    contact
    why_openmeeg
-   compile
    publications
+   tutorial
    license

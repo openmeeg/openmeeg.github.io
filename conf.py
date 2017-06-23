@@ -26,14 +26,14 @@ sys.path.append(os.path.abspath('sphinxext'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = ['sphinx.ext.autodoc', 'sphinx.ext.autosummary',
-              'sphinx.ext.pngmath']
+              'sphinx.ext.imgmath']
 
 autodoc_default_flags = ['inherited-members']
 
 # extensions = ['sphinx.ext.autodoc',
 #               'sphinx.ext.doctest',
 #               'sphinx.ext.todo',
-#               'sphinx.ext.pngmath',
+#               'sphinx.ext.imgmath',
 #               'sphinx.ext.inheritance_diagram',
 #               'numpydoc',
 #               'ipython_console_highlighting',
@@ -64,7 +64,7 @@ copyright = u'2009-%s, OpenMEEG Developers.' % (td.year,)
 # built documents.
 #
 # The short X.Y version.
-version = 0.2
+version = "2.4"
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -124,7 +124,7 @@ html_style = 'navy.css'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = None
+#html_title = 
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 html_short_title = None
@@ -190,7 +190,7 @@ htmlhelp_basename = 'openmeeg-doc'
 # -- Options for LaTeX output -------------------------------------------------
 
 # The paper size ('letter' or 'a4').
-# latex_paper_size = 'letter'
+latex_paper_size = 'a4'
 
 # The font size ('10pt', '11pt' or '12pt').
 # latex_font_size = '10pt'

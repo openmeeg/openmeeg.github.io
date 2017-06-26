@@ -31,6 +31,8 @@ Other useful file formats are ASCII (extension ``.txt``) which generates human r
 
 OpenMEEG's own binary file format (extension ``.bin``) is available solely for backward compatibility and should be considered as deprecated (as it is subsumed by the ``MATLAB`` file format).
 
+.. _sec.geom:
+
 Geometrical model, mesh and conductivity files
 -----------------------------------------------
 
@@ -101,8 +103,8 @@ The section starting with the keyword ``MeshFile`` is optional, as well as the s
 See `fig.geom`_ for a detailed example.
 
 
-**Meshes** (generally ending with the ``.tri`` extension) follow the BrainVisa file format for meshes. 
-These files contain two sections. 
+**Meshes** see also `sec.meshes`_ in Appendix.
+Generally ending with the ``.tri`` extension follow the BrainVisa file format for meshes, these files contain two sections.
 Each section is introduced by the character ``-`` appearing at the beginning of the line followed by a space followed by either one number (first section) or three times
 the same number (second section).
 
@@ -295,7 +297,8 @@ Gain matrix type options: select the type of gain matrix to be computed by  :com
          is the matrix obtained using :command:`om_assemble` with the option :opt:`-HeadMEEGMat`.
          :input:`Source2MEGMat` is the matrix obtained using :command:`om_assemble` with either of the
          options :opt:`-SurfSource2MEGMat` or :opt:`-DipSource2MEGMat`, depending on the source model.
-        .. note:: The magnetic field is related both to the sources directly, as well as to the electric potential, according to:. :math:`\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}`
+        .. note:: 
+            The magnetic field is related both to the sources directly, as well as to the electric potential, according to: :math:`\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}`.
    - :opt:`-InternalPotential`: allows to compute an internal potential gain matrix for sensors within the volume. :opt:`Parameters` are then:
        - :input:`HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat`
        - :input:`Head2InternalPotMat` and :input:`Source2InternalPotMat` are respectivelly obtained
@@ -329,90 +332,10 @@ Appendix
 
 This section describes the type of data that is required to run a forward problem with OpenMEEG.
 
-
-Meshes
-------
-
-Meshes describing the interfaces between regions of homogeneous conductivity. These meshes generally represent:
-
-  - the inner skull surface
-  - the outer skull surface
-  - the outer scalp surface
-
-The recommended mesh size is approximately 600 to 800 points per surface.
-
-.. image:: _static/tete_couches_brain.png
-   :width: 300 px
-   :alt: External surface of the cortex
-   :align: center
-
-Example with three surfaces: outer scalp (gray), outer skull (blue) and inner skull (pink):
-
-.. image:: _static/tete_couches_brainskullhead.png
-   :width: 300 px
-   :alt: Example with three surfaces: outer scalp (gray),
-   :align: center
-
-Sources
--------
-
-Sources can be of two types: isolated or distributed.
-
-
-For distributed sources, a source mesh describes their support. This is a detailed
-mesh generally covering the whole cortex. The mesh size should not exceed 35 000 points.
-The source amplitude is represented as continuous, and linear on each of the mesh triangles.
-The source orientation is modeled as piecewise constant, normal to each of the mesh triangles.
-
-.. image:: _static/cortex.png
-   :width: 300 px
-   :alt: Cortex
-   :align: center
-
-Isolated sources are the superposition of current dipoles, each of which is defined by its position and its moment.
-
-Sensors
--------
-
-For EEG, the sensors are defined by the list of the x-y-z coordinates of the electrode
-positions. The electrodes are considered punctual and are called *patches*.
-The MEG sensor description is more complex, see Appendix `sec.sensors`_.
-
-
-.. _sec.geom:
-
-Geometry description file
--------------------------
-
-The geometry description file provides:
-   - the number of the meshed surfaces separating the different domains,
-   - the names of the files corresponding to these surfaces,
-   - the number of domains of homogeneous conductivity,
-   - the positions of the domains with respect to the surfaces (inside or outside)
-
-The geometry description file should have as extension: \*.geom
-
-
-The domains are to be described in the following way:
-
-
-
-.. note::
-
-    Meshes paths can be absolute (as depicted on `fig.geom`_) or relative to where the command line is executed.
-    For the meshes, the following formats are allowed:
-    
-        - \*.bnd~: bnd mesh format.
-        - \*.off~: off mesh format.
-        - \*.tri~: TRI format corresponding to early BrainVisa. Also handled by Anatomist.
-        - \*.mesh~: MESH format corresponding to BrainVisa versions 3.0.2 and later. Also handled by Anatomist.
-        - \*.vtk~: VTK mesh format.
-        - \*.gii~: Gifti mesh format.
-
 .. _sec.cond:
 
-Conductivity description file
------------------------------
+Geometry and conductivity description file
+------------------------------------------
 
 The conductivity description file defines the conductivity values corresponding to each domain listed in the Geometry Description File (`sec.geom`_).
 
@@ -425,13 +348,45 @@ The file extension should be: \*.cond .
    :alt: Conductivity
    :align: center
 
+.. _sec.meshes:
+
+Meshes
+------
+
+Meshes describing the interfaces between regions of homogeneous conductivity. These meshes generally represent:
+
+  - the inner skull surface
+  - the outer skull surface
+  - the outer scalp surface
+
+The recommended mesh size is approximately 600 to 800 points per surface.
+Example with three surfaces: outer scalp (gray), outer skull (blue) and inner skull (pink).
+
+.. image:: _static/tete_couches_brain.png
+   :width: 300 px
+   :alt: External surface of the cortex
+.. image:: _static/tete_couches_brainskullhead.png
+   :width: 300 px
+   :alt: Example with three surfaces: outer scalp (gray),
+
+.. note::
+
+    Meshes paths can be absolute (as depicted on `fig.geom`_) or relative to where the command line is executed.
+    For the meshes, the following formats are allowed:
+    
+        - \*.bnd~: bnd mesh format.
+        - \*.off~: off mesh format.
+        - \*.tri~: TRI format corresponding to early BrainVisa. Also handled by Anatomist.
+        - \*.mesh~: MESH format corresponding to BrainVisa versions 3.0.2 and later. Also handled by Anatomist.
+        - \*.vtk~: VTK mesh format.
+        - \*.gii~: Gifti mesh format.
+.. _sec.sources:
+
 Source description
 ------------------
 
-Sources are defined by their geometry (position and orientation)  and their magnitude.
+Sources are defined by their geometry (position and orientation) and their magnitude.
 OpenMEEG handles two types of source models: isolated dipoles, or distributed dipoles: these two models differ in their geometry description.
-
-.. _sec.sources:
 
 Isolated dipoles
 ~~~~~~~~~~~~~~~~
@@ -466,38 +421,50 @@ Source activation files are text files, in which each line corresponds to a sour
 
 Example for isolated dipoles:
 
-
 .. image:: _static/dipActiv.png
    :width: 600 px
    :alt: Dipole positions
    :align: center
 
+For distributed sources, a source mesh describes their support. This is a detailed
+mesh generally covering the whole cortex. The mesh size should not exceed 35 000 points.
+The source amplitude is represented as continuous, and linear on each of the mesh triangles.
+The source orientation is modeled as piecewise constant, normal to each of the mesh triangles.
+
+.. image:: _static/cortex.png
+   :width: 300 px
+   :alt: Cortex
+   :align: center
+
+Isolated sources are the superposition of current dipoles, each of which is defined by its position and its moment.
 
 .. _sec.sensors:
 
-Sensor definition
------------------
+Sensors
+-------
 
-The sensor definition is provided in a text file, in which each line provides the position of the sensor, and additional information such as its orientation or its name.
-More precisely, there are 5 options for defining sensors:
+For EEG, the sensors are defined by the list of the x-y-z coordinates of the electrode
+positions. The electrodes are considered punctual and are called *patches*.
+The MEG sensor description is more complex:
+The MEG sensor definition is provided in a text file, in which each line provides the position of the sensor, and additional information such as its orientation or its name.
 
-    - 1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation) :
+Sensors may have names (labels) in the first column of the file (it has to contains at least one character to be considered as label).
+
+More precisely, *omiting the first column which can contain a label* there are 4 options for defining EEG, EIT or MEG sensors:
+
+    - 1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches) :
          - the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
-    - 1 line per sensor and 4 columns (typically for EEG sensors or MEG sensors without orientation) :
-        -   the 1st column is sensors names
-        - the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
+    - 1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches) :
+         - the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
+         - the 4th column is the patche radius (unit relative to the mesh)
     - 1 line per sensor and 6 columns (typically for MEG sensors) :
-        -  the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor
-        -  the 4th, 5th and 6th are coordinates of vector orientation
-    - 1 line per sensor and 7 columns (typically for MEG sensors) :
-        - the 1st column is sensors names
-        - the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
-        - the 5th, 6th and 7th are coordinates of vector orientation
+         - the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor
+         - the 4th, 5th and 6th are coordinates of vector orientation
     - 1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers) :
-        -  the 1st column is sensors names
-        - the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
-        - the 5th, 6th and 7th are coordinates of vector orientation
-        -  the 8th is the weight to apply for numerical integration (related to sensor name)
+         - the 1st column is sensors names
+         - the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
+         - the 5th, 6th and 7th are coordinates of vector orientation
+         - the 8th is the weight to apply for numerical integration (related to sensor name)
 
 An example of MEG sensor description:
 

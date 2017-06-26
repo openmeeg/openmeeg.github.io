@@ -2,6 +2,17 @@
 OpenMEEG Home
 =============
 
+.. raw:: html
+    
+  <div class="leadfield" style="float: right; margin: 10px 0 -10px 0;">
+
+.. image:: _static/leadfield.png
+   :width: 300px
+
+.. raw:: html
+
+  </div>
+
 What is OpenMEEG?
 -----------------
 
@@ -20,8 +31,6 @@ Using OpenMEEG
         * From `Python <https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.py>`_
         * From a `Bash <https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.sh>`_ script on Unix systems (Linux/Mac).
         * From a `BAT <https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.bat>`_ file on Windows.
-
-`A PDF tutorial <http://openmeeg.gforge.inria.fr/download/tutorial-3.0.pdf>`_
 
 .. raw:: html
 

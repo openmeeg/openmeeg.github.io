@@ -188,6 +188,7 @@ htmlhelp_basename = 'openmeeg-doc'
 
 
 # -- Options for LaTeX output -------------------------------------------------
+latex_engine = 'pdflatex'
 
 # The paper size ('letter' or 'a4').
 latex_paper_size = 'a4'

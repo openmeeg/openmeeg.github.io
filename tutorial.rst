@@ -101,7 +101,7 @@ The section starting with the keyword ``MeshFile`` is optional, as well as the s
 See `fig.geom`_ for a detailed example.
 
 
-**Mesh files** (generally ending with the ``.tri`` extension) follow the BrainVisa file format for meshes. 
+**Meshes** (generally ending with the ``.tri`` extension) follow the BrainVisa file format for meshes. 
 These files contain two sections. 
 Each section is introduced by the character ``-`` appearing at the beginning of the line followed by a space followed by either one number (first section) or three times
 the same number (second section).
@@ -182,37 +182,38 @@ The general syntax and main options of each command is briefly provided.
 Full details are available in OpenMEEG documentation. 
 In this section, :command:`command` names are in :command:`red`, :opt:`options` are in :opt:`green` and :output:`output` files are shown in :output:`blue`.
 
-:command:`om_assemble`
-----------------------
+om_assemble
+-----------
 
 General syntax:
 
 :command:`om_assemble` :opt:`Option` :input:`Parameters` :output:`Matrix`
 
 This program assembles the different matrices to be used in later stages.
-It uses the head description, the sources and the sensors information.
+It uses the head description (the geometrical model and the conductivities of the head see `sec.geom`_, and `sec.cond`_), the sources (see `sec.sources`_) and the sensors (see `sec.sensors`_) information.
 :opt:`Option` selects the type of matrice to assemble.
-``Parameters`` depends on the specific option :opt:`Option`.
-Except if otherwise noted, it takes the form:
+:input:`Parameters` depends on the specific option :opt:`Option`.
 
-:input:`subject.geom`, :input:`subject.cond`
-where ``subject.geom`` and ``subject.cond`` are files describing respectively the geometrical model and the conductivities of the head (see `sec.geom`_ 
-for a short description of these files).
-:output:`Matrix` is the name of the output file containing the computed matrix.
+A typical command is:
+
+:command:`om_assemble` :opt:`-HeadMat` :input:`subject.geom` :input:`subject.cond` :output:`HeadMat.mat`
+
+.. note:: the abbreviated option names :opt:`-HM` or :opt:`-hm` can be used instead of :opt:`-HeadMat`.
+.. note:: The symmetric format only stores the lower half of a matrix.
 
 We now detail the possible :opt:`Options` (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble:
 
 General options for :command:`om_assemble`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  - :opt:`-help` (:opt:`-h`,:opt:``--help``): summarizes all possible options.
+  - :opt:`-help` (:opt:`-h`,``--help``): summarizes all possible options.
 
     Head modelling options for :command:`om_assemble`: produce matrices linked to the propagation of electrical signals in the head.
 
   - :opt:`-HeadMat` (:opt:`-HM`, :opt:`-hm`): :command:`om_assemble` computes the Head matrix for Symmetric BEM (left-hand side of the linear system). 
     This matrix corresponds to the propagation of electrical signals within the head. 
 
-Source modelling options for :command:`om_assemble`: compute the source matrix for Symmetric BEM (right-hand side of the linear system). 
+**Source modelling** options for :command:`om_assemble`: compute the source matrix for Symmetric BEM (right-hand side of the linear system). 
 This matrix maps the representation of the sources to their associated electric potential in an infinite medium (:math:`v_{\Omega_1}`). 
 Different options exist for the 2 types of source models:
 
@@ -224,10 +225,10 @@ Different options exist for the 2 types of source models:
      :input:`Input` is a file containing the dipole descriptions.
      For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line (see Example).
 
-Sensor modelling options for :command:`om_assemble`: compute matrices that integrate source information and computed potentials to provide the actual solution of the forward problem. 
+**Sensor modelling** options for :command:`om_assemble`: compute matrices that integrate source information and computed potentials to provide the actual solution of the forward problem. 
 The situation is slightly different for EEG, which only needs to compute the electric potential, and for MEG, which depends both on the electric potential and on the sources:
 
-  - :opt:`-Head2EEGMat` (:opt:`-H2EM`, :opt:`-h2em`): :command:`om_assemble` computes the interpolation matrix that maps potentials computed on the scalp to EEG sensors. :input:`Input` is a file describing the EEG sensor positions.
+  - :opt:`-Head2EEGMat` (:opt:`-H2EM`, :opt:`-h2em`): :command:`om_assemble` computes the linear interpolation matrix that maps OpenMEEG unknown :math:`\mathbf{X}` to the potential on the scalp at EEG sensors: :math:`\mathbf{V_{sensors}} = \mathbf{Head2EEGMat} . \mathbf{X}`. :input:`Input` is a file describing the EEG sensor positions. :math:`\mathbf{Head2EEGMat}` is stored as a sparse matrix.
   - :opt:`-Head2MEGMat` (:opt:`-H2MM`, :opt:`-h2mm`): :command:`om_assemble` computes the contribution of Ohmic currents to the MEG sensors. :input:`Input` is a file describing the SQUIDS geometries and characteristics.
   - :opt:`-Head2InternalPotMat` (:opt:`-H2IPM`, :opt:`-h2ipm`): :command:`om_assemble` computes the matrix that allows
     the computation of potentials at internal positions from potentials and normal currents on head interfaces, as computed by the symmetric BEM.
@@ -247,8 +248,8 @@ EIT options for :command:`om_assemble`:
 
    - :opt:`-EITSourceMat` (:opt:`-EITSM`, :opt:`-EITsm`,): :command:`om_assemble` computes the right-hand side for scalp current injection. This usage of :command:`om_assemble` outputs the right-hand side vector for a given set of EIT electrode. For this option, :input:`Input` is a file describing the EIT electrode positions.
 
-:command:`om_minverser`
------------------------
+om_minverser
+------------
 
 General syntax:
 
@@ -257,27 +258,28 @@ General syntax:
 This program is used to invert the symmetric matrix as provided by the command :command:`om_assemble` with the option :opt:`-HeadMat`.
 
 This command has only one option.
-    - :opt:`-help` (:opt:`-h`,:opt:``--help``): summarizes the usage of :command:`om_minverser`.
+    - :opt:`-help` (:opt:`-h`, ``--help``): summarizes the usage of :command:`om_minverser`.
 
 
-:command:`om_gain`
-------------------
+om_gain
+-------
 
 General syntax:
 
 :command:`om_gain` :opt:`Option` :input:`HeadMatInv` :opt:`Parameters` SourceMat Head2EEGMat :output:`GainMatrix`
 
-This command computes the gain matrix by multiplying together matrices obtained previously (e.g. :input:`HeadMatInv` is the matrix computed using :command:`om_minverser`). The resulting gain matrix is stored in the file :output:`GainMatrix`.
+This command computes the gain matrix by multiplying together matrices obtained previously (e.g. :input:`HeadMatInv` is the matrix computed using :command:`om_minverser`).
+The resulting gain matrix is stored in the file :output:`GainMatrix`.
 :opt:`Option` selects the type of matrice to build. :opt:`Parameters` depend on the specific option :opt:`Option`.
 
 General options:
 
 
-   - :opt:`-help` (:opt:`-h`,:opt:``--help``): summarizes the usage of :command:`om_gain` for all its possible options.
+   - :opt:`-help` (:opt:`-h`, ``--help``): summarizes the usage of :command:`om_gain` for all its possible options.
 
 Gain matrix type options: select the type of gain matrix to be computed by  :command:`om_gain`.
 
-   - :opt:`-EEG`: allows to compute an EEG gain matrix. :opt:`Parameters` are then:\\
+   - :opt:`-EEG`: allows to compute an EEG gain matrix. :opt:`Parameters` are then:
        - :input:`HeadMatInv SourceMat Head2EEGMat`
        - :input:`SourceMat` is the matrix obtained using :command:`om_assemble` with either of the options
          :opt:`-SurfSourceMat` or :opt:`-DipSourceMat`, depending on the source model. :input:`Head2EEGMat`
@@ -286,15 +288,15 @@ Gain matrix type options: select the type of gain matrix to be computed by  :com
       should contain the output of the :opt:`-EITsource` option of :command:`om_assemble`. Multiplying
       the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
       potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.
-   - :opt:`-MEG`: allows to compute an MEG gain matrix. :opt:`Parameters` are then:
+   - :opt:`-MEG`: allows to compute a MEG gain matrix. :opt:`Parameters` are then:
        - :input:`HeadMatInv SourceMat Head2MEGMat Source2MEGMat`
        - :input:`SourceMat` is the matrix obtained using :command:`om_assemble` with either of the options
          :opt:`-SurfSourceMat` or :opt:`-DipSourceMat`, depending on the source model. :input:`Head2MEGMat`
          is the matrix obtained using :command:`om_assemble` with the option :opt:`-HeadMEEGMat`.
          :input:`Source2MEGMat` is the matrix obtained using :command:`om_assemble` with either of the
          options :opt:`-SurfSource2MEGMat` or :opt:`-DipSource2MEGMat`, depending on the source model.
-   - :opt:`-InternalPotential`: allows to compute an internal potential gain matrix for sensors within
-     the volume. :opt:`Parameters` are then:
+        .. note:: The magnetic field is related both to the sources directly, as well as to the electric potential, according to:. :math:`\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}`
+   - :opt:`-InternalPotential`: allows to compute an internal potential gain matrix for sensors within the volume. :opt:`Parameters` are then:
        - :input:`HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat`
        - :input:`Head2InternalPotMat` and :input:`Source2InternalPotMat` are respectivelly obtained
          using :command:`om_assemble` with option :opt:`-Head2InternalPotMat` and :opt:`-DipSource2InternalPotMat`.
@@ -307,213 +309,23 @@ Assuming a head model represented by the geometry file :input:`head.geom` and th
 Computing the EEG gain matrix for sources distributed on the surface represented
 by the file :input:`sources.tri` is done via the following set of commands::
 
-    om_assemble -HeadMat head.geom head.cond head.hm
+    om_assemble -HM head.geom head.cond head.hm
     om_assemble -SSM head.geom head.cond sources.tri head.ssm
     om_assemble -h2em head.geom head.cond head.eegsensors head.h2em
-    om_minverse head.hm head.hm_inv
+    om_minverser head.hm head.hm_inv
     om_gain -EEG head.hm_inv head.ssm head.h2em head.gain
 
 Considering now isolated dipolar sources detailed in the file :input:`sources.dip` with MEG sensors depicted in the file :input:`head.squids`. Using the same head model, the MEG gain matrix is obtained via the following set of commands::
 
     om_assemble -HeadMat head.geom head.cond head.hm
-    om_assemble -DSM head.geom head.cond sources.dip head.dsm
+    om_assemble -DSM head.geom head.cond sources.dip head.dsm Brain
     om_assemble -h2mm head.geom head.cond head.squids head.h2mm
     om_assemble -ds2mm sources.dip head.squids head.ds2mm
     om_minverser head.hm head.hm_inv
     om_gain -MEG head.hm_inv head.dsm head.h2mm head.ds2mm head.gain
 
-Commands
+Appendix
 ========
-
-In the following, the binaries in :command:`red`, the options in :opt:`green`, the inputs are in :input:`black` and the outputs in :output:`blue`.
-
-Head Matrix assembly **HeadMat**
---------------------------------
-
-Input:
-
-   - :input:`subject.geom`: geometry description file (see Appendix `sec.geom`_)
-   - :input:`subject.cond`: conductivity description file (see Appendix `sec.cond`_)
-
-Output:
-
-   - :output:`HeadMat.bin`: binary file containing the matrix **HeadMat** (symmetric format).
-
-The symmetric format only stores the lower half of a matrix.
-
-:command:`om_assemble` :opt:`-HeadMat` subject.geom subject.cond :output:`HeadMat.bin`
-
-
-.. note:: the abbreviated option names :opt:`-HM` or :opt:`-hm` can be used instead of :opt:`-HeadMat`.
-
-Source matrix assembly **Source**
-------------------------------------------
-
-Input:
-
-   - :input:`subject.geom`: geometry description file (see Appendix `sec.geom`_)
-   - :input:`subject.cond`: conductivity description file (see Appendix `sec.cond`_)
-   - the source(s):
-      - dipolar case: :input:`dipolePosition.dip` dipole description file (list of coordinates and orientations) (see Appendix `sec.dipoles`_)
-      - case of distributed sources: :input:`sourcemesh`: source mesh (accepted formats:  \*.tri or \*.mesh of
-        BrainVisa, or \*.vtk)
-
-Output:
-
-   - :output:`SourceMat.bin`: binary file containing **SourceMat**
-
-For dipolar sources:
-
-   - :command:`om_assemble` :opt:`-DipSourceMat` subject.geom subject.cond dipolePosition.dip :output:`SourceMat.bin`
-
-
-.. note::  the abbreviated option names :opt:`-DSM` or :opt:`-dsm` can be used instead of :opt:`-DipSourceMat`.
-
-For distributed sources:
-
-   - :command:`om_assemble` :opt:`-SurfSourceMat` subject.geom subject.cond sourcemesh :output:`SourceMat.bin`
-
-.. note:: the abbreviated option names  :opt:`-SSM` or :opt:`-ssm`  can be used instead of  :opt:`-SurfSourceMat`.
-
-
-**HeadMat** matrix inversion
------------------------------------
-
-Input:
-
-   - :input:`HeadMat.bin` binary file containing matrix **HeadMat** (symmetric format)
-
-Output:
-
-   - :output:`HeadMatInv.bin`: binary file containing matrix **inverse(HeadMat)** (symmetric format)
-
-:command:`om_minverser` HeadMat.bin :output:`HeadMatInv.bin`
-
-Linear transformation from X to the sensor potential
-----------------------------------------------------
-
-For EEG
-~~~~~~~
-
-A linear interpolation is computed which relates X to the electrode potential through the linear transformation:
-
-.. math::
-    \mathbf{V_{electrode}} = \mathbf{Head2EEG} . \mathbf{X}
-
-where:
-
-   - **V_{electrode}** is the column-vector of potential values at the sensors (output of EEG forward problem),
-   - **X** is the column-vector containing the values of the potential and the normal current on all the surface of the model,
-   - **Head2EEGMat** is the linear transformation to be computed.
-
-Input:
-
-   - :input:`subject.geom` geometry description file (see Appendix `sec.geom`_)
-   - :input:`subject.cond` conductivity description file (see Appendix `sec.cond`_)
-   - :input:`patchespositions.txt` file containing the positions of the EEG electrodes (see Appendix `sec.sensors`_)
-
-Output:
-
-   - :output:`Head2EEGMat.bin`: file containing the matrix **Head2EEGMat** (sparse format)
-
-The sparse format allows to store efficiently matrices containing a small proportion of non-zero values.
-
-:command:`om_assemble` :opt:`-Head2EEGMat` subject.geom subject.cond patchespositions.txt :output:`Head2EEGMat.bin`
-
-
-.. note:: the abbreviated option names :opt:`-H2EM`or :opt:`-h2em`can be used instead of :opt:`-Head2EEGMat`.
-
-For MEG
-~~~~~~~
-
-In the case of MEG there are more matrices to assemble.
-The magnetic field is related both to the sources directly, as well as to the electric  potential, according to:
-
-.. math::
-
-    \mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}
-
-Contribution to MEG from the potential (**Head2MEGMat**):
-
-Input:
-
-   - :input:`subject.geom` geometry description file (see Appendix `sec.geom`_)
-   - :input:`subject.cond` conductivity description file (see Appendix `sec.cond`_)
-   - :input:`sensorpositions.txt` positions and orientations of MEG sensors (see Appendix `sec.sensors`_)
-
-Output:
-
-   - :output:`Head2MegMat.bin` binary file containing **Head2MEGMat**
-
-:command:`om_assemble` :opt:`-Head2MEGMat` subject.geom subject.cond sensorpositions.txt :output:`Head2MEGMat.bin`
-
-.. note::  the abbreviated option names :opt:`-H2MM` or :opt:`-h2mm` can be used instead of :opt:`-Head2MEGMat`.
-
-
-Contribution to MEG from the sources (**Source2MEGMat**):
-
-Input:
-
-   - the source(s):
-       - [[dipolar sources]] :input:`dipolePosition.dip`  dipole description file (list of coordinates and orientations) (see Appendix `sec:dipoles`_)
-       - [[distributed sources]] :input:`sourcemesh`  source mesh (accepted formats:  \*.tri, \*.off, \*.bnd, \*.mesh of BrainVisa, \*gii of Gifti, or \*.vtk)
-   - :input:`sensorpositions.txt` positions and orientations of MEG sensors (see Appendix `sec.sensors`_)
-
-Output:
-
-   - :output:`DipSource2MEGMat.bin` binary file containing **DipSource2MEGMat** \\
-   - or :output:`SurfSource2MEGMat.bin` binary file containing **SurfSource2MEGMat**
-
-For dipolar sources:
-
-:command:`om_assemble` :opt:`-DipSource2MEGMat` dipolePosition.dip sensorpositions.txt :output:`DipSource2MEGMat.bin`
-
-.. note::  the abbreviated option names :opt:`-DS2MM` or :opt:`-ds2mm` can be used instead of :opt:`-DipSource2MEGMat`.
-
-For distributed sources:
-
-:command:`om_assemble` :opt:`-SurfSource2MEGMat` sourcemesh sensorpositions.txt :output:`SurfSource2MEGMat.bin`
-
-.. note::   the abbreviated option names  :opt:`-SS2MM` or :opt:`-ss2mm` can be used instead of :opt:`-SurfSource2MEGMat`.
-
-Gain matrix computation
------------------------
-
-The gain matrix represents the linear transformation relating the activation of sources, at **predefined positions and orientations** to the values of the fields of interest (electric potential or magnetic field) at predefined sensor positions (and orientations for MEG).
-
-For EEG
-~~~~~~~
-
-Input:
-
-   - :input:`HeadMatInv.bin` binary file containing **inv(HeadMat)** (symmetric format)
-   - :input:`SourceMat.bin` binary file containing either  **SurfSourceMat** or  **DipSourceMat**
-   - :input:`Head2EEGMat.bin` binary file containing **Head2EEGMat** (sparse format)
-
-Output:
-
-   - :output:`GainEEGMat.bin` binary file contining the gain matrix
-
-:command:`om_gain` :opt:`-EEG` HeadMatInv.bin SourceMat.bin Head2EEGMat.bin :output:`GainEEGMat.bin`
-
-For MEG
-~~~~~~~
-
-Input:
-
-   - :input:`HeadMatInv.bin` binary file containing **inv(HeadMat)** (symmetric format)
-   - :input:`SourceMat.bin` binary file containing either  **SurfSourceMat** or  **DipSourceMat**
-   - :input:`Head2MEGMat.bin` binary file containing **Head2MEGMat**
-   - :input:`Source2MEGMat.bin` binary file containing either  **DipSource2MEGMat** or **SurfSource2MEGMat**
-
-Output:
-
-   - :output:`GainMEGMat.bin` binary file containing the gain matrix
-
-:command:`om_gain` :opt:`-MEG` HeadMatInv.bin SourceMat.bin Head2MEGMat.bin Source2MEGMat.bin :output:`GainMEGMat.bin`
-
-Data
-====
 
 This section describes the type of data that is required to run a forward problem with OpenMEEG.
 
@@ -564,14 +376,13 @@ Sensors
 
 For EEG, the sensors are defined by the list of the x-y-z coordinates of the electrode
 positions. The electrodes are considered punctual and are called *patches*.
-The MEG sensor description is more complex, see Appendix `chap.format`_.
+The MEG sensor description is more complex, see Appendix `sec.sensors`_.
 
-Appendix
-########
+
+.. _sec.geom:
 
 Geometry description file
 -------------------------
-.. _sec.geom:
 
 The geometry description file provides:
    - the number of the meshed surfaces separating the different domains,
@@ -598,9 +409,10 @@ The domains are to be described in the following way:
         - \*.vtk~: VTK mesh format.
         - \*.gii~: Gifti mesh format.
 
-Conductivity description file
-==============================
 .. _sec.cond:
+
+Conductivity description file
+-----------------------------
 
 The conductivity description file defines the conductivity values corresponding to each domain listed in the Geometry Description File (`sec.geom`_).
 
@@ -614,14 +426,12 @@ The file extension should be: \*.cond .
    :align: center
 
 Source description
-==================
+------------------
 
 Sources are defined by their geometry (position and orientation)  and their magnitude.
 OpenMEEG handles two types of source models: isolated dipoles, or distributed dipoles: these two models differ in their geometry description.
 
-Source position and orientation
--------------------------------
-.. _sec.dipoles:
+.. _sec.sources:
 
 Isolated dipoles
 ~~~~~~~~~~~~~~~~
@@ -642,12 +452,12 @@ The following example shows a file describing 5 isolated dipoles:
 .. note:: The referential of the coordinates should be the same as for the meshes (the MR coordinates in general).
 
 Distributed dipoles
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~
 
 Distributed dipoles are supported on a mesh, whose format must be \*.mesh, or \*.tri, or \*.vtk.
 
 Source activation
-~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 Source activation files are text files, in which each line corresponds to a source, and each column to a time sample.
 
@@ -663,9 +473,10 @@ Example for isolated dipoles:
    :align: center
 
 
-Sensor definition
-------------------
 .. _sec.sensors:
+
+Sensor definition
+-----------------
 
 The sensor definition is provided in a text file, in which each line provides the position of the sensor, and additional information such as its orientation or its name.
 More precisely, there are 5 options for defining sensors:

@@ -71,34 +71,35 @@ The section starting with the keyword ``MeshFile`` is optional, as well as the s
 
 - If ``Meshes`` is found, it specifies the paths to the meshes that may or may not be named. Mesh file formats supported are ``tri``, ``bnd``, ``mesh``, ``off``, ``gii``, and ``vtk`` (in case you use VTK).
 
-    A Mesh is defined with the keyword ``Mesh`` followed by an optional name and "``:``".
+    * A Mesh is defined with the keyword ``Mesh`` followed by an optional name and "``:``".
 
-    If no name is provided, the Mesh is named by its index (starting from 1).
+    * If no name is provided, the Mesh is named by its index (starting from 1).
 
-    If none of the two sections ``MeshFile`` and ``Meshes`` are present, the next section called ``Interfaces`` is expected to contain the filenames of the meshes.
+    * If none of the two sections ``MeshFile`` and ``Meshes`` are present, the next section called ``Interfaces`` is expected to contain the filenames of the meshes.
 
 - ``Interfaces`` section specifies the mesh descriptions of the interfaces between tissues.
-    It is introduced by the keyword ``Interfaces`` followed by the number of such interfaces. 
 
-    An Interface is defined with the keyword ``Interface`` followed by a name and "``:``".
+    * It is introduced by the keyword ``Interfaces`` followed by the number of such interfaces. 
 
-    If no name is provided, the Interface is named by its index (starting from 1).
+    * An Interface is defined with the keyword ``Interface`` followed by a name and "``:``".
 
-    If the sections ``MeshFile`` and ``Meshes`` were NOT specified before, a path to a mesh file is expected.
+    * If no name is provided, the Interface is named by its index (starting from 1).
 
-    In the opposite case, a sequence of mesh names is expected.
+    * If the sections ``MeshFile`` and ``Meshes`` were NOT specified before, a path to a mesh file is expected.
 
-    These meshes are concatenated to form a closed Interface.
+    * In the opposite case, a sequence of mesh names is expected.
 
-    '+' or '-' sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.
+    * These meshes are concatenated to form a closed Interface.
+
+    * '+' or '-' sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.
 
 - ``Domains`` section describes the head tissues and is introduced by the keyword ``Domains`` followed by the number of such domains. 
   
-  Each domain is then described, one domain per line, by the keyword ``Domain`` followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).
+    * Each domain is then described, one domain per line, by the keyword ``Domain`` followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).
   
-  These IDs are the interface names (as depicted in previous paragraph).
+    * These IDs are the interface names (as depicted in previous paragraph).
 
-  They must be preceeded by a '+' or '-' sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).
+    * They must be preceeded by a '+' or '-' sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).
 
 See `fig.geom`_ for a detailed example.
 
@@ -259,7 +260,8 @@ General syntax:
 
 This program is used to invert the symmetric matrix as provided by the command :command:`om_assemble` with the option :opt:`-HeadMat`.
 
-This command has only one option.
+This command has only one option:
+
     - :opt:`-help` (:opt:`-h`, ``--help``): summarizes the usage of :command:`om_minverser`.
 
 
@@ -282,15 +284,19 @@ General options:
 Gain matrix type options: select the type of gain matrix to be computed by  :command:`om_gain`.
 
    - :opt:`-EEG`: allows to compute an EEG gain matrix. :opt:`Parameters` are then:
+
        - :input:`HeadMatInv SourceMat Head2EEGMat`
        - :input:`SourceMat` is the matrix obtained using :command:`om_assemble` with either of the options
          :opt:`-SurfSourceMat` or :opt:`-DipSourceMat`, depending on the source model. :input:`Head2EEGMat`
          is the matrix obtained using :command:`om_assemble` with the option :opt:`-Head2EEGMat`.
+
    - :opt:`-EEG` option is also used to compute an EIT gain matrix: in this case, :input:`SourceMat`
-      should contain the output of the :opt:`-EITsource` option of :command:`om_assemble`. Multiplying
-      the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
-      potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.
+     should contain the output of the :opt:`-EITsource` option of :command:`om_assemble`. Multiplying
+     the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
+     potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.
+
    - :opt:`-MEG`: allows to compute a MEG gain matrix. :opt:`Parameters` are then:
+
        - :input:`HeadMatInv SourceMat Head2MEGMat Source2MEGMat`
        - :input:`SourceMat` is the matrix obtained using :command:`om_assemble` with either of the options
          :opt:`-SurfSourceMat` or :opt:`-DipSourceMat`, depending on the source model. :input:`Head2MEGMat`
@@ -299,7 +305,9 @@ Gain matrix type options: select the type of gain matrix to be computed by  :com
          options :opt:`-SurfSource2MEGMat` or :opt:`-DipSource2MEGMat`, depending on the source model.
         .. note:: 
             The magnetic field is related both to the sources directly, as well as to the electric potential, according to: :math:`\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}`.
+
    - :opt:`-InternalPotential`: allows to compute an internal potential gain matrix for sensors within the volume. :opt:`Parameters` are then:
+
        - :input:`HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat`
        - :input:`Head2InternalPotMat` and :input:`Source2InternalPotMat` are respectivelly obtained
          using :command:`om_assemble` with option :opt:`-Head2InternalPotMat` and :opt:`-DipSource2InternalPotMat`.
@@ -452,19 +460,26 @@ Sensors may have names (labels) in the first column of the file (it has to conta
 
 More precisely, *omiting the first column which can contain a label* there are 4 options for defining EEG, EIT or MEG sensors:
 
-    - 1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches) :
-         - the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
+    - 1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches):
+
+         * the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
+
     - 1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches) :
-         - the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
-         - the 4th column is the patche radius (unit relative to the mesh)
+
+         * the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
+         * the 4th column is the patche radius (unit relative to the mesh)
+
     - 1 line per sensor and 6 columns (typically for MEG sensors) :
-         - the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor
-         - the 4th, 5th and 6th are coordinates of vector orientation
-    - 1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers) :
-         - the 1st column is sensors names
-         - the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
-         - the 5th, 6th and 7th are coordinates of vector orientation
-         - the 8th is the weight to apply for numerical integration (related to sensor name)
+
+         * the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor
+         * the 4th, 5th and 6th are coordinates of vector orientation
+
+    - 1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers):
+
+         * the 1st column is sensors names
+         * the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
+         * the 5th, 6th and 7th are coordinates of vector orientation
+         * the 8th is the weight to apply for numerical integration (related to sensor name)
 
 An example of MEG sensor description:
 

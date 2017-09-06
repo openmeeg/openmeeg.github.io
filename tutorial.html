@@ -196,27 +196,34 @@ In OpenMEEG, we make the following distinction between Mesh and Interface, which
 </li>
 <li><p class="first">If <code class="docutils literal"><span class="pre">Meshes</span></code> is found, it specifies the paths to the meshes that may or may not be named. Mesh file formats supported are <code class="docutils literal"><span class="pre">tri</span></code>, <code class="docutils literal"><span class="pre">bnd</span></code>, <code class="docutils literal"><span class="pre">mesh</span></code>, <code class="docutils literal"><span class="pre">off</span></code>, <code class="docutils literal"><span class="pre">gii</span></code>, and <code class="docutils literal"><span class="pre">vtk</span></code> (in case you use VTK).</p>
 <blockquote>
-<div><p>A Mesh is defined with the keyword <code class="docutils literal"><span class="pre">Mesh</span></code> followed by an optional name and &#8220;<code class="docutils literal"><span class="pre">:</span></code>&#8221;.</p>
-<p>If no name is provided, the Mesh is named by its index (starting from 1).</p>
-<p>If none of the two sections <code class="docutils literal"><span class="pre">MeshFile</span></code> and <code class="docutils literal"><span class="pre">Meshes</span></code> are present, the next section called <code class="docutils literal"><span class="pre">Interfaces</span></code> is expected to contain the filenames of the meshes.</p>
+<div><ul class="simple">
+<li>A Mesh is defined with the keyword <code class="docutils literal"><span class="pre">Mesh</span></code> followed by an optional name and &#8220;<code class="docutils literal"><span class="pre">:</span></code>&#8221;.</li>
+<li>If no name is provided, the Mesh is named by its index (starting from 1).</li>
+<li>If none of the two sections <code class="docutils literal"><span class="pre">MeshFile</span></code> and <code class="docutils literal"><span class="pre">Meshes</span></code> are present, the next section called <code class="docutils literal"><span class="pre">Interfaces</span></code> is expected to contain the filenames of the meshes.</li>
+</ul>
 </div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt><code class="docutils literal"><span class="pre">Interfaces</span></code> section specifies the mesh descriptions of the interfaces between tissues.</dt>
-<dd><p class="first">It is introduced by the keyword <code class="docutils literal"><span class="pre">Interfaces</span></code> followed by the number of such interfaces.</p>
-<p>An Interface is defined with the keyword <code class="docutils literal"><span class="pre">Interface</span></code> followed by a name and &#8220;<code class="docutils literal"><span class="pre">:</span></code>&#8221;.</p>
-<p>If no name is provided, the Interface is named by its index (starting from 1).</p>
-<p>If the sections <code class="docutils literal"><span class="pre">MeshFile</span></code> and <code class="docutils literal"><span class="pre">Meshes</span></code> were NOT specified before, a path to a mesh file is expected.</p>
-<p>In the opposite case, a sequence of mesh names is expected.</p>
-<p>These meshes are concatenated to form a closed Interface.</p>
-<p class="last">&#8216;+&#8217; or &#8216;-&#8216; sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.</p>
-</dd>
-</dl>
+<li><p class="first"><code class="docutils literal"><span class="pre">Interfaces</span></code> section specifies the mesh descriptions of the interfaces between tissues.</p>
+<blockquote>
+<div><ul class="simple">
+<li>It is introduced by the keyword <code class="docutils literal"><span class="pre">Interfaces</span></code> followed by the number of such interfaces.</li>
+<li>An Interface is defined with the keyword <code class="docutils literal"><span class="pre">Interface</span></code> followed by a name and &#8220;<code class="docutils literal"><span class="pre">:</span></code>&#8221;.</li>
+<li>If no name is provided, the Interface is named by its index (starting from 1).</li>
+<li>If the sections <code class="docutils literal"><span class="pre">MeshFile</span></code> and <code class="docutils literal"><span class="pre">Meshes</span></code> were NOT specified before, a path to a mesh file is expected.</li>
+<li>In the opposite case, a sequence of mesh names is expected.</li>
+<li>These meshes are concatenated to form a closed Interface.</li>
+<li>&#8216;+&#8217; or &#8216;-&#8216; sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.</li>
+</ul>
+</div></blockquote>
 </li>
 <li><p class="first"><code class="docutils literal"><span class="pre">Domains</span></code> section describes the head tissues and is introduced by the keyword <code class="docutils literal"><span class="pre">Domains</span></code> followed by the number of such domains.</p>
-<p>Each domain is then described, one domain per line, by the keyword <code class="docutils literal"><span class="pre">Domain</span></code> followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).</p>
-<p>These IDs are the interface names (as depicted in previous paragraph).</p>
-<p>They must be preceeded by a &#8216;+&#8217; or &#8216;-&#8216; sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).</p>
+<blockquote>
+<div><ul class="simple">
+<li>Each domain is then described, one domain per line, by the keyword <code class="docutils literal"><span class="pre">Domain</span></code> followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).</li>
+<li>These IDs are the interface names (as depicted in previous paragraph).</li>
+<li>They must be preceeded by a &#8216;+&#8217; or &#8216;-&#8216; sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).</li>
+</ul>
+</div></blockquote>
 </li>
 </ul>
 <p>See <a class="reference internal" href="#fig-geom">fig.geom</a> for a detailed example.</p>
@@ -312,19 +319,15 @@ This matrix corresponds to the propagation of electrical signals within the head
 This matrix maps the representation of the sources to their associated electric potential in an infinite medium (<img class="math" src="_images/math/a1ff5eef1b1d051be8227d38447ce7ecd906f413.png" alt="v_{\Omega_1}"/>).
 Different options exist for the 2 types of source models:</p>
 <blockquote>
-<div><ul>
-<li><dl class="first docutils">
-<dt><span class="opt">-SurfSourceMat</span> (<span class="opt">-SSM</span>, <span class="opt">-ssm</span>): should be used for continuous surfacic distributions of dipoles.</dt>
-<dd><p class="first last"><span class="input">Input</span> is a file containing a mesh that describes the surface.
-For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line.</p>
-</dd>
-</dl>
-</li>
-<li><p class="first"><span class="opt">-DipSourceMat</span> (<span class="opt">-DSM</span>, <span class="opt">-dsm</span>): should be used when considering several isolated dipoles.
+<div><ul class="simple">
+<li><span class="opt">-SurfSourceMat</span> (<span class="opt">-SSM</span>, <span class="opt">-ssm</span>): should be used for continuous surfacic distributions of dipoles.
+<span class="input">Input</span> is a file containing a mesh that describes the surface.
+For faster computations, one can consider giving the name of the domain (containing all dipoles)
+as a string as an optional parameter in the end of the command line.</li>
+<li><span class="opt">-DipSourceMat</span> (<span class="opt">-DSM</span>, <span class="opt">-dsm</span>): should be used when considering several isolated dipoles.
 This model is the most commonly used and should be used by default even if the dipoles correspond to the vertices of a cortical mesh.
 <span class="input">Input</span> is a file containing the dipole descriptions.
-For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line (see Example).</p>
-</li>
+For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line (see Example).</li>
 </ul>
 </div></blockquote>
 <p><strong>Sensor modelling</strong> options for <span class="command">om_assemble</span>: compute matrices that integrate source information and computed potentials to provide the actual solution of the forward problem.
@@ -338,16 +341,15 @@ The situation is slightly different for EEG, which only needs to compute the ele
 <li><p class="first"><span class="opt">-Head2InternalPotMat</span> (<span class="opt">-H2IPM</span>, <span class="opt">-h2ipm</span>): <span class="command">om_assemble</span> computes the matrix that allows
 the computation of potentials at internal positions from potentials and normal currents on head interfaces, as computed by the symmetric BEM.</p>
 </li>
-<li><dl class="first docutils">
-<dt><span class="opt">-SurfSource2MEGMat</span> (<span class="opt">-SS2MM</span>, <span class="opt">-ss2mm</span>): <span class="command">om_assemble</span> computes the source contribution to the MEG sensors using the same source model as the one used for the option <span class="opt">-SurfSourceMat, i.e. surfacic distribution of dipoles. For this option, :input:`Input</span> takes the form:</dt>
-<dd><ul class="first last simple">
+<li><p class="first"><span class="opt">-SurfSource2MEGMat</span> (<span class="opt">-SS2MM</span>, <span class="opt">-ss2mm</span>): <span class="command">om_assemble</span> computes the source contribution to the MEG sensors using the same source model as the one used for the option <span class="opt">-SurfSourceMat, i.e. surfacic distribution of dipoles. For this option, :input:`Input</span> takes the form:</p>
+<blockquote>
+<div><ul class="simple">
 <li><span class="input">mesh squids</span> where <span class="input">mesh</span> contains a mesh describing the source surface
 and <span class="input">squids</span> is a file  describing the SQUIDS geometries and characteristics.</li>
 <li><span class="opt">-DipSource2MEGMat</span> (<span class="opt">-DS2MM</span>, <span class="opt">-ds2mm</span>): <span class="command">om_assemble</span> computes
 the source contribution to the  MEG sensors using the same source model as the one used for the option <span class="opt">-DipSourceMat</span>, i.e. isolated dipoles.</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div></blockquote>
@@ -372,13 +374,12 @@ the source contribution to the  MEG sensors using the same source model as the o
 <p>General syntax:</p>
 <p><span class="command">om_minverser</span> <span class="input">HeadMat</span> <span class="output">HeadMatInv</span></p>
 <p>This program is used to invert the symmetric matrix as provided by the command <span class="command">om_assemble</span> with the option <span class="opt">-HeadMat</span>.</p>
-<dl class="docutils">
-<dt>This command has only one option.</dt>
-<dd><ul class="first last simple">
+<p>This command has only one option:</p>
+<blockquote>
+<div><ul class="simple">
 <li><span class="opt">-help</span> (<span class="opt">-h</span>, <code class="docutils literal"><span class="pre">--help</span></code>): summarizes the usage of <span class="command">om_minverser</span>.</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </div>
 <div class="section" id="om-gain">
 <h3><a class="toc-backref" href="#id9">om_gain</a><a class="headerlink" href="#om-gain" title="Permalink to this headline">¶</a></h3>
@@ -396,28 +397,24 @@ The resulting gain matrix is stored in the file <span class="output">GainMatrix<
 <p>Gain matrix type options: select the type of gain matrix to be computed by  <span class="command">om_gain</span>.</p>
 <blockquote>
 <div><ul>
-<li><dl class="first docutils">
-<dt><span class="opt">-EEG</span>: allows to compute an EEG gain matrix. <span class="opt">Parameters</span> are then:</dt>
-<dd><ul class="first last simple">
+<li><p class="first"><span class="opt">-EEG</span>: allows to compute an EEG gain matrix. <span class="opt">Parameters</span> are then:</p>
+<blockquote>
+<div><ul class="simple">
 <li><span class="input">HeadMatInv SourceMat Head2EEGMat</span></li>
 <li><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
 <span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model. <span class="input">Head2EEGMat</span>
 is the matrix obtained using <span class="command">om_assemble</span> with the option <span class="opt">-Head2EEGMat</span>.</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt><span class="opt">-EEG</span> option is also used to compute an EIT gain matrix: in this case, <span class="input">SourceMat</span></dt>
-<dd><p class="first last">should contain the output of the <span class="opt">-EITsource</span> option of <span class="command">om_assemble</span>. Multiplying
+<li><p class="first"><span class="opt">-EEG</span> option is also used to compute an EIT gain matrix: in this case, <span class="input">SourceMat</span>
+should contain the output of the <span class="opt">-EITsource</span> option of <span class="command">om_assemble</span>. Multiplying
 the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
 potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.</p>
-</dd>
-</dl>
 </li>
-<li><dl class="first docutils">
-<dt><span class="opt">-MEG</span>: allows to compute a MEG gain matrix. <span class="opt">Parameters</span> are then:</dt>
-<dd><ul class="first simple">
+<li><p class="first"><span class="opt">-MEG</span>: allows to compute a MEG gain matrix. <span class="opt">Parameters</span> are then:</p>
+<blockquote>
+<div><ul class="simple">
 <li><span class="input">HeadMatInv SourceMat Head2MEGMat Source2MEGMat</span></li>
 <li><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
 <span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model. <span class="input">Head2MEGMat</span>
@@ -425,24 +422,22 @@ is the matrix obtained using <span class="command">om_assemble</span> with the o
 <span class="input">Source2MEGMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the
 options <span class="opt">-SurfSource2MEGMat</span> or <span class="opt">-DipSource2MEGMat</span>, depending on the source model.</li>
 </ul>
-<blockquote class="last">
+<blockquote>
 <div><div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">The magnetic field is related both to the sources directly, as well as to the electric potential, according to: <img class="math" src="_images/math/bebca567af7868456599053c31bfd32f16885bd7.png" alt="\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}"/>.</p>
 </div>
 </div></blockquote>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt><span class="opt">-InternalPotential</span>: allows to compute an internal potential gain matrix for sensors within the volume.&nbsp;<span class="opt">Parameters</span> are then:</dt>
-<dd><ul class="first last simple">
+<li><p class="first"><span class="opt">-InternalPotential</span>: allows to compute an internal potential gain matrix for sensors within the volume.&nbsp;<span class="opt">Parameters</span> are then:</p>
+<blockquote>
+<div><ul class="simple">
 <li><span class="input">HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat</span></li>
 <li><span class="input">Head2InternalPotMat</span> and <span class="input">Source2InternalPotMat</span> are respectivelly obtained
 using <span class="command">om_assemble</span> with option <span class="opt">-Head2InternalPotMat</span> and <span class="opt">-DipSource2InternalPotMat</span>.</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div></blockquote>
@@ -566,42 +561,38 @@ The MEG sensor definition is provided in a text file, in which each line provide
 <p>More precisely, <em>omiting the first column which can contain a label</em> there are 4 options for defining EEG, EIT or MEG sensors:</p>
 <blockquote>
 <div><ul>
-<li><dl class="first docutils">
-<dt>1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches) :</dt>
-<dd><ul class="first last simple">
+<li><p class="first">1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches):</p>
+<blockquote>
+<div><ul class="simple">
 <li>the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches) :</dt>
-<dd><ul class="first last simple">
+<li><p class="first">1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches) :</p>
+<blockquote>
+<div><ul class="simple">
 <li>the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor</li>
 <li>the 4th column is the patche radius (unit relative to the mesh)</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>1 line per sensor and 6 columns (typically for MEG sensors) :</dt>
-<dd><ul class="first last simple">
+<li><p class="first">1 line per sensor and 6 columns (typically for MEG sensors) :</p>
+<blockquote>
+<div><ul class="simple">
 <li>the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor</li>
 <li>the 4th, 5th and 6th are coordinates of vector orientation</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers) :</dt>
-<dd><ul class="first last simple">
+<li><p class="first">1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers):</p>
+<blockquote>
+<div><ul class="simple">
 <li>the 1st column is sensors names</li>
 <li>the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor</li>
 <li>the 5th, 6th and 7th are coordinates of vector orientation</li>
 <li>the 8th is the weight to apply for numerical integration (related to sensor name)</li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 </ul>
 </div></blockquote>
@@ -619,8 +610,8 @@ The MEG sensor definition is provided in a text file, in which each line provide
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2009-2017, OpenMEEG Developers..
-      Last updated on Jun 26, 2017.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+      Last updated on Sep 06, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
     </div>
   </body>
 </html>

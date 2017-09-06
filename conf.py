@@ -196,16 +196,32 @@ latex_paper_size = 'a4'
 # The font size ('10pt', '11pt' or '12pt').
 # latex_font_size = '10pt'
 
+# Colors are inline with CSS (cf. navy.css):
+# .command      { color:red; }
+# .opt      { color:green; }
+# .input      { color:purple; }
+# .output      { color:blue; }
+
 latex_elements = {
-  'classoptions': ',openany,oneside'
+  'classoptions': ',openany,oneside',
+  'preamble': r"""
+\usepackage{color}
+\definecolor{darkgreen}{rgb}{0.0, 0.5, 0.0}
+\definecolor{darkpurple}{rgb}{0.71, 0.2, 0.54}
+\newcommand{\DUrolecommand}[1]{{\color{red} #1}}
+\newcommand{\DUroleopt}[1]{{\color{darkgreen} #1}}
+\newcommand{\DUroleinput}[1]{{\color{darkpurple} #1}}
+\newcommand{\DUroleoutput}[1]{{\color{blue} #1}}
+"""
 }
+
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass
 # [howto/manual]).
 latex_documents = [
-    ('index', 'OpenMEEG.tex', u'OpenMEEG Manual',
-     u'OpenMEEG Contributors', 'manual', u'bar', 'howto'),
+    ('index', 'OpenMEEG_manual.tex', u'OpenMEEG Manual',
+     u'OpenMEEG Contributors', 'manual'),
 ]
 
 latex_toplevel_sectioning = 'section'
@@ -219,7 +235,7 @@ latex_logo = "_static/logo.png"
 latex_use_parts = True
 
 # Additional stuff for the LaTeX preamble.
-# latex_preamble = ''
+latex_preamble = ''
 
 # Documents to append as an appendix to all manuals.
 # latex_appendices = []

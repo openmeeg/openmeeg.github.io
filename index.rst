@@ -49,7 +49,7 @@ Using OpenMEEG
    :width: 130px
    :target: http://www.nitrc.org/plugins/mwiki/index.php/nutmeg:MainPage
 
-.. image:: _static/python-logo.gif
+.. image:: _static/pythonlogo.png
    :width: 170px
    :target: http://python.org
 

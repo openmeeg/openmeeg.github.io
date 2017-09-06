@@ -26,7 +26,7 @@ By default, matrices and vectors are stored on disk using a ``MATLAB`` file form
 Symmetric matrices which are not directly representable in the ``MATLAB`` format are represented as a ``MATLAB`` struct.
 Other vector/matrices file formats are also supported.
 Forcing a specific file format is achieved by specifying the proper file extension.
-``MATLAB`` extension is ``.mat``. 
+``MATLAB`` extension is ``.mat``.
 Other useful file formats are ASCII (extension ``.txt``) which generates human readable files, and BrainVisa texture file format (extension ``.tex``).
 
 OpenMEEG's own binary file format (extension ``.bin``) is available solely for backward compatibility and should be considered as deprecated (as it is subsumed by the ``MATLAB`` file format).
@@ -36,8 +36,8 @@ OpenMEEG's own binary file format (extension ``.bin``) is available solely for b
 Geometrical model, mesh and conductivity files
 -----------------------------------------------
 
-**OpenMEEG geometrical models** are described through several files. 
-The toplevel file (generally ending with the extension ``.geom``) assembles various interface descriptions to build *Domains* corresponding to head tissues. 
+**OpenMEEG geometrical models** are described through several files.
+The toplevel file (generally ending with the extension ``.geom``) assembles various interface descriptions to build *Domains* corresponding to head tissues.
 Empty lines or lines beginning with ``#`` are non-significant.
 
 The file must start with a special comment line which allows its identification (see example in `fig.geom`_).
@@ -71,34 +71,35 @@ The section starting with the keyword ``MeshFile`` is optional, as well as the s
 
 - If ``Meshes`` is found, it specifies the paths to the meshes that may or may not be named. Mesh file formats supported are ``tri``, ``bnd``, ``mesh``, ``off``, ``gii``, and ``vtk`` (in case you use VTK).
 
-    A Mesh is defined with the keyword ``Mesh`` followed by an optional name and "``:``".
+    * A Mesh is defined with the keyword ``Mesh`` followed by an optional name and "``:``".
 
-    If no name is provided, the Mesh is named by its index (starting from 1).
+    * If no name is provided, the Mesh is named by its index (starting from 1).
 
-    If none of the two sections ``MeshFile`` and ``Meshes`` are present, the next section called ``Interfaces`` is expected to contain the filenames of the meshes.
+    * If none of the two sections ``MeshFile`` and ``Meshes`` are present, the next section called ``Interfaces`` is expected to contain the filenames of the meshes.
 
 - ``Interfaces`` section specifies the mesh descriptions of the interfaces between tissues.
-    It is introduced by the keyword ``Interfaces`` followed by the number of such interfaces. 
 
-    An Interface is defined with the keyword ``Interface`` followed by a name and "``:``".
+    * It is introduced by the keyword ``Interfaces`` followed by the number of such interfaces.
 
-    If no name is provided, the Interface is named by its index (starting from 1).
+    * An Interface is defined with the keyword ``Interface`` followed by a name and "``:``".
 
-    If the sections ``MeshFile`` and ``Meshes`` were NOT specified before, a path to a mesh file is expected.
+    * If no name is provided, the Interface is named by its index (starting from 1).
 
-    In the opposite case, a sequence of mesh names is expected.
+    * If the sections ``MeshFile`` and ``Meshes`` were NOT specified before, a path to a mesh file is expected.
 
-    These meshes are concatenated to form a closed Interface.
+    * In the opposite case, a sequence of mesh names is expected.
 
-    '+' or '-' sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.
+    * These meshes are concatenated to form a closed Interface.
 
-- ``Domains`` section describes the head tissues and is introduced by the keyword ``Domains`` followed by the number of such domains. 
-  
-  Each domain is then described, one domain per line, by the keyword ``Domain`` followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).
-  
-  These IDs are the interface names (as depicted in previous paragraph).
+    * '+' or '-' sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.
 
-  They must be preceeded by a '+' or '-' sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).
+- ``Domains`` section describes the head tissues and is introduced by the keyword ``Domains`` followed by the number of such domains.
+
+    * Each domain is then described, one domain per line, by the keyword ``Domain`` followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).
+
+    * These IDs are the interface names (as depicted in previous paragraph).
+
+    * They must be preceeded by a '+' or '-' sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).
 
 See `fig.geom`_ for a detailed example.
 
@@ -108,9 +109,9 @@ Generally ending with the ``.tri`` extension follow the BrainVisa file format fo
 Each section is introduced by the character ``-`` appearing at the beginning of the line followed by a space followed by either one number (first section) or three times
 the same number (second section).
 
-- ``The first section`` contains a list of vertices with associated normals. 
+- ``The first section`` contains a list of vertices with associated normals.
   The number on the line introducing the section is the number of points.
-  Each following line corresponds to a single point. Its coordinates are the three first numbers appearing on the line. 
+  Each following line corresponds to a single point. Its coordinates are the three first numbers appearing on the line.
   The normal corresponds to the following three numbers. Each point is assigned an index (starting at 0) corresponding to its order of appearance in the list.
 
 - ``The second section`` contains the triangles of the mesh.
@@ -156,7 +157,7 @@ Source descriptions
 
 Sources may be represented either by a *surfacic distribution* of dipoles, or by *isolated dipoles* (dirac).
 
-A **surfacic distribution** can be defined by a mesh that supports the dipoles. 
+A **surfacic distribution** can be defined by a mesh that supports the dipoles.
 The dipole orientations are then constrained to the normal direction to the mesh and the moment amplitude is modelled as continuous across the mesh (piecewise linear).
 Source values are defined at the mesh vertices.
 
@@ -178,10 +179,10 @@ Diagram for the low level pipeline for computing MEG and EEG leadfields (a.k.a.,
    :alt: dipole positions
    :align: center
 
-This section reviews the main OpenMEEG command line tools. 
+This section reviews the main OpenMEEG command line tools.
 The general syntax and main options of each command is briefly provided.
 
-Full details are available in OpenMEEG documentation. 
+Full details are available in OpenMEEG documentation.
 In this section, :command:`command` names are in :command:`red`, :opt:`options` are in :opt:`green` and :output:`output` files are shown in :output:`blue`.
 
 om_assemble
@@ -212,22 +213,23 @@ General options for :command:`om_assemble`
 
     Head modelling options for :command:`om_assemble`: produce matrices linked to the propagation of electrical signals in the head.
 
-  - :opt:`-HeadMat` (:opt:`-HM`, :opt:`-hm`): :command:`om_assemble` computes the Head matrix for Symmetric BEM (left-hand side of the linear system). 
-    This matrix corresponds to the propagation of electrical signals within the head. 
+  - :opt:`-HeadMat` (:opt:`-HM`, :opt:`-hm`): :command:`om_assemble` computes the Head matrix for Symmetric BEM (left-hand side of the linear system).
+    This matrix corresponds to the propagation of electrical signals within the head.
 
-**Source modelling** options for :command:`om_assemble`: compute the source matrix for Symmetric BEM (right-hand side of the linear system). 
-This matrix maps the representation of the sources to their associated electric potential in an infinite medium (:math:`v_{\Omega_1}`). 
+**Source modelling** options for :command:`om_assemble`: compute the source matrix for Symmetric BEM (right-hand side of the linear system).
+This matrix maps the representation of the sources to their associated electric potential in an infinite medium (:math:`v_{\Omega_1}`).
 Different options exist for the 2 types of source models:
 
    - :opt:`-SurfSourceMat` (:opt:`-SSM`, :opt:`-ssm`): should be used for continuous surfacic distributions of dipoles.
-                :input:`Input` is a file containing a mesh that describes the surface.  
-                For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line.
+     :input:`Input` is a file containing a mesh that describes the surface.
+     For faster computations, one can consider giving the name of the domain (containing all dipoles)
+     as a string as an optional parameter in the end of the command line.
    - :opt:`-DipSourceMat` (:opt:`-DSM`, :opt:`-dsm`): should be used when considering several isolated dipoles.
-     This model is the most commonly used and should be used by default even if the dipoles correspond to the vertices of a cortical mesh. 
+     This model is the most commonly used and should be used by default even if the dipoles correspond to the vertices of a cortical mesh.
      :input:`Input` is a file containing the dipole descriptions.
      For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line (see Example).
 
-**Sensor modelling** options for :command:`om_assemble`: compute matrices that integrate source information and computed potentials to provide the actual solution of the forward problem. 
+**Sensor modelling** options for :command:`om_assemble`: compute matrices that integrate source information and computed potentials to provide the actual solution of the forward problem.
 The situation is slightly different for EEG, which only needs to compute the electric potential, and for MEG, which depends both on the electric potential and on the sources:
 
   - :opt:`-Head2EEGMat` (:opt:`-H2EM`, :opt:`-h2em`): :command:`om_assemble` computes the linear interpolation matrix that maps OpenMEEG unknown :math:`\mathbf{X}` to the potential on the scalp at EEG sensors: :math:`\mathbf{V_{sensors}} = \mathbf{Head2EEGMat} . \mathbf{X}`. :input:`Input` is a file describing the EEG sensor positions. :math:`\mathbf{Head2EEGMat}` is stored as a sparse matrix.
@@ -235,10 +237,11 @@ The situation is slightly different for EEG, which only needs to compute the ele
   - :opt:`-Head2InternalPotMat` (:opt:`-H2IPM`, :opt:`-h2ipm`): :command:`om_assemble` computes the matrix that allows
     the computation of potentials at internal positions from potentials and normal currents on head interfaces, as computed by the symmetric BEM.
   - :opt:`-SurfSource2MEGMat` (:opt:`-SS2MM`, :opt:`-ss2mm`): :command:`om_assemble` computes the source contribution to the MEG sensors using the same source model as the one used for the option :opt:`-SurfSourceMat, i.e. surfacic distribution of dipoles. For this option, :input:`Input` takes the form:
+
      - :input:`mesh squids` where :input:`mesh` contains a mesh describing the source surface
        and :input:`squids` is a file  describing the SQUIDS geometries and characteristics.
      - :opt:`-DipSource2MEGMat` (:opt:`-DS2MM`, :opt:`-ds2mm`): :command:`om_assemble` computes
-       the source contribution to the  MEG sensors using the same source model as the one used for the option :opt:`-DipSourceMat`, i.e. isolated dipoles. 
+       the source contribution to the  MEG sensors using the same source model as the one used for the option :opt:`-DipSourceMat`, i.e. isolated dipoles.
 
 For this option, :input:`Input` takes the form:
 
@@ -259,7 +262,8 @@ General syntax:
 
 This program is used to invert the symmetric matrix as provided by the command :command:`om_assemble` with the option :opt:`-HeadMat`.
 
-This command has only one option.
+This command has only one option:
+
     - :opt:`-help` (:opt:`-h`, ``--help``): summarizes the usage of :command:`om_minverser`.
 
 
@@ -282,24 +286,30 @@ General options:
 Gain matrix type options: select the type of gain matrix to be computed by  :command:`om_gain`.
 
    - :opt:`-EEG`: allows to compute an EEG gain matrix. :opt:`Parameters` are then:
+
        - :input:`HeadMatInv SourceMat Head2EEGMat`
        - :input:`SourceMat` is the matrix obtained using :command:`om_assemble` with either of the options
          :opt:`-SurfSourceMat` or :opt:`-DipSourceMat`, depending on the source model. :input:`Head2EEGMat`
          is the matrix obtained using :command:`om_assemble` with the option :opt:`-Head2EEGMat`.
+
    - :opt:`-EEG` option is also used to compute an EIT gain matrix: in this case, :input:`SourceMat`
-      should contain the output of the :opt:`-EITsource` option of :command:`om_assemble`. Multiplying
-      the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
-      potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.
+     should contain the output of the :opt:`-EITsource` option of :command:`om_assemble`. Multiplying
+     the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
+     potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.
+
    - :opt:`-MEG`: allows to compute a MEG gain matrix. :opt:`Parameters` are then:
+
        - :input:`HeadMatInv SourceMat Head2MEGMat Source2MEGMat`
        - :input:`SourceMat` is the matrix obtained using :command:`om_assemble` with either of the options
          :opt:`-SurfSourceMat` or :opt:`-DipSourceMat`, depending on the source model. :input:`Head2MEGMat`
          is the matrix obtained using :command:`om_assemble` with the option :opt:`-HeadMEEGMat`.
          :input:`Source2MEGMat` is the matrix obtained using :command:`om_assemble` with either of the
          options :opt:`-SurfSource2MEGMat` or :opt:`-DipSource2MEGMat`, depending on the source model.
-        .. note:: 
+        .. note::
             The magnetic field is related both to the sources directly, as well as to the electric potential, according to: :math:`\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}`.
+
    - :opt:`-InternalPotential`: allows to compute an internal potential gain matrix for sensors within the volume. :opt:`Parameters` are then:
+
        - :input:`HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat`
        - :input:`Head2InternalPotMat` and :input:`Source2InternalPotMat` are respectivelly obtained
          using :command:`om_assemble` with option :opt:`-Head2InternalPotMat` and :opt:`-DipSource2InternalPotMat`.
@@ -373,7 +383,7 @@ Example with three surfaces: outer scalp (gray), outer skull (blue) and inner sk
 
     Meshes paths can be absolute (as depicted on `fig.geom`_) or relative to where the command line is executed.
     For the meshes, the following formats are allowed:
-    
+
         - \*.bnd~: bnd mesh format.
         - \*.off~: off mesh format.
         - \*.tri~: TRI format corresponding to early BrainVisa. Also handled by Anatomist.
@@ -452,19 +462,26 @@ Sensors may have names (labels) in the first column of the file (it has to conta
 
 More precisely, *omiting the first column which can contain a label* there are 4 options for defining EEG, EIT or MEG sensors:
 
-    - 1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches) :
-         - the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
+    - 1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches):
+
+         * the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
+
     - 1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches) :
-         - the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
-         - the 4th column is the patche radius (unit relative to the mesh)
+
+         * the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
+         * the 4th column is the patche radius (unit relative to the mesh)
+
     - 1 line per sensor and 6 columns (typically for MEG sensors) :
-         - the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor
-         - the 4th, 5th and 6th are coordinates of vector orientation
-    - 1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers) :
-         - the 1st column is sensors names
-         - the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
-         - the 5th, 6th and 7th are coordinates of vector orientation
-         - the 8th is the weight to apply for numerical integration (related to sensor name)
+
+         * the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor
+         * the 4th, 5th and 6th are coordinates of vector orientation
+
+    - 1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers):
+
+         * the 1st column is sensors names
+         * the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor
+         * the 5th, 6th and 7th are coordinates of vector orientation
+         * the 8th is the weight to apply for numerical integration (related to sensor name)
 
 An example of MEG sensor description:
 

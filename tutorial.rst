@@ -164,6 +164,8 @@ The following small example describes a very simple mesh containing 4 points and
     0 2 3
     1 2 3
 
+.. _sec.cond:
+
 Geometry tools
 ~~~~~~~~~~~~~~
 
@@ -460,57 +462,3 @@ Considering now isolated dipolar sources detailed in the file :input:`sources.di
     om_assemble -ds2mm sources.dip head.squids head.ds2mm
     om_minverser head.hm head.hm_inv
     om_gain -MEG head.hm_inv head.dsm head.h2mm head.ds2mm head.gain
-
-Appendix
-========
-
-This section describes the type of data that is required to run a forward problem with OpenMEEG.
-
-.. _sec.cond:
-
-Geometry and conductivity description file
-------------------------------------------
-
-The conductivity description file defines the conductivity values corresponding to each domain listed in the Geometry Description File (`sec.geom`_).
-
-The file extension should be: \*.cond .
-
-.. warning:: the domain names should match the ones defined in the Geometry Description File (beware of differences in upper/lower case).
-
-.. image:: _static/cond.png
-   :width: 600 px
-   :alt: Conductivity
-   :align: center
-
-.. _sec.meshes:
-
-Meshes
-------
-
-Meshes describing the interfaces between regions of homogeneous conductivity. These meshes generally represent:
-
-  - the inner skull surface
-  - the outer skull surface
-  - the outer scalp surface
-
-The recommended mesh size is approximately 600 to 800 points per surface.
-Example with three surfaces: outer scalp (gray), outer skull (blue) and inner skull (pink).
-
-.. image:: _static/tete_couches_brain.png
-   :width: 300 px
-   :alt: External surface of the cortex
-.. image:: _static/tete_couches_brainskullhead.png
-   :width: 300 px
-   :alt: Example with three surfaces: outer scalp (gray),
-
-.. note::
-
-    Meshes paths can be absolute (as depicted on `fig.geom`_) or relative to where the command line is executed.
-    For the meshes, the following formats are allowed:
-
-        - \*.bnd~: bnd mesh format.
-        - \*.off~: off mesh format.
-        - \*.tri~: TRI format corresponding to early BrainVisa. Also handled by Anatomist.
-        - \*.mesh~: MESH format corresponding to BrainVisa versions 3.0.2 and later. Also handled by Anatomist.
-        - \*.vtk~: VTK mesh format.
-        - \*.gii~: Gifti mesh format.

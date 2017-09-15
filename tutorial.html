@@ -1,16 +1,13 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
     <title>Tutorial &#8212; OpenMEEG 2.4 documentation</title>
-    
     <link rel="stylesheet" href="_static/navy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
@@ -29,7 +26,7 @@
     <link rel="next" title="License" href="license.html" />
     <link rel="prev" title="Publications on OpenMEEG" href="publications.html" /> 
   </head>
-  <body role="document">
+  <body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
     <div style='float:left; display:inline-block'>
         <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
@@ -77,8 +74,18 @@
 <li><a class="reference internal" href="#">Tutorial</a><ul>
 <li><a class="reference internal" href="#data-format">Data format</a><ul>
 <li><a class="reference internal" href="#vectors-and-matrices">Vectors and matrices</a></li>
-<li><a class="reference internal" href="#geometrical-model-mesh-and-conductivity-files">Geometrical model, mesh and conductivity files</a></li>
-<li><a class="reference internal" href="#source-descriptions">Source descriptions</a></li>
+<li><a class="reference internal" href="#geometrical-model-mesh-and-conductivity-files">Geometrical model, mesh and conductivity files</a><ul>
+<li><a class="reference internal" href="#meshes">Meshes</a></li>
+<li><a class="reference internal" href="#geometry-tools">Geometry tools</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source-descriptions">Source descriptions</a><ul>
+<li><a class="reference internal" href="#isolated-dipoles">Isolated dipoles</a></li>
+<li><a class="reference internal" href="#distributed-dipoles">Distributed dipoles</a></li>
+<li><a class="reference internal" href="#source-activation">Source activation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sensors">Sensors</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#openmeeg-from-the-command-line">OpenMEEG from the command line</a><ul>
@@ -91,18 +98,6 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
-<li><a class="reference internal" href="#appendix">Appendix</a><ul>
-<li><a class="reference internal" href="#geometry-and-conductivity-description-file">Geometry and conductivity description file</a></li>
-<li><a class="reference internal" href="#meshes">Meshes</a></li>
-<li><a class="reference internal" href="#source-description">Source description</a><ul>
-<li><a class="reference internal" href="#isolated-dipoles">Isolated dipoles</a></li>
-<li><a class="reference internal" href="#distributed-dipoles">Distributed dipoles</a></li>
-<li><a class="reference internal" href="#source-activation">Source activation</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#sensors">Sensors</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -140,22 +135,16 @@
 <li><a class="reference internal" href="#vectors-and-matrices" id="id3">Vectors and matrices</a></li>
 <li><a class="reference internal" href="#geometrical-model-mesh-and-conductivity-files" id="id4">Geometrical model, mesh and conductivity files</a></li>
 <li><a class="reference internal" href="#source-descriptions" id="id5">Source descriptions</a></li>
+<li><a class="reference internal" href="#sensors" id="id6">Sensors</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#openmeeg-from-the-command-line" id="id6">OpenMEEG from the command line</a><ul>
-<li><a class="reference internal" href="#om-assemble" id="id7">om_assemble</a></li>
-<li><a class="reference internal" href="#om-minverser" id="id8">om_minverser</a></li>
-<li><a class="reference internal" href="#om-gain" id="id9">om_gain</a></li>
+<li><a class="reference internal" href="#openmeeg-from-the-command-line" id="id7">OpenMEEG from the command line</a><ul>
+<li><a class="reference internal" href="#om-assemble" id="id8">om_assemble</a></li>
+<li><a class="reference internal" href="#om-minverser" id="id9">om_minverser</a></li>
+<li><a class="reference internal" href="#om-gain" id="id10">om_gain</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#examples" id="id10">Examples</a></li>
-<li><a class="reference internal" href="#appendix" id="id11">Appendix</a><ul>
-<li><a class="reference internal" href="#geometry-and-conductivity-description-file" id="id12">Geometry and conductivity description file</a></li>
-<li><a class="reference internal" href="#meshes" id="id13">Meshes</a></li>
-<li><a class="reference internal" href="#source-description" id="id14">Source description</a></li>
-<li><a class="reference internal" href="#sensors" id="id15">Sensors</a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#examples" id="id11">Examples</a></li>
 </ul>
 </div>
 <div class="section" id="data-format">
@@ -169,7 +158,7 @@ Other vector/matrices file formats are also supported.
 Forcing a specific file format is achieved by specifying the proper file extension.
 <code class="docutils literal"><span class="pre">MATLAB</span></code> extension is <code class="docutils literal"><span class="pre">.mat</span></code>.
 Other useful file formats are ASCII (extension <code class="docutils literal"><span class="pre">.txt</span></code>) which generates human readable files, and BrainVisa texture file format (extension <code class="docutils literal"><span class="pre">.tex</span></code>).</p>
-<p>OpenMEEG&#8217;s own binary file format (extension <code class="docutils literal"><span class="pre">.bin</span></code>) is available solely for backward compatibility and should be considered as deprecated (as it is subsumed by the <code class="docutils literal"><span class="pre">MATLAB</span></code> file format).</p>
+<p>OpenMEEG’s own binary file format (extension <code class="docutils literal"><span class="pre">.bin</span></code>) is available solely for backward compatibility and should be considered as deprecated (as it is subsumed by the <code class="docutils literal"><span class="pre">MATLAB</span></code> file format).</p>
 </div>
 <div class="section" id="geometrical-model-mesh-and-conductivity-files">
 <span id="sec-geom"></span><h3><a class="toc-backref" href="#id4">Geometrical model, mesh and conductivity files</a><a class="headerlink" href="#geometrical-model-mesh-and-conductivity-files" title="Permalink to this headline">¶</a></h3>
@@ -181,8 +170,8 @@ Geometrical models globally contain 2 sections, one for describing the interface
 In OpenMEEG, we make the following distinction between Mesh and Interface, which is helpful for defining non nested geometries.</p>
 <blockquote>
 <div><ul class="simple">
-<li>&#8220;Mesh&#8221;: a collection of vertices and triangles all connected.</li>
-<li>&#8220;Interface&#8221;: a closed mesh.</li>
+<li>“Mesh”: a collection of vertices and triangles all connected.</li>
+<li>“Interface”: a closed mesh.</li>
 </ul>
 </div></blockquote>
 <p>Sample <em>non-nested</em> geometry description:</p>
@@ -197,7 +186,7 @@ In OpenMEEG, we make the following distinction between Mesh and Interface, which
 <li><p class="first">If <code class="docutils literal"><span class="pre">Meshes</span></code> is found, it specifies the paths to the meshes that may or may not be named. Mesh file formats supported are <code class="docutils literal"><span class="pre">tri</span></code>, <code class="docutils literal"><span class="pre">bnd</span></code>, <code class="docutils literal"><span class="pre">mesh</span></code>, <code class="docutils literal"><span class="pre">off</span></code>, <code class="docutils literal"><span class="pre">gii</span></code>, and <code class="docutils literal"><span class="pre">vtk</span></code> (in case you use VTK).</p>
 <blockquote>
 <div><ul class="simple">
-<li>A Mesh is defined with the keyword <code class="docutils literal"><span class="pre">Mesh</span></code> followed by an optional name and &#8220;<code class="docutils literal"><span class="pre">:</span></code>&#8221;.</li>
+<li>A Mesh is defined with the keyword <code class="docutils literal"><span class="pre">Mesh</span></code> followed by an optional name and “<code class="docutils literal"><span class="pre">:</span></code>”.</li>
 <li>If no name is provided, the Mesh is named by its index (starting from 1).</li>
 <li>If none of the two sections <code class="docutils literal"><span class="pre">MeshFile</span></code> and <code class="docutils literal"><span class="pre">Meshes</span></code> are present, the next section called <code class="docutils literal"><span class="pre">Interfaces</span></code> is expected to contain the filenames of the meshes.</li>
 </ul>
@@ -207,12 +196,12 @@ In OpenMEEG, we make the following distinction between Mesh and Interface, which
 <blockquote>
 <div><ul class="simple">
 <li>It is introduced by the keyword <code class="docutils literal"><span class="pre">Interfaces</span></code> followed by the number of such interfaces.</li>
-<li>An Interface is defined with the keyword <code class="docutils literal"><span class="pre">Interface</span></code> followed by a name and &#8220;<code class="docutils literal"><span class="pre">:</span></code>&#8221;.</li>
+<li>An Interface is defined with the keyword <code class="docutils literal"><span class="pre">Interface</span></code> followed by a name and “<code class="docutils literal"><span class="pre">:</span></code>”.</li>
 <li>If no name is provided, the Interface is named by its index (starting from 1).</li>
 <li>If the sections <code class="docutils literal"><span class="pre">MeshFile</span></code> and <code class="docutils literal"><span class="pre">Meshes</span></code> were NOT specified before, a path to a mesh file is expected.</li>
 <li>In the opposite case, a sequence of mesh names is expected.</li>
 <li>These meshes are concatenated to form a closed Interface.</li>
-<li>&#8216;+&#8217; or &#8216;-&#8216; sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.</li>
+<li>‘+’ or ‘-‘ sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.</li>
 </ul>
 </div></blockquote>
 </li>
@@ -221,266 +210,15 @@ In OpenMEEG, we make the following distinction between Mesh and Interface, which
 <div><ul class="simple">
 <li>Each domain is then described, one domain per line, by the keyword <code class="docutils literal"><span class="pre">Domain</span></code> followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).</li>
 <li>These IDs are the interface names (as depicted in previous paragraph).</li>
-<li>They must be preceeded by a &#8216;+&#8217; or &#8216;-&#8216; sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).</li>
+<li>They must be preceeded by a ‘+’ or ‘-‘ sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).</li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 <p>See <a class="reference internal" href="#fig-geom">fig.geom</a> for a detailed example.</p>
-<p><strong>Meshes</strong> see also <a class="reference internal" href="#sec-meshes">sec.meshes</a> in Appendix.
-Generally ending with the <code class="docutils literal"><span class="pre">.tri</span></code> extension follow the BrainVisa file format for meshes, these files contain two sections.
-Each section is introduced by the character <code class="docutils literal"><span class="pre">-</span></code> appearing at the beginning of the line followed by a space followed by either one number (first section) or three times
-the same number (second section).</p>
-<ul class="simple">
-<li><code class="docutils literal"><span class="pre">The</span> <span class="pre">first</span> <span class="pre">section</span></code> contains a list of vertices with associated normals.
-The number on the line introducing the section is the number of points.
-Each following line corresponds to a single point. Its coordinates are the three first numbers appearing on the line.
-The normal corresponds to the following three numbers. Each point is assigned an index (starting at 0) corresponding to its order of appearance in the list.</li>
-<li><code class="docutils literal"><span class="pre">The</span> <span class="pre">second</span> <span class="pre">section</span></code> contains the triangles of the mesh.
-The number (repeated three times) in the section delimiter corresponds to the number of triangles.
-Each triangle is depicted by a sequence of three integers corresponding to the indices of the points assigned as described in the previous paragraph.</li>
-</ul>
-<p>The following small example describes a very simple mesh containing 4 points and 4 triangles:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="mi">4</span>
-<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mf">0.5773</span> <span class="o">-</span><span class="mf">0.5773</span> <span class="o">-</span><span class="mf">0.5773</span>
-<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
-<span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>
-<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
-<span class="o">-</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span>
-<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span>
-<span class="mi">0</span> <span class="mi">1</span> <span class="mi">3</span>
-<span class="mi">0</span> <span class="mi">2</span> <span class="mi">3</span>
-<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
-</pre></div>
-</div>
-<p>Interfaces are required to be closed in order for the Boundary Element Method to function correctly. This is also necessary for the source meshes when computing forward solutions using surfacic source models (see below).
-Moreover, the interface meshes must not intersect each other. Non-intersection can be checked with the command <span class="command">om_check_geom</span>.
-The command <span class="command">om_mesh_info</span> applied to a mesh provides its number of points, of triangles, minimum and maximum triangle area, and also its Euler characteristic.
-The Euler characteristic of a closed mesh of genus 0 (homotopic to a sphere) is equal to 2.
-The Euler characteristic gives an indication if a mesh is likely to be closed or not.</p>
-<p>In order to generate a VTK/vtp file, one can use the tool provided <span class="command">om_meshes_to_vtp</span>, which from a list of (closed or not) meshes and names, remove dupplicated vertices and create an easily viewable file in VTK/Paraview.</p>
-<p>In order to check a geometry file, one can use the tool provided <span class="command">om_check_geom</span>, which display the read informations.</p>
-<p>A <strong>conductivity file</strong> (generally ending with the extension <code class="docutils literal"><span class="pre">.cond</span></code>) is a simple ASCII file that contains associations between tissue names and conductivity values.
-Associations are provided one per line. Empty lines or lines beginning with <code class="docutils literal"><span class="pre">#</span></code> are non-significant. The file must start with a special comment line which allows its identification.
-The next figure provides an example conductivity file corresponding to the geometry file presented above.</p>
-<a class="reference internal image-reference" href="_images/cond.png"><img alt="Conductivities" class="align-center" src="_images/cond.png" style="width: 600px;" /></a>
-<p>Note that the tissue names are the ones appearing in the Domains descriptions of the file depicting the geometrical model.</p>
-</div>
-<div class="section" id="source-descriptions">
-<h3><a class="toc-backref" href="#id5">Source descriptions</a><a class="headerlink" href="#source-descriptions" title="Permalink to this headline">¶</a></h3>
-<p>Sources may be represented either by a <em>surfacic distribution</em> of dipoles, or by <em>isolated dipoles</em> (dirac).</p>
-<p>A <strong>surfacic distribution</strong> can be defined by a mesh that supports the dipoles.
-The dipole orientations are then constrained to the normal direction to the mesh and the moment amplitude is modelled as continuous across the mesh (piecewise linear).
-Source values are defined at the mesh vertices.</p>
-<p><strong>Isolated dipoles</strong> are defined by a simple ASCII file as shown below:</p>
-<a class="reference internal image-reference" href="_images/dipolePositions_en.png"><img alt="dipole positions" class="align-center" src="_images/dipolePositions_en.png" style="width: 600px;" /></a>
-</div>
-</div>
-<div class="section" id="openmeeg-from-the-command-line">
-<h2><a class="toc-backref" href="#id6">OpenMEEG from the command line</a><a class="headerlink" href="#openmeeg-from-the-command-line" title="Permalink to this headline">¶</a></h2>
-<p>Diagram for the low level pipeline for computing MEG and EEG leadfields (a.k.a., gain matrices) using OpenMEEG:</p>
-<a class="reference internal image-reference" href="_images/OpenMEEGSimple.png"><img alt="dipole positions" class="align-center" src="_images/OpenMEEGSimple.png" style="width: 600px;" /></a>
-<p>This section reviews the main OpenMEEG command line tools.
-The general syntax and main options of each command is briefly provided.</p>
-<p>Full details are available in OpenMEEG documentation.
-In this section, <span class="command">command</span> names are in <span class="command">red</span>, <span class="opt">options</span> are in <span class="opt">green</span> and <span class="output">output</span> files are shown in <span class="output">blue</span>.</p>
-<div class="section" id="om-assemble">
-<h3><a class="toc-backref" href="#id7">om_assemble</a><a class="headerlink" href="#om-assemble" title="Permalink to this headline">¶</a></h3>
-<p>General syntax:</p>
-<p><span class="command">om_assemble</span> <span class="opt">Option</span> <span class="input">Parameters</span> <span class="output">Matrix</span></p>
-<p>This program assembles the different matrices to be used in later stages.
-It uses the head description (the geometrical model and the conductivities of the head see <a class="reference internal" href="#sec-geom">sec.geom</a>, and <a class="reference internal" href="#sec-cond">sec.cond</a>), the sources (see <a class="reference internal" href="#sec-sources">sec.sources</a>) and the sensors (see <a class="reference internal" href="#sec-sensors">sec.sensors</a>) information.
-<span class="opt">Option</span> selects the type of matrice to assemble.
-<span class="input">Parameters</span> depends on the specific option <span class="opt">Option</span>.</p>
-<p>A typical command is:</p>
-<p><span class="command">om_assemble</span> <span class="opt">-HeadMat</span> <span class="input">subject.geom</span> <span class="input">subject.cond</span> <span class="output">HeadMat.mat</span></p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">the abbreviated option names <span class="opt">-HM</span> or <span class="opt">-hm</span> can be used instead of <span class="opt">-HeadMat</span>.</p>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The symmetric format only stores the lower half of a matrix.</p>
-</div>
-<p>We now detail the possible <span class="opt">Options</span> (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble:</p>
-<div class="section" id="general-options-for-om-assemble">
-<h4>General options for <span class="command">om_assemble</span><a class="headerlink" href="#general-options-for-om-assemble" title="Permalink to this headline">¶</a></h4>
-<blockquote>
-<div><ul>
-<li><p class="first"><span class="opt">-help</span> (<span class="opt">-h</span>,``&#8211;help``): summarizes all possible options.</p>
-<p>Head modelling options for <span class="command">om_assemble</span>: produce matrices linked to the propagation of electrical signals in the head.</p>
-</li>
-<li><p class="first"><span class="opt">-HeadMat</span> (<span class="opt">-HM</span>, <span class="opt">-hm</span>): <span class="command">om_assemble</span> computes the Head matrix for Symmetric BEM (left-hand side of the linear system).
-This matrix corresponds to the propagation of electrical signals within the head.</p>
-</li>
-</ul>
-</div></blockquote>
-<p><strong>Source modelling</strong> options for <span class="command">om_assemble</span>: compute the source matrix for Symmetric BEM (right-hand side of the linear system).
-This matrix maps the representation of the sources to their associated electric potential in an infinite medium (<img class="math" src="_images/math/a1ff5eef1b1d051be8227d38447ce7ecd906f413.png" alt="v_{\Omega_1}"/>).
-Different options exist for the 2 types of source models:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="opt">-SurfSourceMat</span> (<span class="opt">-SSM</span>, <span class="opt">-ssm</span>): should be used for continuous surfacic distributions of dipoles.
-<span class="input">Input</span> is a file containing a mesh that describes the surface.
-For faster computations, one can consider giving the name of the domain (containing all dipoles)
-as a string as an optional parameter in the end of the command line.</li>
-<li><span class="opt">-DipSourceMat</span> (<span class="opt">-DSM</span>, <span class="opt">-dsm</span>): should be used when considering several isolated dipoles.
-This model is the most commonly used and should be used by default even if the dipoles correspond to the vertices of a cortical mesh.
-<span class="input">Input</span> is a file containing the dipole descriptions.
-For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line (see Example).</li>
-</ul>
-</div></blockquote>
-<p><strong>Sensor modelling</strong> options for <span class="command">om_assemble</span>: compute matrices that integrate source information and computed potentials to provide the actual solution of the forward problem.
-The situation is slightly different for EEG, which only needs to compute the electric potential, and for MEG, which depends both on the electric potential and on the sources:</p>
-<blockquote>
-<div><ul>
-<li><p class="first"><span class="opt">-Head2EEGMat</span> (<span class="opt">-H2EM</span>, <span class="opt">-h2em</span>): <span class="command">om_assemble</span> computes the linear interpolation matrix that maps OpenMEEG unknown <img class="math" src="_images/math/c20f7f9210a91b8aeba2e85d2bcb23e29bcab3f4.png" alt="\mathbf{X}"/> to the potential on the scalp at EEG sensors: <img class="math" src="_images/math/2ea28be86818a825cc343edb8fe3a296c0b731e9.png" alt="\mathbf{V_{sensors}} = \mathbf{Head2EEGMat} . \mathbf{X}"/>. <span class="input">Input</span> is a file describing the EEG sensor positions. <img class="math" src="_images/math/252f3c6bb6392d2405c22ed02d9d2a99bca261d8.png" alt="\mathbf{Head2EEGMat}"/> is stored as a sparse matrix.</p>
-</li>
-<li><p class="first"><span class="opt">-Head2MEGMat</span> (<span class="opt">-H2MM</span>, <span class="opt">-h2mm</span>): <span class="command">om_assemble</span> computes the contribution of Ohmic currents to the MEG sensors. <span class="input">Input</span> is a file describing the SQUIDS geometries and characteristics.</p>
-</li>
-<li><p class="first"><span class="opt">-Head2InternalPotMat</span> (<span class="opt">-H2IPM</span>, <span class="opt">-h2ipm</span>): <span class="command">om_assemble</span> computes the matrix that allows
-the computation of potentials at internal positions from potentials and normal currents on head interfaces, as computed by the symmetric BEM.</p>
-</li>
-<li><p class="first"><span class="opt">-SurfSource2MEGMat</span> (<span class="opt">-SS2MM</span>, <span class="opt">-ss2mm</span>): <span class="command">om_assemble</span> computes the source contribution to the MEG sensors using the same source model as the one used for the option <span class="opt">-SurfSourceMat, i.e. surfacic distribution of dipoles. For this option, :input:`Input</span> takes the form:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="input">mesh squids</span> where <span class="input">mesh</span> contains a mesh describing the source surface
-and <span class="input">squids</span> is a file  describing the SQUIDS geometries and characteristics.</li>
-<li><span class="opt">-DipSource2MEGMat</span> (<span class="opt">-DS2MM</span>, <span class="opt">-ds2mm</span>): <span class="command">om_assemble</span> computes
-the source contribution to the  MEG sensors using the same source model as the one used for the option <span class="opt">-DipSourceMat</span>, i.e. isolated dipoles.</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-<p>For this option, <span class="input">Input</span> takes the form:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="input">dipoles squids</span> where <span class="input">dipoles</span> contains the dipole description and <span class="input">squids</span> is a file describing  the SQUIDS geometries and characteristics.</li>
-<li><span class="opt">-DipSource2InternalPotMat</span> (<span class="opt">-DS2IPM</span>, <span class="opt">-ds2ipm</span>): <span class="command">om_assemble</span> computes the source  contribution to the chosen internal points. It gives the potential due to isolated dipoles, as if the medium were  infinite. For this option, <span class="input">Input</span> takes the form:</li>
-<li><span class="input">dipoles internalPoints</span> where <span class="input">dipoles</span> contains the dipole description and <span class="input">internalPoints</span> is  a file describing the points locations.</li>
-</ul>
-</div></blockquote>
-<p>EIT options for <span class="command">om_assemble</span>:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="opt">-EITSourceMat</span> (<span class="opt">-EITSM</span>, <span class="opt">-EITsm</span>,): <span class="command">om_assemble</span> computes the right-hand side for scalp current injection. This usage of <span class="command">om_assemble</span> outputs the right-hand side vector for a given set of EIT electrode. For this option, <span class="input">Input</span> is a file describing the EIT electrode positions.</li>
-</ul>
-</div></blockquote>
-</div>
-</div>
-<div class="section" id="om-minverser">
-<h3><a class="toc-backref" href="#id8">om_minverser</a><a class="headerlink" href="#om-minverser" title="Permalink to this headline">¶</a></h3>
-<p>General syntax:</p>
-<p><span class="command">om_minverser</span> <span class="input">HeadMat</span> <span class="output">HeadMatInv</span></p>
-<p>This program is used to invert the symmetric matrix as provided by the command <span class="command">om_assemble</span> with the option <span class="opt">-HeadMat</span>.</p>
-<p>This command has only one option:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="opt">-help</span> (<span class="opt">-h</span>, <code class="docutils literal"><span class="pre">--help</span></code>): summarizes the usage of <span class="command">om_minverser</span>.</li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="om-gain">
-<h3><a class="toc-backref" href="#id9">om_gain</a><a class="headerlink" href="#om-gain" title="Permalink to this headline">¶</a></h3>
-<p>General syntax:</p>
-<p><span class="command">om_gain</span> <span class="opt">Option</span> <span class="input">HeadMatInv</span> <span class="opt">Parameters</span> SourceMat Head2EEGMat <span class="output">GainMatrix</span></p>
-<p>This command computes the gain matrix by multiplying together matrices obtained previously (e.g. <span class="input">HeadMatInv</span> is the matrix computed using <span class="command">om_minverser</span>).
-The resulting gain matrix is stored in the file <span class="output">GainMatrix</span>.
-<span class="opt">Option</span> selects the type of matrice to build. <span class="opt">Parameters</span> depend on the specific option <span class="opt">Option</span>.</p>
-<p>General options:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="opt">-help</span> (<span class="opt">-h</span>, <code class="docutils literal"><span class="pre">--help</span></code>): summarizes the usage of <span class="command">om_gain</span> for all its possible options.</li>
-</ul>
-</div></blockquote>
-<p>Gain matrix type options: select the type of gain matrix to be computed by  <span class="command">om_gain</span>.</p>
-<blockquote>
-<div><ul>
-<li><p class="first"><span class="opt">-EEG</span>: allows to compute an EEG gain matrix. <span class="opt">Parameters</span> are then:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="input">HeadMatInv SourceMat Head2EEGMat</span></li>
-<li><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
-<span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model. <span class="input">Head2EEGMat</span>
-is the matrix obtained using <span class="command">om_assemble</span> with the option <span class="opt">-Head2EEGMat</span>.</li>
-</ul>
-</div></blockquote>
-</li>
-<li><p class="first"><span class="opt">-EEG</span> option is also used to compute an EIT gain matrix: in this case, <span class="input">SourceMat</span>
-should contain the output of the <span class="opt">-EITsource</span> option of <span class="command">om_assemble</span>. Multiplying
-the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
-potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.</p>
-</li>
-<li><p class="first"><span class="opt">-MEG</span>: allows to compute a MEG gain matrix. <span class="opt">Parameters</span> are then:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="input">HeadMatInv SourceMat Head2MEGMat Source2MEGMat</span></li>
-<li><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
-<span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model. <span class="input">Head2MEGMat</span>
-is the matrix obtained using <span class="command">om_assemble</span> with the option <span class="opt">-HeadMEEGMat</span>.
-<span class="input">Source2MEGMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the
-options <span class="opt">-SurfSource2MEGMat</span> or <span class="opt">-DipSource2MEGMat</span>, depending on the source model.</li>
-</ul>
-<blockquote>
-<div><div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The magnetic field is related both to the sources directly, as well as to the electric potential, according to: <img class="math" src="_images/math/bebca567af7868456599053c31bfd32f16885bd7.png" alt="\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} . \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}"/>.</p>
-</div>
-</div></blockquote>
-</div></blockquote>
-</li>
-<li><p class="first"><span class="opt">-InternalPotential</span>: allows to compute an internal potential gain matrix for sensors within the volume.&nbsp;<span class="opt">Parameters</span> are then:</p>
-<blockquote>
-<div><ul class="simple">
-<li><span class="input">HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat</span></li>
-<li><span class="input">Head2InternalPotMat</span> and <span class="input">Source2InternalPotMat</span> are respectivelly obtained
-using <span class="command">om_assemble</span> with option <span class="opt">-Head2InternalPotMat</span> and <span class="opt">-DipSource2InternalPotMat</span>.</li>
-</ul>
-</div></blockquote>
-</li>
-</ul>
-</div></blockquote>
-</div>
-</div>
-<div class="section" id="examples">
-<h2><a class="toc-backref" href="#id10">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>Assuming a head model represented by the geometry file <span class="input">head.geom</span> and the conductivity file <span class="input">head.cond</span> and EEG sensors detailed in a file <span class="input">head.eegsensors</span>.</p>
-<p>Computing the EEG gain matrix for sources distributed on the surface represented
-by the file <span class="input">sources.tri</span> is done via the following set of commands:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">om_assemble</span> <span class="o">-</span><span class="n">HM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span>
-<span class="n">om_assemble</span> <span class="o">-</span><span class="n">SSM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">sources</span><span class="o">.</span><span class="n">tri</span> <span class="n">head</span><span class="o">.</span><span class="n">ssm</span>
-<span class="n">om_assemble</span> <span class="o">-</span><span class="n">h2em</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">eegsensors</span> <span class="n">head</span><span class="o">.</span><span class="n">h2em</span>
-<span class="n">om_minverser</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span>
-<span class="n">om_gain</span> <span class="o">-</span><span class="n">EEG</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span> <span class="n">head</span><span class="o">.</span><span class="n">ssm</span> <span class="n">head</span><span class="o">.</span><span class="n">h2em</span> <span class="n">head</span><span class="o">.</span><span class="n">gain</span>
-</pre></div>
-</div>
-<p>Considering now isolated dipolar sources detailed in the file <span class="input">sources.dip</span> with MEG sensors depicted in the file <span class="input">head.squids</span>. Using the same head model, the MEG gain matrix is obtained via the following set of commands:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">om_assemble</span> <span class="o">-</span><span class="n">HeadMat</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span>
-<span class="n">om_assemble</span> <span class="o">-</span><span class="n">DSM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">sources</span><span class="o">.</span><span class="n">dip</span> <span class="n">head</span><span class="o">.</span><span class="n">dsm</span> <span class="n">Brain</span>
-<span class="n">om_assemble</span> <span class="o">-</span><span class="n">h2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">squids</span> <span class="n">head</span><span class="o">.</span><span class="n">h2mm</span>
-<span class="n">om_assemble</span> <span class="o">-</span><span class="n">ds2mm</span> <span class="n">sources</span><span class="o">.</span><span class="n">dip</span> <span class="n">head</span><span class="o">.</span><span class="n">squids</span> <span class="n">head</span><span class="o">.</span><span class="n">ds2mm</span>
-<span class="n">om_minverser</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span>
-<span class="n">om_gain</span> <span class="o">-</span><span class="n">MEG</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span> <span class="n">head</span><span class="o">.</span><span class="n">dsm</span> <span class="n">head</span><span class="o">.</span><span class="n">h2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">ds2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">gain</span>
-</pre></div>
-</div>
-</div>
-<div class="section" id="appendix">
-<h2><a class="toc-backref" href="#id11">Appendix</a><a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h2>
-<p>This section describes the type of data that is required to run a forward problem with OpenMEEG.</p>
-<div class="section" id="geometry-and-conductivity-description-file">
-<span id="sec-cond"></span><h3><a class="toc-backref" href="#id12">Geometry and conductivity description file</a><a class="headerlink" href="#geometry-and-conductivity-description-file" title="Permalink to this headline">¶</a></h3>
-<p>The conductivity description file defines the conductivity values corresponding to each domain listed in the Geometry Description File (<a class="reference internal" href="#sec-geom">sec.geom</a>).</p>
-<p>The file extension should be: *.cond .</p>
-<div class="admonition warning">
-<p class="first admonition-title">Warning</p>
-<p class="last">the domain names should match the ones defined in the Geometry Description File (beware of differences in upper/lower case).</p>
-</div>
-<a class="reference internal image-reference" href="_images/cond.png"><img alt="Conductivity" class="align-center" src="_images/cond.png" style="width: 600px;" /></a>
-</div>
 <div class="section" id="meshes">
-<span id="sec-meshes"></span><h3><a class="toc-backref" href="#id13">Meshes</a><a class="headerlink" href="#meshes" title="Permalink to this headline">¶</a></h3>
-<p>Meshes describing the interfaces between regions of homogeneous conductivity. These meshes generally represent:</p>
+<span id="sec-meshes"></span><h4>Meshes<a class="headerlink" href="#meshes" title="Permalink to this headline">¶</a></h4>
+<p>Meshes are a central element of Boundary Element Methods. They are used to represent the interfaces between regions of homogeneous conductivity. For instance, in a simple three-layer head model, three meshes would be used to represent:</p>
 <blockquote>
 <div><ul class="simple">
 <li>the inner skull surface</li>
@@ -507,9 +245,50 @@ For the meshes, the following formats are allowed:</p>
 </ul>
 </div></blockquote>
 </div>
+<p>Files ending with the <code class="docutils literal"><span class="pre">.tri</span></code> extension follow the BrainVisa file format for meshes. Such files contain two sections,
+each section introduced by the character <code class="docutils literal"><span class="pre">-</span></code>  at the beginning of the line followed by a space followed by either one number (first section) or three times
+the same number (second section).</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">The</span> <span class="pre">first</span> <span class="pre">section</span></code> contains a list of vertices with associated normals.
+The number on the line introducing the section is the number of points.
+Each following line corresponds to a single point. Its coordinates are the three first numbers appearing on the line.
+The normal corresponds to the following three numbers. Each point is assigned an index (starting at 0) corresponding to its order of appearance in the list.</li>
+<li><code class="docutils literal"><span class="pre">The</span> <span class="pre">second</span> <span class="pre">section</span></code> contains the triangles of the mesh.
+The number (repeated three times) in the section delimiter corresponds to the number of triangles.
+Each triangle is depicted by a sequence of three integers corresponding to the indices of the points assigned as described in the previous paragraph.</li>
+</ul>
+<p>The following small example describes a very simple mesh containing 4 points and 4 triangles:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mf">0.5773</span> <span class="o">-</span><span class="mf">0.5773</span> <span class="o">-</span><span class="mf">0.5773</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="o">-</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+</pre></div>
 </div>
-<div class="section" id="source-description">
-<span id="sec-sources"></span><h3><a class="toc-backref" href="#id14">Source description</a><a class="headerlink" href="#source-description" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="geometry-tools">
+<span id="sec-cond"></span><h4>Geometry tools<a class="headerlink" href="#geometry-tools" title="Permalink to this headline">¶</a></h4>
+<p>Interfaces are required to be closed in order for the Boundary Element Method to function correctly. This is also necessary for the source meshes when computing forward solutions using surfacic source models (see below).
+Moreover, the interface meshes must not intersect each other. Non-intersection can be checked with the command <span class="command">om_check_geom</span>.
+The command <span class="command">om_mesh_info</span> applied to a mesh provides its number of points, of triangles, minimum and maximum triangle area, and also its Euler characteristic.
+The Euler characteristic of a closed mesh of genus 0 (homotopic to a sphere) is equal to 2.
+The Euler characteristic gives an indication if a mesh is likely to be closed or not.</p>
+<p>In order to generate a VTK/vtp file, one can use the tool provided <span class="command">om_meshes_to_vtp</span>, which from a list of (closed or not) meshes and names, removes duplicated vertices and creates an easily viewable file in VTK/Paraview.</p>
+<p>In order to check a geometry file, one can use the tool provided <span class="command">om_check_geom</span>, which display the read informations.</p>
+<p>A <strong>conductivity file</strong> (generally ending with the extension <code class="docutils literal"><span class="pre">.cond</span></code>) is a simple ASCII file that contains associations between tissue names and conductivity values.
+Associations are provided one per line. Empty lines or lines beginning with <code class="docutils literal"><span class="pre">#</span></code> are non-significant. The file must start with a special comment line which allows its identification.
+The next figure provides an example conductivity file corresponding to the geometry file presented above.</p>
+<a class="reference internal image-reference" href="_images/cond.png"><img alt="Conductivities" class="align-center" src="_images/cond.png" style="width: 600px;" /></a>
+<p>Note that the tissue names are the ones appearing in the Domains descriptions of the Geometry description file (case sensitive).</p>
+</div>
+</div>
+<div class="section" id="source-descriptions">
+<span id="sec-sources"></span><h3><a class="toc-backref" href="#id5">Source descriptions</a><a class="headerlink" href="#source-descriptions" title="Permalink to this headline">¶</a></h3>
 <p>Sources are defined by their geometry (position and orientation) and their magnitude.
 OpenMEEG handles two types of source models: isolated dipoles, or distributed dipoles: these two models differ in their geometry description.</p>
 <div class="section" id="isolated-dipoles">
@@ -552,7 +331,7 @@ The source orientation is modeled as piecewise constant, normal to each of the m
 </div>
 </div>
 <div class="section" id="sensors">
-<span id="sec-sensors"></span><h3><a class="toc-backref" href="#id15">Sensors</a><a class="headerlink" href="#sensors" title="Permalink to this headline">¶</a></h3>
+<span id="sec-sensors"></span><h3><a class="toc-backref" href="#id6">Sensors</a><a class="headerlink" href="#sensors" title="Permalink to this headline">¶</a></h3>
 <p>For EEG, the sensors are defined by the list of the x-y-z coordinates of the electrode
 positions. The electrodes are considered punctual and are called <em>patches</em>.
 The MEG sensor description is more complex:
@@ -600,6 +379,190 @@ The MEG sensor definition is provided in a text file, in which each line provide
 <a class="reference internal image-reference" href="_images/sensors-grad.png"><img alt="Sensor description" class="align-center" src="_images/sensors-grad.png" style="width: 600px;" /></a>
 </div>
 </div>
+<div class="section" id="openmeeg-from-the-command-line">
+<h2><a class="toc-backref" href="#id7">OpenMEEG from the command line</a><a class="headerlink" href="#openmeeg-from-the-command-line" title="Permalink to this headline">¶</a></h2>
+<p>Diagram for the low level pipeline for computing leadfields (a.k.a., gain matrices) using OpenMEEG:</p>
+<a class="reference internal image-reference" href="_images/OpenMEEGSimple_new.png"><img alt="dipole positions" class="align-center" src="_images/OpenMEEGSimple_new.png" style="width: 600px;" /></a>
+<p>This section reviews the main OpenMEEG command line tools.
+The general syntax and main options are detailed for each command.</p>
+<p>Full details are available in OpenMEEG documentation.
+In this section, <span class="command">command</span> names are in <span class="command">red</span>, <span class="opt">options</span> are in <span class="opt">green</span> and <span class="output">output</span> files are shown in <span class="output">blue</span>.</p>
+<div class="section" id="om-assemble">
+<h3><a class="toc-backref" href="#id8">om_assemble</a><a class="headerlink" href="#om-assemble" title="Permalink to this headline">¶</a></h3>
+<p>General syntax:</p>
+<p><span class="command">om_assemble</span> <span class="opt">Option</span> <span class="input">Parameters</span> <span class="output">Matrix</span></p>
+<p>This program assembles the different matrices to be used in later stages.
+It uses the head description (the geometrical model and the conductivities of the head see <a class="reference internal" href="#sec-geom">sec.geom</a>, and <a class="reference internal" href="#sec-cond">sec.cond</a>), the sources (see <a class="reference internal" href="#sec-sources">sec.sources</a>) and the sensors (see <a class="reference internal" href="#sec-sensors">sec.sensors</a>) information.
+<span class="opt">Option</span> selects the type of matrice to assemble.
+<span class="input">Parameters</span> depends on the specific option <span class="opt">Option</span>.</p>
+<p>A typical command is:</p>
+<p><span class="command">om_assemble</span> <span class="opt">-HeadMat</span> <span class="input">subject.geom</span> <span class="input">subject.cond</span> <span class="output">HeadMat.mat</span></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Abbreviated option names can be used, such as <span class="opt">-HM</span> or <span class="opt">-hm</span> instead of <span class="opt">-HeadMat</span>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The symmetric format only stores the lower half of a matrix.</p>
+</div>
+<p>We now detail the possible <span class="opt">Options</span> (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble:</p>
+<div class="section" id="general-options-for-om-assemble">
+<h4>General options for <span class="command">om_assemble</span><a class="headerlink" href="#general-options-for-om-assemble" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><ul>
+<li><p class="first"><span class="opt">–help</span> (<span class="opt">-h</span>): summarizes all possible options.</p>
+<p>Head modelling options for <span class="command">om_assemble</span>: produce matrices (called head matrices) linked to the propagation of electrical signals in the head. T</p>
+</li>
+<li><p class="first"><span class="opt">-HeadMat</span> (<span class="opt">-HM</span>, <span class="opt">-hm</span>): <span class="command">om_assemble</span> computes the matrix called Head Matrix (a.k.a structure matrix) for the Symmetric BEM, linked to the electrical conduction within the head. The output matrix is symmetric.</p>
+</li>
+</ul>
+</div></blockquote>
+<p><strong>Source modelling</strong> options for <span class="command">om_assemble</span>: compute the source matrix for Symmetric BEM (right-hand side of the linear system).
+This matrix maps the representation of the sources to their associated electric potential in an infinite medium (<img class="math" src="_images/math/a1ff5eef1b1d051be8227d38447ce7ecd906f413.png" alt="v_{\Omega_1}"/>).
+Different options exist for the 2 types of source models:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="opt">-DipSourceMat</span> (<span class="opt">-DSM</span>, <span class="opt">-dsm</span>): should be used when considering several isolated dipoles.
+This model is the most commonly used and should be used by default even if the dipoles correspond to the vertices of a cortical mesh. <span class="input">Input</span> is a file containing the dipole descriptions.
+For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line (see Example).</li>
+<li><span class="opt">-SurfSourceMat</span> (<span class="opt">-SSM</span>, <span class="opt">-ssm</span>): should be used for continuous surfacic distributions
+of dipoles. <span class="input">Input</span> is a file containing a mesh that describes the surface.
+For faster computations, one can consider giving the name of the domain (containing all dipoles)
+as a string as an optional parameter in the end of the command line.</li>
+<li><span class="opt">-EITSourceMat</span> (<span class="opt">-EITSM</span>, <span class="opt">-EITsm</span>,): <span class="command">om_assemble</span> computes the
+right-hand side vector for a given set of scalp electrodes where current injection is applied
+(which can be used for Electrical Impedance Tomography, EIT). For this option, <span class="input">Input</span>
+is a file describing the electrode positions.</li>
+</ul>
+</div></blockquote>
+<p><strong>Sensor modelling</strong> options for <span class="command">om_assemble</span>: compute matrices which are needed to integrate source and sensor information with computed potentials to provide the actual solution of the forward problem. The the following situations are handled: EEG, ECoG, sEEG, MEG.</p>
+<dl class="docutils">
+<dt>EEG:</dt>
+<dd><ul class="first last simple">
+<li><span class="opt">-Head2EEGMat</span> (<span class="opt">-H2EM</span>, <span class="opt">-h2em</span>): <span class="command">om_assemble</span> computes the linear interpolation matrix that maps OpenMEEG unknown <img class="math" src="_images/math/c20f7f9210a91b8aeba2e85d2bcb23e29bcab3f4.png" alt="\mathbf{X}"/> to the potential on the scalp at EEG sensors: <img class="math" src="_images/math/2ea28be86818a825cc343edb8fe3a296c0b731e9.png" alt="\mathbf{V_{sensors}} = \mathbf{Head2EEGMat} . \mathbf{X}"/>. <span class="input">Input</span> is a file describing the EEG sensor positions. <img class="math" src="_images/math/252f3c6bb6392d2405c22ed02d9d2a99bca261d8.png" alt="\mathbf{Head2EEGMat}"/> is stored as a sparse matrix.</li>
+</ul>
+</dd>
+</dl>
+<p>ECoG:</p>
+<dl class="docutils">
+<dt>sEEG:</dt>
+<dd><ul class="first last simple">
+<li><span class="opt">-Head2InternalPotMat</span> (<span class="opt">-H2IPM</span>, <span class="opt">-h2ipm</span>): <span class="command">om_assemble</span> computes the matrix that allows
+the computation of potentials at internal positions from potentials and normal currents on head interfaces, as computed by the symmetric BEM.</li>
+<li><span class="opt">-DipSource2InternalPotMat</span> (<span class="opt">-DS2IPM</span>, <span class="opt">-ds2ipm</span>): <span class="command">om_assemble</span> computes the source  contribution to the chosen internal points. It gives the potential due to isolated dipoles, as if the medium were  infinite. For this option, <span class="input">Input</span> takes the form: <span class="input">dipoles internalPoints</span> where <span class="input">dipoles</span> contains the dipole description and <span class="input">internalPoints</span> is  a file describing the points locations.</li>
+</ul>
+</dd>
+<dt>MEG:</dt>
+<dd><ul class="first last simple">
+<li><span class="opt">-Head2MEGMat</span> (<span class="opt">-H2MM</span>, <span class="opt">-h2mm</span>): <span class="command">om_assemble</span> computes the contribution of Ohmic currents to the MEG sensors. <span class="input">Input</span> is a file describing the SQUIDS geometries and characteristics.</li>
+<li><span class="opt">-SurfSource2MEGMat</span> (<span class="opt">-SS2MM</span>, <span class="opt">-ss2mm</span>): <span class="command">om_assemble</span> computes the source contribution to the MEG sensors using the same source model as the one used for the option <span class="opt">-SurfSourceMat, i.e. surfacic distribution of dipoles. For this option, :input:`Input</span> takes the form: <span class="input">mesh squids</span> where <span class="input">mesh</span> contains a mesh describing the source surface and <span class="input">squids</span> is a file  describing the SQUIDS geometries and characteristics.<ul>
+<li><span class="opt">-DipSource2MEGMat</span> (<span class="opt">-DS2MM</span>, <span class="opt">-ds2mm</span>): <span class="command">om_assemble</span> computes the source contribution to the  MEG sensors using the same source model as the one used for the option <span class="opt">-DipSourceMat</span>, i.e. isolated dipoles. For this option, <span class="input">Input</span> takes the form: <span class="input">dipoles squids</span> where <span class="input">dipoles</span> contains the dipole description and <span class="input">squids</span> is a file describing  the SQUIDS geometries and characteristics.</li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+<div class="section" id="om-minverser">
+<h3><a class="toc-backref" href="#id9">om_minverser</a><a class="headerlink" href="#om-minverser" title="Permalink to this headline">¶</a></h3>
+<p>General syntax:</p>
+<p><span class="command">om_minverser</span> <span class="input">HeadMat</span> <span class="output">HeadMatInv</span></p>
+<p>This program is used to invert the symmetric matrix as provided by the command <span class="command">om_assemble</span> with the option <span class="opt">-HeadMat</span>.</p>
+<p>This command has only one option:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="opt">–help</span> (<span class="opt">-h</span>): summarizes the usage of <span class="command">om_minverser</span>.</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The output matrix <span class="output">HeadMatInv</span> is a symmetric matrix, like <span class="input">HeadMat</span>.</p>
+</div>
+</div>
+<div class="section" id="om-gain">
+<h3><a class="toc-backref" href="#id10">om_gain</a><a class="headerlink" href="#om-gain" title="Permalink to this headline">¶</a></h3>
+<p>General syntax:</p>
+<p><span class="command">om_gain</span> <span class="opt">Option</span> <span class="input">HeadMatInv</span> <span class="opt">Parameters</span> SourceMat Head2EEGMat <span class="output">GainMatrix</span></p>
+<p>This command computes the gain matrix by multiplying together matrices obtained previously (e.g. <span class="input">HeadMatInv</span> is the matrix computed using <span class="command">om_minverser</span>).
+The resulting gain matrix is stored in the file <span class="output">GainMatrix</span>.
+<span class="opt">Option</span> selects the type of matrix to build. <span class="opt">Parameters</span> depend on the specific option <span class="opt">Option</span>.</p>
+<p>General options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="opt">–help</span> (<span class="opt">-h</span>): summarizes the usage of <span class="command">om_gain</span> for all its possible options.</li>
+</ul>
+</div></blockquote>
+<p>Gain matrix type options: select the type of gain matrix to be computed by  <span class="command">om_gain</span>.</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><span class="opt">-EEG</span>: allows to compute an EEG or an ECoG gain matrix. For EEG <span class="opt">Parameters</span> are then:  <span class="input">HeadMatInv SourceMat Head2EEGMat</span>. For ECoG <span class="input">Head2EEGMat</span> should simply be replaced  by <span class="input">Head2ECoGMat</span></dt>
+<dd><ul class="first last simple">
+<li><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
+<span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model.</li>
+<li><span class="input">Head2EEGMat</span> (resp. <span class="input">Head2ECoGMat</span>) is the matrix obtained using <span class="command">om_assemble</span> with the option <span class="opt">-Head2EEGMat</span> (resp. <span class="opt">-Head2ECoGMat</span>).</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first"><span class="opt">-EEG</span> option is also used to compute an EIT gain matrix: in this case, <span class="input">SourceMat</span>
+should contain the output of the <span class="opt">-EITsource</span> option of <span class="command">om_assemble</span>. Multiplying
+the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
+potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.</p>
+</li>
+<li><p class="first"><span class="opt">-MEG</span>: allows to compute a MEG gain matrix. <span class="opt">Parameters</span> are then:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><span class="input">HeadMatInv SourceMat Head2MEGMat Source2MEGMat</span></p>
+</li>
+<li><p class="first"><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
+<span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model. <span class="input">Head2MEGMat</span>
+is the matrix obtained using <span class="command">om_assemble</span> with the option <span class="opt">-HeadMEEGMat</span>.
+<span class="input">Source2MEGMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the
+options <span class="opt">-SurfSource2MEGMat</span> or <span class="opt">-DipSource2MEGMat</span>, depending on the source model.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The magnetic field is related both to the sources and to the electric potential, according to: <img class="math" src="_images/math/a15d88a57523d373e1a532440216a32872b2dfb7.png" alt="\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} * \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}"/>.</p>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><span class="opt">-InternalPotential</span>: allows to compute an internal potential gain matrix for sensors within the volume.&nbsp;<span class="opt">Parameters</span> are then:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="input">HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat</span></li>
+<li><span class="input">Head2InternalPotMat</span> and <span class="input">Source2InternalPotMat</span> are respectively obtained
+using <span class="command">om_assemble</span> with option <span class="opt">-Head2InternalPotMat</span> and <span class="opt">-DipSource2InternalPotMat</span>.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id11">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Assuming a head model represented by the geometry file <span class="input">head.geom</span> and the conductivity file <span class="input">head.cond</span> and EEG sensors detailed in a file <span class="input">head.eegsensors</span>.</p>
+<p>Computing the EEG gain matrix for sources distributed on a surface mesh represented by the file <span class="input">sources.tri</span> is done via the following set of commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">om_assemble</span> <span class="o">-</span><span class="n">HM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">SSM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">sources</span><span class="o">.</span><span class="n">tri</span> <span class="n">head</span><span class="o">.</span><span class="n">ssm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">h2em</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">eegsensors</span> <span class="n">head</span><span class="o">.</span><span class="n">h2em</span>
+<span class="n">om_minverser</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span>
+<span class="n">om_gain</span> <span class="o">-</span><span class="n">EEG</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span> <span class="n">head</span><span class="o">.</span><span class="n">ssm</span> <span class="n">head</span><span class="o">.</span><span class="n">h2em</span> <span class="n">head</span><span class="o">.</span><span class="n">gain</span>
+</pre></div>
+</div>
+<p>Considering now isolated dipolar sources detailed in the file <span class="input">sources.dip</span> with MEG sensors depicted in the file <span class="input">head.squids</span>. Using the same head model, the MEG gain matrix is obtained via the following set of commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">om_assemble</span> <span class="o">-</span><span class="n">HeadMat</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">DSM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">sources</span><span class="o">.</span><span class="n">dip</span> <span class="n">head</span><span class="o">.</span><span class="n">dsm</span> <span class="n">Brain</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">h2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">squids</span> <span class="n">head</span><span class="o">.</span><span class="n">h2mm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">ds2mm</span> <span class="n">sources</span><span class="o">.</span><span class="n">dip</span> <span class="n">head</span><span class="o">.</span><span class="n">squids</span> <span class="n">head</span><span class="o">.</span><span class="n">ds2mm</span>
+<span class="n">om_minverser</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span>
+<span class="n">om_gain</span> <span class="o">-</span><span class="n">MEG</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span> <span class="n">head</span><span class="o">.</span><span class="n">dsm</span> <span class="n">head</span><span class="o">.</span><span class="n">h2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">ds2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">gain</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -610,8 +573,8 @@ The MEG sensor definition is provided in a text file, in which each line provide
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2009-2017, OpenMEEG Developers..
-      Last updated on Sep 06, 2017.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.6.
+      Last updated on Sep 15, 2017.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

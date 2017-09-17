@@ -1,12 +1,13 @@
 .. _tutorial:
 
-======================
 Tutorial
-======================
+=========
 
-.. contents:: Table of Contents
-   :local:
-   :depth: 2
+.. only:: html
+
+  .. contents:: Table of Contents
+     :local:
+     :depth: 2
 
 
 .. role:: command
@@ -15,12 +16,12 @@ Tutorial
 .. role:: output
 
 Data format
-===========
+-----------
 
 OpenMEEG handles several file formats corresponding to different types of objects: vectors, matrices, head geometries, conductivities, meshes, dipoles, sensors.
 
 Vectors and matrices
---------------------
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 By default, matrices and vectors are stored on disk using a ``MATLAB`` file format.
 Symmetric matrices which are not directly representable in the ``MATLAB`` format are represented as a ``MATLAB`` struct.
@@ -34,7 +35,7 @@ OpenMEEG's own binary file format (extension ``.bin``) is available solely for b
 .. _sec.geom:
 
 Geometrical model, mesh and conductivity files
------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **OpenMEEG geometrical models** are described through several files.
 The toplevel file (generally ending with the extension ``.geom``) assembles various interface descriptions to build *Domains* corresponding to head tissues.
@@ -107,7 +108,7 @@ See `fig.geom`_ for a detailed example.
 .. _sec.meshes:
 
 Meshes
-~~~~~~
+""""""
 
 Meshes are a central element of Boundary Element Methods. They are used to represent the interfaces between regions of homogeneous conductivity. For instance, in a simple three-layer head model, three meshes would be used to represent:
 
@@ -167,7 +168,7 @@ The following small example describes a very simple mesh containing 4 points and
 .. _sec.cond:
 
 Geometry tools
-~~~~~~~~~~~~~~
+""""""""""""""
 
 Interfaces are required to be closed in order for the Boundary Element Method to function correctly. This is also necessary for the source meshes when computing forward solutions using surfacic source models (see below).
 Moreover, the interface meshes must not intersect each other. Non-intersection can be checked with the command :command:`om_check_geom`.
@@ -193,13 +194,13 @@ Note that the tissue names are the ones appearing in the Domains descriptions of
 .. _sec.sources:
 
 Source descriptions
---------------------
+^^^^^^^^^^^^^^^^^^^
 
 Sources are defined by their geometry (position and orientation) and their magnitude.
 OpenMEEG handles two types of source models: isolated dipoles, or distributed dipoles: these two models differ in their geometry description.
 
 Isolated dipoles
-~~~~~~~~~~~~~~~~
+""""""""""""""""
 
 Isolated dipoles are represented by a text file (extension \*.dip or \*.txt), in which each line defines a dipole position and orientation, encoded in 6 real values:
 
@@ -217,12 +218,12 @@ The following example shows a file describing 5 isolated dipoles:
 .. note:: The referential of the coordinates should be the same as for the meshes (the MR coordinates in general).
 
 Distributed dipoles
-~~~~~~~~~~~~~~~~~~~
+"""""""""""""""""""
 
 Distributed dipoles are supported on a mesh, whose format must be \*.mesh, or \*.tri, or \*.vtk.
 
 Source activation
-~~~~~~~~~~~~~~~~~
+"""""""""""""""""
 
 Source activation files are text files, in which each line corresponds to a source, and each column to a time sample.
 
@@ -251,7 +252,7 @@ Isolated sources are the superposition of current dipoles, each of which is defi
 .. _sec.sensors:
 
 Sensors
--------
+^^^^^^^
 
 For EEG, the sensors are defined by the list of the x-y-z coordinates of the electrode
 positions. The electrodes are considered punctual and are called *patches*.
@@ -293,7 +294,7 @@ An example of MEG sensor description:
 
 
 OpenMEEG from the command line
-===============================
+------------------------------
 
 Diagram for the low level pipeline for computing leadfields (a.k.a., gain matrices) using OpenMEEG:
 
@@ -309,7 +310,7 @@ Full details are available in OpenMEEG documentation.
 In this section, :command:`command` names are in :command:`red`, :opt:`options` are in :opt:`green` and :output:`output` files are shown in :output:`blue`.
 
 om_assemble
------------
+^^^^^^^^^^^
 
 General syntax:
 
@@ -330,7 +331,7 @@ A typical command is:
 We now detail the possible :opt:`Options` (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble:
 
 General options for :command:`om_assemble`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+""""""""""""""""""""""""""""""""""""""""""
 
   - :opt:`--help` (:opt:`-h`): summarizes all possible options.
 
@@ -380,7 +381,7 @@ MEG:
 
 
 om_minverser
-------------
+^^^^^^^^^^^^
 
 General syntax:
 
@@ -395,7 +396,7 @@ This command has only one option:
 .. note:: The output matrix :output:`HeadMatInv` is a symmetric matrix, like :input:`HeadMat`.
 
 om_gain
--------
+^^^^^^^
 
 General syntax:
 
@@ -442,7 +443,7 @@ Gain matrix type options: select the type of gain matrix to be computed by  :com
          using :command:`om_assemble` with option :opt:`-Head2InternalPotMat` and :opt:`-DipSource2InternalPotMat`.
 
 Examples
-========
+--------
 
 Assuming a head model represented by the geometry file :input:`head.geom` and the conductivity file :input:`head.cond` and EEG sensors detailed in a file :input:`head.eegsensors`.
 

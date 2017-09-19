@@ -318,27 +318,32 @@ General syntax:
 
 This program assembles the different matrices to be used in later stages.
 It uses the head description (the geometrical model and the conductivities of the head see `sec.geom`_, and `sec.cond`_), the sources (see `sec.sources`_) and the sensors (see `sec.sensors`_) information.
-:opt:`Option` selects the type of matrice to assemble.
+:opt:`Option` selects the type of matrix to assemble.
 :input:`Parameters` depends on the specific option :opt:`Option`.
+
+
+.. note:: Abbreviated option names can be used, such as :opt:`-HM` or :opt:`-hm` instead of :opt:`-HeadMat`.
+
+
+We now detail the possible :opt:`options` (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble.
 
 A typical command is:
 
 :command:`om_assemble` :opt:`-HeadMat` :input:`subject.geom` :input:`subject.cond` :output:`HeadMat.mat`
 
-.. note:: Abbreviated option names can be used, such as :opt:`-HM` or :opt:`-hm` instead of :opt:`-HeadMat`.
-.. note:: The symmetric format only stores the lower half of a matrix.
-
-We now detail the possible :opt:`Options` (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble:
+In the above example, the :input:`Parameters` are the two file names: :input:`subject.geom` :input:`subject.cond`. More generally, the :input:`Parameters` include two such file names describing geometry and conductivity, plus additional :input:`Input`, describe below for each :opt:`Option`. 
 
 General options for :command:`om_assemble`
 """"""""""""""""""""""""""""""""""""""""""
 
   - :opt:`--help` (:opt:`-h`): summarizes all possible options.
 
-    Head modelling options for :command:`om_assemble`: produce matrices (called head matrices) linked to the propagation of electrical signals in the head. T
+    Head modelling options for :command:`om_assemble`: produce matrices (called head matrices) linked to the propagation of electrical signals in the head. 
 
   - :opt:`-HeadMat` (:opt:`-HM`, :opt:`-hm`): :command:`om_assemble` computes the matrix called Head Matrix (a.k.a structure matrix) for the Symmetric BEM, linked to the electrical conduction within the head. The output matrix is symmetric.
 
+.. note:: The symmetric format only stores the lower half of a matrix.
+    
 **Source modelling** options for :command:`om_assemble`: compute the source matrix for Symmetric BEM (right-hand side of the linear system).
 This matrix maps the representation of the sources to their associated electric potential in an infinite medium (:math:`v_{\Omega_1}`).
 Different options exist for the 2 types of source models:
@@ -363,7 +368,8 @@ EEG:
   - :opt:`-Head2EEGMat` (:opt:`-H2EM`, :opt:`-h2em`): :command:`om_assemble` computes the linear interpolation matrix that maps OpenMEEG unknown :math:`\mathbf{X}` to the potential on the scalp at EEG sensors: :math:`\mathbf{V_{sensors}} = \mathbf{Head2EEGMat} . \mathbf{X}`. :input:`Input` is a file describing the EEG sensor positions. :math:`\mathbf{Head2EEGMat}` is stored as a sparse matrix.
 
 ECoG:
-
+  - :opt:`-Head2ECoGMat` (:opt:`-H2ECogM`, :opt:`-H2ECOGM`, :opt:`-h2ecogm`): :command:`om_assemble` computes the linear interpolation matrix that maps the OpenMEEG unknown :math:`\mathbf{X}` to the potential on the scalp at EEG sensors: :math:`\mathbf{V_{sensors}} = \mathbf{Head2ECoGMat} . \mathbf{X}`. :input:`Input` contains two parameters: the file describing the ECoG sensor positions, and the name of the interface on which the ECoG electrodes should be mapped.  :math:`\mathbf{Head2ECoGMat}` is stored as a sparse matrix.
+    
 sEEG:
   - :opt:`-Head2InternalPotMat` (:opt:`-H2IPM`, :opt:`-h2ipm`): :command:`om_assemble` computes the matrix that allows
     the computation of potentials at internal positions from potentials and normal currents on head interfaces, as computed by the symmetric BEM.

@@ -393,30 +393,31 @@ In this section, <span class="command">command</span> names are in <span class="
 <p><span class="command">om_assemble</span> <span class="opt">Option</span> <span class="input">Parameters</span> <span class="output">Matrix</span></p>
 <p>This program assembles the different matrices to be used in later stages.
 It uses the head description (the geometrical model and the conductivities of the head see <a class="reference internal" href="#sec-geom">sec.geom</a>, and <a class="reference internal" href="#sec-cond">sec.cond</a>), the sources (see <a class="reference internal" href="#sec-sources">sec.sources</a>) and the sensors (see <a class="reference internal" href="#sec-sensors">sec.sensors</a>) information.
-<span class="opt">Option</span> selects the type of matrice to assemble.
+<span class="opt">Option</span> selects the type of matrix to assemble.
 <span class="input">Parameters</span> depends on the specific option <span class="opt">Option</span>.</p>
-<p>A typical command is:</p>
-<p><span class="command">om_assemble</span> <span class="opt">-HeadMat</span> <span class="input">subject.geom</span> <span class="input">subject.cond</span> <span class="output">HeadMat.mat</span></p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">Abbreviated option names can be used, such as <span class="opt">-HM</span> or <span class="opt">-hm</span> instead of <span class="opt">-HeadMat</span>.</p>
 </div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The symmetric format only stores the lower half of a matrix.</p>
-</div>
-<p>We now detail the possible <span class="opt">Options</span> (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble:</p>
+<p>We now detail the possible <span class="opt">options</span> (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble.</p>
+<p>A typical command is:</p>
+<p><span class="command">om_assemble</span> <span class="opt">-HeadMat</span> <span class="input">subject.geom</span> <span class="input">subject.cond</span> <span class="output">HeadMat.mat</span></p>
+<p>In the above example, the <span class="input">Parameters</span> are the two file names: <span class="input">subject.geom</span> <span class="input">subject.cond</span>. More generally, the <span class="input">Parameters</span> include two such file names describing geometry and conductivity, plus additional <span class="input">Input</span>, describe below for each <span class="opt">Option</span>.</p>
 <div class="section" id="general-options-for-om-assemble">
 <h4>General options for <span class="command">om_assemble</span><a class="headerlink" href="#general-options-for-om-assemble" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><ul>
 <li><p class="first"><span class="opt">–help</span> (<span class="opt">-h</span>): summarizes all possible options.</p>
-<p>Head modelling options for <span class="command">om_assemble</span>: produce matrices (called head matrices) linked to the propagation of electrical signals in the head. T</p>
+<p>Head modelling options for <span class="command">om_assemble</span>: produce matrices (called head matrices) linked to the propagation of electrical signals in the head.</p>
 </li>
 <li><p class="first"><span class="opt">-HeadMat</span> (<span class="opt">-HM</span>, <span class="opt">-hm</span>): <span class="command">om_assemble</span> computes the matrix called Head Matrix (a.k.a structure matrix) for the Symmetric BEM, linked to the electrical conduction within the head. The output matrix is symmetric.</p>
 </li>
 </ul>
 </div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The symmetric format only stores the lower half of a matrix.</p>
+</div>
 <p><strong>Source modelling</strong> options for <span class="command">om_assemble</span>: compute the source matrix for Symmetric BEM (right-hand side of the linear system).
 This matrix maps the representation of the sources to their associated electric potential in an infinite medium (<img class="math" src="_images/math/a1ff5eef1b1d051be8227d38447ce7ecd906f413.png" alt="v_{\Omega_1}"/>).
 Different options exist for the 2 types of source models:</p>
@@ -442,9 +443,11 @@ is a file describing the electrode positions.</li>
 <li><span class="opt">-Head2EEGMat</span> (<span class="opt">-H2EM</span>, <span class="opt">-h2em</span>): <span class="command">om_assemble</span> computes the linear interpolation matrix that maps OpenMEEG unknown <img class="math" src="_images/math/c20f7f9210a91b8aeba2e85d2bcb23e29bcab3f4.png" alt="\mathbf{X}"/> to the potential on the scalp at EEG sensors: <img class="math" src="_images/math/2ea28be86818a825cc343edb8fe3a296c0b731e9.png" alt="\mathbf{V_{sensors}} = \mathbf{Head2EEGMat} . \mathbf{X}"/>. <span class="input">Input</span> is a file describing the EEG sensor positions. <img class="math" src="_images/math/252f3c6bb6392d2405c22ed02d9d2a99bca261d8.png" alt="\mathbf{Head2EEGMat}"/> is stored as a sparse matrix.</li>
 </ul>
 </dd>
-</dl>
-<p>ECoG:</p>
-<dl class="docutils">
+<dt>ECoG:</dt>
+<dd><ul class="first last simple">
+<li><span class="opt">-Head2ECoGMat</span> (<span class="opt">-H2ECogM</span>, <span class="opt">-H2ECOGM</span>, <span class="opt">-h2ecogm</span>): <span class="command">om_assemble</span> computes the linear interpolation matrix that maps the OpenMEEG unknown <img class="math" src="_images/math/c20f7f9210a91b8aeba2e85d2bcb23e29bcab3f4.png" alt="\mathbf{X}"/> to the potential on the scalp at EEG sensors: <img class="math" src="_images/math/5b789e8ed57928f374065979f6edbc0ac2790902.png" alt="\mathbf{V_{sensors}} = \mathbf{Head2ECoGMat} . \mathbf{X}"/>. <span class="input">Input</span> contains two parameters: the file describing the ECoG sensor positions, and the name of the interface on which the ECoG electrodes should be mapped.  <img class="math" src="_images/math/bcaa76c73e99fe9b1fd6b0e73ba6bfc3a5cf7b70.png" alt="\mathbf{Head2ECoGMat}"/> is stored as a sparse matrix.</li>
+</ul>
+</dd>
 <dt>sEEG:</dt>
 <dd><ul class="first last simple">
 <li><span class="opt">-Head2InternalPotMat</span> (<span class="opt">-H2IPM</span>, <span class="opt">-h2ipm</span>): <span class="command">om_assemble</span> computes the matrix that allows
@@ -573,7 +576,7 @@ using <span class="command">om_assemble</span> with option <span class="opt">-He
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2009-2017, OpenMEEG Developers..
-      Last updated on Sep 17, 2017.
+      Last updated on Sep 19, 2017.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>

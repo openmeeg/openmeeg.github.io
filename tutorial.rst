@@ -259,15 +259,15 @@ positions. The electrodes are considered punctual and are called *patches*.
 The MEG sensor description is more complex:
 The MEG sensor definition is provided in a text file, in which each line provides the position of the sensor, and additional information such as its orientation or its name.
 
-Sensors may have names (labels) in the first column of the file (it has to contains at least one character to be considered as label).
+Sensors may have names (labels) in the first column of the file.
 
-More precisely, *omiting the first column which can contain a label* there are 4 options for defining EEG, EIT or MEG sensors:
+More precisely, *omiting the first column which can contain a label* there are 4 options for defining EEG, EIT, ECoG or MEG sensors:
 
-    - 1 line per sensor and 3 columns (typically for EEG sensors or MEG sensors without orientation or EIT punctual patches):
+    - 1 line per sensor and 3 columns (typically for EEG/ECoG sensors or EIT punctual patches):
 
          * the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
 
-    - 1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches) :
+    - 1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches)):
 
          * the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor
          * the 4th column is the patche radius (unit relative to the mesh)

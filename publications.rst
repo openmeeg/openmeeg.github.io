@@ -19,6 +19,10 @@ Please cite publications [1] and [2] to comply to the Cecill-B license.
 Publications using OpenMEEG
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+See the full list on `Google Scholar <https://scholar.google.fr/scholar?oi=bibs&hl=fr&cites=3795531796402864876&as_sdt=5>`_
+
+as well as:
+
     - Adde G, Clerc M, Keriven R. Imaging methods for MEG/EEG inverse problem, International Journal of Bioelectromagnetism, 7(2):111-114, 2005.
 
     - Clerc M., G. Adde, J. Kybic, Papadopoulo T., and J.-M. Badier. In vivo conductivity estimation with symmetric boundary elements. International Journal of Bioelectromagnetism, 7:307-310, 2005.

@@ -13,7 +13,7 @@ What is OpenMEEG?
 Using OpenMEEG
 -----------------
 
-    * From Matlab using `Brainstorm <http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem>`_ or `Fieldtrip <http://fieldtrip.fcdonders.nl>`_
+    * From Matlab using `Brainstorm <http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem>`_ or `FieldTrip <http://www.fieldtriptoolbox.org>`_
 
     * For general lead fields computation (EEG, MEG, EIT, Internal potential):
 

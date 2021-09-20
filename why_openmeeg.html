@@ -1,35 +1,21 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>Why use OpenMEEG? &#8212; OpenMEEG 2.4 documentation</title>
-    
-    <link rel="stylesheet" href="_static/navy.css" type="text/css" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Why use OpenMEEG? &#8212; OpenMEEG</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '2.4',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" href="_static/navy.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Publications on OpenMEEG" href="publications.html" />
-    <link rel="prev" title="Contact us" href="contact.html" /> 
-  </head>
-  <body role="document">
+    <link rel="next" title="Tutorial" href="tutorial.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
     <div style='float:left; display:inline-block'>
         <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
@@ -52,10 +38,10 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="publications.html" title="Publications on OpenMEEG"
+          <a href="tutorial.html" title="Tutorial"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="contact.html" title="Contact us"
+          <a href="overview.html" title="Overview"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
         <li><a href="#">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
@@ -66,13 +52,14 @@
         <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
         <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
         <!-- <li><a href="search.html">Search</a></li> -->
- 
+
+        <li class="nav-item nav-item-this"><a href="">Why use OpenMEEG?</a></li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Why use OpenMEEG?</a><ul>
 <li><a class="reference internal" href="#how-do-you-measure-precision">How do you measure precision?</a></li>
@@ -82,21 +69,21 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="contact.html"
-                        title="previous chapter">Contact us</a></p>
+  <p class="topless"><a href="overview.html"
+                        title="previous chapter">Overview</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="publications.html"
-                        title="next chapter">Publications on OpenMEEG</a></p>
+  <p class="topless"><a href="tutorial.html"
+                        title="next chapter">Tutorial</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
     </form>
+    </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -112,7 +99,7 @@
 <h2>How do you measure precision?<a class="headerlink" href="#how-do-you-measure-precision" title="Permalink to this headline">¶</a></h2>
 <p>Relative difference measure (RDM) <em>(should be close to 0)</em> and Magnitude error (MAG) <em>(should be close to 1)</em>:</p>
 <div class="math">
-<p><img src="_images/math/a41e7efe541a56148d890f2563d45482507aaaad.png" alt="\mathbf{MAG} = \left\| \frac{V_{bem}}{\|V_{bem}\|_2} - \frac{V_{exact}}{\|V_{exact}\|_2} \right\| \,,\, \mathbf{RDM} = \frac{\|V_{bem}\|_2}{\|V_{exact}\|_2}"/></p>
+<p><img src="_images/math/0ceca5f34a82c555aa99ccfa3376b2df66c9c56c.png" alt="\mathbf{MAG} = \left\| \frac{V_{bem}}{\|V_{bem}\|_2} - \frac{V_{exact}}{\|V_{exact}\|_2} \right\| \,,\, \mathbf{RDM} = \frac{\|V_{bem}\|_2}{\|V_{exact}\|_2}"/></p>
 </div><p>A sample sphere model with 5 dipoles:</p>
 <p><div style="text-align: center; margin: -7px 0 -10px 0;">   <a class="reference internal" href="_images/sphere_dipoles_3D.png"><img alt="Sphere model with 5 dipoles" src="_images/sphere_dipoles_3D.png" style="width: 250px;" /></a>   <a class="reference internal" href="_images/sphere_dipoles_3D_zoom.png"><img alt="Sphere model with 5 dipoles (zoom)" src="_images/sphere_dipoles_3D_zoom.png" style="width: 200px;" /></a>   </div></p>
 </div>
@@ -122,22 +109,23 @@
 <p>See the following publication for more details on this comparison between different forward solvers:</p>
 <blockquote>
 <div><ol class="upperalpha simple">
-<li>Gramfort, T. Papadopoulo, E. Olivi, M. Clerc. OpenMEEG: opensource software for quasistatic bioelectromagnetics, <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">BioMedical Engineering OnLine 45:9, 2010</a></li>
+<li><p>Gramfort, T. Papadopoulo, E. Olivi, M. Clerc. OpenMEEG: opensource software for quasistatic bioelectromagnetics, <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">BioMedical Engineering OnLine 45:9, 2010</a></p></li>
 </ol>
 </div></blockquote>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2009-2017, OpenMEEG Developers..
-      Last updated on Jun 26, 2017.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.5.2.
+        &#169; Copyright 2009-2021, OpenMEEG Developers..
+      Last updated on Sep 20, 2021.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
     </div>
   </body>
 </html>

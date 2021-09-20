@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>License &#8212; OpenMEEG</title>
+    <title>Overview &#8212; OpenMEEG</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/navy.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -13,8 +13,8 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contact us" href="contact.html" />
-    <link rel="prev" title="Tutorial" href="tutorial.html" /> 
+    <link rel="next" title="Why use OpenMEEG?" href="why_openmeeg.html" />
+    <link rel="prev" title="OpenMEEG Home" href="index.html" /> 
   </head><body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
     <div style='float:left; display:inline-block'>
@@ -38,33 +38,43 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="contact.html" title="Contact us"
+          <a href="why_openmeeg.html" title="Why use OpenMEEG?"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="tutorial.html" title="Tutorial"
+          <a href="index.html" title="OpenMEEG Home"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
         <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
         <li><a href="https://github.com/openmeeg/openmeeg/blob/master/README.rst#install-precompiled-binaries">Download</a>&nbsp;|&nbsp;</li>
         <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
         <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
-        <li><a href="#">License</a>&nbsp;|&nbsp;</li>
+        <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
         <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
         <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
         <!-- <li><a href="search.html">Search</a></li> -->
 
-        <li class="nav-item nav-item-this"><a href="">License</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Overview</a></li> 
       </ul>
     </div>
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#what-is-openmeeg">What is OpenMEEG?</a></li>
+<li><a class="reference internal" href="#using-openmeeg">Using OpenMEEG</a></li>
+<li><a class="reference internal" href="#cite-openmeeg">Cite OpenMEEG</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="tutorial.html"
-                        title="previous chapter">Tutorial</a></p>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">OpenMEEG Home</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="contact.html"
-                        title="next chapter">Contact us</a></p>
+  <p class="topless"><a href="why_openmeeg.html"
+                        title="next chapter">Why use OpenMEEG?</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -83,16 +93,53 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="license">
-<span id="id1"></span><h1>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h1>
-<p>OpenMEEG is distributed under the French opensource license CeCILL-B. It is intended to give users the freedom to modify and redistribute the software. It is therefore compatible with popular opensource licenses such as the GPL and BSD licenses. The CeCILL-B license imposes to anybody distributing a software incorporating OpenMEEG the obligation to give credits (by citing the appropriate publications), in order for all contributions to be properly identified and acknowledged.</p>
+  <div class="section" id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-openmeeg">
+<h2>What is OpenMEEG?<a class="headerlink" href="#what-is-openmeeg" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>The OpenMEEG software is developed within the <a class="reference external" href="https://team.inria.fr/athena/">Athena project-team</a> at INRIA Sophia-Antipolis.</p></li>
+<li><p>It was initiated in 2006 by the Odyssee Project Team (INRIA/ENPC/ENS Ulm).</p></li>
+<li><p>OpenMEEG solves forward problems related to Magneto- and Electro-encephalography (MEG and EEG).</p></li>
+<li><p>The forward problem uses the symmetric Boundary Element Method (symmetric BEM), providing excellent accuracy (see <a class="reference internal" href="publications.html#publications"><span class="std std-ref">Publications</span></a>).</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="using-openmeeg">
+<h2>Using OpenMEEG<a class="headerlink" href="#using-openmeeg" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul>
+<li><p>From Matlab using <a class="reference external" href="http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem">Brainstorm</a> or <a class="reference external" href="http://www.fieldtriptoolbox.org">FieldTrip</a></p></li>
+<li><p>For general lead fields computation (EEG, MEG, EIT, Internal potential):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>From <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.py">Python</a></p></li>
+<li><p>From a <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.sh">Bash</a> script on Unix systems (Linux/Mac).</p></li>
+<li><p>From a <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.bat">BAT</a> file on Windows.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+Works with:
+<div class="logo" style="text-align: center; margin: -7px 0 -10px 0;"><a class="reference external image-reference" href="http://neuroimage.usc.edu/brainstorm"><img alt="_images/logo_brainstorm.png" src="_images/logo_brainstorm.png" style="width: 200px;" /></a>
+<a class="reference external image-reference" href="http://fieldtrip.fcdonders.nl"><img alt="_images/logo_fieldtrip.png" src="_images/logo_fieldtrip.png" style="width: 130px;" /></a>
+<a class="reference external image-reference" href="http://www.nitrc.org/plugins/mwiki/index.php/nutmeg:MainPage"><img alt="_images/nutmeglogo.png" src="_images/nutmeglogo.png" style="width: 130px;" /></a>
+<a class="reference external image-reference" href="http://python.org"><img alt="_images/pythonlogo.png" src="_images/pythonlogo.png" style="width: 170px;" /></a>
+</div></div>
+<div class="section" id="cite-openmeeg">
+<h2>Cite OpenMEEG<a class="headerlink" href="#cite-openmeeg" title="Permalink to this headline">¶</a></h2>
 <p>The references to be acknowledged are:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>Gramfort A., Papadopoulo T., Olivi E., Clerc M.. <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">OpenMEEG: opensource software for quasistatic bioelectromagnetics</a>, BioMedical Engineering OnLine 45:9, 2010</p></li>
+<li><p>Gramfort A., Papadopoulo T., Olivi E., Clerc M. <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">OpenMEEG: opensource
+software for quasistatic bioelectromagnetics</a>,
+BioMedical Engineering OnLine 45:9, 2010</p></li>
 <li><p>Kybic J., Clerc M., Abboud T., Faugeras O., Keriven R., Papadopoulo T. <a class="reference external" href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?isnumber=30034&amp;arnumber=1375158&amp;count=10&amp;index=1">A common formalism for the integral formulations of the forward EEG problem</a>. IEEE Transactions on Medical Imaging, 24:12-28, 2005. <a class="reference external" href="ftp://ftp-sop.inria.fr/odyssee/Publications/2005/kybic-clerc-etal:05.pdf">[PDF]</a></p></li>
 </ul>
 </div></blockquote>
+</div>
 </div>
 
 

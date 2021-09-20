@@ -1,13 +1,12 @@
 .. _why_openmeeg:
 
-======================
 Why use OpenMEEG?
-======================
+-----------------
 
 OpenMEEG offers better precision.
 
 How do you measure precision?
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Relative difference measure (RDM) *(should be close to 0)* and Magnitude error (MAG) *(should be close to 1)*:
 
@@ -19,7 +18,7 @@ A sample sphere model with 5 dipoles:
 
 
 Benchmark: OpenMEEG outperforms other implementations
------------------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 |center-div|   |mag_bench|   |rdm_bench|   |end-div|
 

@@ -1,19 +1,17 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Overview &#8212; OpenMEEG</title>
-    <link rel="stylesheet" href="_static/navy.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" href="_static/navy.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Why use OpenMEEG?" href="why_openmeeg.html" />
     <link rel="prev" title="OpenMEEG Home" href="index.html" /> 
@@ -54,7 +52,8 @@
         <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
         <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
         <!-- <li><a href="search.html">Search</a></li> -->
- 
+
+        <li class="nav-item nav-item-this"><a href="">Overview</a></li> 
       </ul>
     </div>
 
@@ -77,17 +76,15 @@
   <p class="topless"><a href="why_openmeeg.html"
                         title="next chapter">Why use OpenMEEG?</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>$('#searchbox').show(0);</script>
         </div>
       </div>
 
@@ -102,10 +99,10 @@
 <h2>What is OpenMEEG?<a class="headerlink" href="#what-is-openmeeg" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
-<li>The OpenMEEG software is developed within the <a class="reference external" href="https://team.inria.fr/athena/">Athena project-team</a> at INRIA Sophia-Antipolis.</li>
-<li>It was initiated in 2006 by the Odyssee Project Team (INRIA/ENPC/ENS Ulm).</li>
-<li>OpenMEEG solves forward problems related to Magneto- and Electro-encephalography (MEG and EEG).</li>
-<li>The forward problem uses the symmetric Boundary Element Method (symmetric BEM), providing excellent accuracy (see <a class="reference internal" href="publications.html#publications"><span class="std std-ref">Publications</span></a>).</li>
+<li><p>The OpenMEEG software is developed within the <a class="reference external" href="https://team.inria.fr/athena/">Athena project-team</a> at INRIA Sophia-Antipolis.</p></li>
+<li><p>It was initiated in 2006 by the Odyssee Project Team (INRIA/ENPC/ENS Ulm).</p></li>
+<li><p>OpenMEEG solves forward problems related to Magneto- and Electro-encephalography (MEG and EEG).</p></li>
+<li><p>The forward problem uses the symmetric Boundary Element Method (symmetric BEM), providing excellent accuracy (see <a class="reference internal" href="publications.html#publications"><span class="std std-ref">Publications</span></a>).</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -113,14 +110,13 @@
 <h2>Using OpenMEEG<a class="headerlink" href="#using-openmeeg" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul>
-<li><p class="first">From Matlab using <a class="reference external" href="http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem">Brainstorm</a> or <a class="reference external" href="http://www.fieldtriptoolbox.org">FieldTrip</a></p>
-</li>
-<li><p class="first">For general lead fields computation (EEG, MEG, EIT, Internal potential):</p>
+<li><p>From Matlab using <a class="reference external" href="http://neuroimage.usc.edu/brainstorm/Tutorials/TutBem">Brainstorm</a> or <a class="reference external" href="http://www.fieldtriptoolbox.org">FieldTrip</a></p></li>
+<li><p>For general lead fields computation (EEG, MEG, EIT, Internal potential):</p>
 <blockquote>
 <div><ul class="simple">
-<li>From <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.py">Python</a></li>
-<li>From a <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.sh">Bash</a> script on Unix systems (Linux/Mac).</li>
-<li>From a <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.bat">BAT</a> file on Windows.</li>
+<li><p>From <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.py">Python</a></p></li>
+<li><p>From a <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.sh">Bash</a> script on Unix systems (Linux/Mac).</p></li>
+<li><p>From a <a class="reference external" href="https://raw.github.com/openmeeg/openmeeg_sample_data/master/compute_leadfields.bat">BAT</a> file on Windows.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -137,25 +133,26 @@ Works with:
 <p>The references to be acknowledged are:</p>
 <blockquote>
 <div><ul class="simple">
-<li>Gramfort A., Papadopoulo T., Olivi E., Clerc M. <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">OpenMEEG: opensource
+<li><p>Gramfort A., Papadopoulo T., Olivi E., Clerc M. <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">OpenMEEG: opensource
 software for quasistatic bioelectromagnetics</a>,
-BioMedical Engineering OnLine 45:9, 2010</li>
-<li>Kybic J., Clerc M., Abboud T., Faugeras O., Keriven R., Papadopoulo T. <a class="reference external" href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?isnumber=30034&amp;arnumber=1375158&amp;count=10&amp;index=1">A common formalism for the integral formulations of the forward EEG problem</a>. IEEE Transactions on Medical Imaging, 24:12-28, 2005. <a class="reference external" href="ftp://ftp-sop.inria.fr/odyssee/Publications/2005/kybic-clerc-etal:05.pdf">[PDF]</a></li>
+BioMedical Engineering OnLine 45:9, 2010</p></li>
+<li><p>Kybic J., Clerc M., Abboud T., Faugeras O., Keriven R., Papadopoulo T. <a class="reference external" href="http://ieeexplore.ieee.org/xpls/abs_all.jsp?isnumber=30034&amp;arnumber=1375158&amp;count=10&amp;index=1">A common formalism for the integral formulations of the forward EEG problem</a>. IEEE Transactions on Medical Imaging, 24:12-28, 2005. <a class="reference external" href="ftp://ftp-sop.inria.fr/odyssee/Publications/2005/kybic-clerc-etal:05.pdf">[PDF]</a></p></li>
 </ul>
 </div></blockquote>
 </div>
 </div>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="clearer"></div>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2009-2019, OpenMEEG Developers..
-      Last updated on Jun 06, 2019.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.2.
+        &#169; Copyright 2009-2021, OpenMEEG Developers..
+      Last updated on Sep 20, 2021.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 3.4.3.
     </div>
   </body>
 </html>

@@ -1,5 +1,7 @@
 .. _news:
 
+.. role:: command
+
 News
 ____
 
@@ -24,17 +26,18 @@ In particular, it is possible to directly provide meshes to OpenMEEG without
 relying to files.
 
 .. note::
+
     Coincidentally, to the internal API changes, some function calls must be changed.
-    - om.HeadMat(geom, gauss_order) => om.HeadMat(geom)
-    - om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, "") => om.DipSourceMat(geom, dipoles)
-    - om.SurfSourceMat(geom, mesh, gauss_order) => om.SurfSourceMat(geom, mesh)
+        - :command:`om.HeadMat(geom, gauss_order)` => :command:`om.HeadMat(geom)`
+        - :command:`om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, "")`=> :command:`om.DipSourceMat(geom, dipoles)`
+        - :command:`om.SurfSourceMat(geom, mesh, gauss_order)` => :command:`om.SurfSourceMat(geom, mesh)`
 
     If you need to use non-standard integrator pass it as the last parameter (un-tested yet):
 
-    gauss_order = 3
-    integration_levels = 10
-    tol = 0.001
-    integrator = om.Integrator(gauss_order, integration_levels, tol);
+    :command:`gauss_order = 3`
+    :command:`integration_levels = 10`
+    :command:`tol = 0.001`
+    :command:`integrator = om.Integrator(gauss_order, integration_levels, tol)`
 
 New block API
 ^^^^^^^^^^^^^

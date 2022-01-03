@@ -5,7 +5,8 @@
 News
 ____
 
-** New with version 2.5 (upcoming).
+New with version 2.5 (upcoming).
+--------------------------------
 
 Important re-write
 ^^^^^^^^^^^^^^^^^^

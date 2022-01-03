@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Why use OpenMEEG? &#8212; OpenMEEG</title>
+    <title>News &#8212; OpenMEEG</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/navy.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -13,9 +13,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Tutorial" href="tutorial.html" />
-    <link rel="prev" title="Overview" href="overview.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
   </head><body>
 <div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
     <div style='float:left; display:inline-block'>
@@ -38,16 +36,10 @@
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="tutorial.html" title="Tutorial"
-             accesskey="N">next</a></li>
-        <li class="right" >
-          <a href="overview.html" title="Overview"
-             accesskey="P">previous</a> |</li>
         <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
-        <li><a href="#">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+        <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
         <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
-        <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
+        <li><a href="#">News</a>&nbsp;|&nbsp;</li>
         <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
         <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
         <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
@@ -55,7 +47,7 @@
         <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
         <!-- <li><a href="search.html">Search</a></li> -->
 
-        <li class="nav-item nav-item-this"><a href="">Why use OpenMEEG?</a></li> 
+        <li class="nav-item nav-item-this"><a href="">News</a></li> 
       </ul>
     </div>
 
@@ -63,19 +55,14 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Why use OpenMEEG?</a><ul>
-<li><a class="reference internal" href="#how-do-you-measure-precision">How do you measure precision?</a></li>
-<li><a class="reference internal" href="#benchmark-openmeeg-outperforms-other-implementations">Benchmark: OpenMEEG outperforms other implementations</a></li>
+<li><a class="reference internal" href="#">News</a><ul>
+<li><a class="reference internal" href="#important-re-write">Important re-write</a></li>
+<li><a class="reference internal" href="#python-interface">Python interface</a></li>
+<li><a class="reference internal" href="#new-block-api">New block API</a></li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="overview.html"
-                        title="previous chapter">Overview</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="tutorial.html"
-                        title="next chapter">Tutorial</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -94,26 +81,42 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="why-use-openmeeg">
-<span id="why-openmeeg"></span><h1>Why use OpenMEEG?<a class="headerlink" href="#why-use-openmeeg" title="Permalink to this headline">¶</a></h1>
-<p>OpenMEEG offers better precision.</p>
-<div class="section" id="how-do-you-measure-precision">
-<h2>How do you measure precision?<a class="headerlink" href="#how-do-you-measure-precision" title="Permalink to this headline">¶</a></h2>
-<p>Relative difference measure (RDM) <em>(should be close to 0)</em> and Magnitude error (MAG) <em>(should be close to 1)</em>:</p>
-<div class="math">
-<p><img src="_images/math/0ceca5f34a82c555aa99ccfa3376b2df66c9c56c.png" alt="\mathbf{MAG} = \left\| \frac{V_{bem}}{\|V_{bem}\|_2} - \frac{V_{exact}}{\|V_{exact}\|_2} \right\| \,,\, \mathbf{RDM} = \frac{\|V_{bem}\|_2}{\|V_{exact}\|_2}"/></p>
-</div><p>A sample sphere model with 5 dipoles:</p>
-<p><div style="text-align: center; margin: -7px 0 -10px 0;">   <a class="reference internal" href="_images/sphere_dipoles_3D.png"><img alt="Sphere model with 5 dipoles" src="_images/sphere_dipoles_3D.png" style="width: 250px;" /></a>   <a class="reference internal" href="_images/sphere_dipoles_3D_zoom.png"><img alt="Sphere model with 5 dipoles (zoom)" src="_images/sphere_dipoles_3D_zoom.png" style="width: 200px;" /></a>   </div></p>
+  <div class="section" id="news">
+<span id="id1"></span><h1>News<a class="headerlink" href="#news" title="Permalink to this headline">¶</a></h1>
+<p>** New with version 2.5 (upcoming).</p>
+<div class="section" id="important-re-write">
+<h2>Important re-write<a class="headerlink" href="#important-re-write" title="Permalink to this headline">¶</a></h2>
+<p>OpenMEEG internal code went through an important internal cleanup.
+Some code was factorized and reorganized. This should have no or low
+external impact except if you use this internal interface (in C++ or
+python). Overall numerical computations have not changed except that
+some small increase in accuracy might be noticed (but in general, do
+not expect much changes far from dipoles). Computation times should
+not change either.</p>
 </div>
-<div class="section" id="benchmark-openmeeg-outperforms-other-implementations">
-<h2>Benchmark: OpenMEEG outperforms other implementations<a class="headerlink" href="#benchmark-openmeeg-outperforms-other-implementations" title="Permalink to this headline">¶</a></h2>
-<p><div style="text-align: center; margin: -7px 0 -10px 0;">   <img alt="BEM Comparison MAGs" src="_images/bem_comparison_mags.png" />   <img alt="BEM Comparison RDMs" src="_images/bem_comparison_rdms.png" />   </div></p>
-<p>See the following publication for more details on this comparison between different forward solvers:</p>
-<blockquote>
-<div><ol class="upperalpha simple">
-<li><p>Gramfort, T. Papadopoulo, E. Olivi, M. Clerc. OpenMEEG: opensource software for quasistatic bioelectromagnetics, <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">BioMedical Engineering OnLine 45:9, 2010</a></p></li>
-</ol>
-</div></blockquote>
+<div class="section" id="python-interface">
+<h2>Python interface<a class="headerlink" href="#python-interface" title="Permalink to this headline">¶</a></h2>
+<p>Python interface should be generally much more reliable and has been extended.
+In particular, it is possible to directly provide meshes to OpenMEEG without
+relying to files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Coincidentally, to the internal API changes, some function calls must be changed.
+- om.HeadMat(geom, gauss_order) =&gt; om.HeadMat(geom)
+- om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, “”) =&gt; om.DipSourceMat(geom, dipoles)
+- om.SurfSourceMat(geom, mesh, gauss_order) =&gt; om.SurfSourceMat(geom, mesh)</p>
+<p>If you need to use non-standard integrator pass it as the last parameter (un-tested yet):</p>
+<p>gauss_order = 3
+integration_levels = 10
+tol = 0.001
+integrator = om.Integrator(gauss_order, integration_levels, tol);</p>
+</div>
+</div>
+<div class="section" id="new-block-api">
+<h2>New block API<a class="headerlink" href="#new-block-api" title="Permalink to this headline">¶</a></h2>
+<p>With the re-write of the internal code, a new block-matrix API has been added. This is useful
+for advanced leadfield computation (e.g. for varying conductivities leadfields without redoing
+all computations). It will be soon exploited to add some new capabilities to OpenMEEG.</p>
 </div>
 </div>
 

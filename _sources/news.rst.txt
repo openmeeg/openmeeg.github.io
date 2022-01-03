@@ -28,8 +28,11 @@ relying to files.
 .. note::
 
     Coincidentally, to the internal API changes, some function calls must be changed.
+
         - :command:`om.HeadMat(geom, gauss_order)` => :command:`om.HeadMat(geom)`
+
         - :command:`om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, "")`=> :command:`om.DipSourceMat(geom, dipoles)`
+
         - :command:`om.SurfSourceMat(geom, mesh, gauss_order)` => :command:`om.SurfSourceMat(geom, mesh)`
 
     If you need to use non-standard integrator pass it as the last parameter (un-tested yet):

@@ -115,14 +115,14 @@ In particular, it is possible to directly provide meshes to OpenMEEG without
 relying to files.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<dl class="simple">
-<dt>Coincidentally, to the internal API changes, some function calls must be changed.</dt><dd><ul class="simple">
+<p>Coincidentally, to the internal API changes, some function calls must be changed.</p>
+<blockquote>
+<div><ul class="simple">
 <li><p><span class="command">om.HeadMat(geom, gauss_order)</span> =&gt; <span class="command">om.HeadMat(geom)</span></p></li>
 <li><p><span class="command">om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, “”)`=&gt; :command:`om.DipSourceMat(geom, dipoles)</span></p></li>
 <li><p><span class="command">om.SurfSourceMat(geom, mesh, gauss_order)</span> =&gt; <span class="command">om.SurfSourceMat(geom, mesh)</span></p></li>
 </ul>
-</dd>
-</dl>
+</div></blockquote>
 <p>If you need to use non-standard integrator pass it as the last parameter (un-tested yet):</p>
 <p><span class="command">gauss_order = 3</span>
 <span class="command">integration_levels = 10</span>

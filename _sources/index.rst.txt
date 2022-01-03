@@ -22,6 +22,7 @@
 
    overview
    why_openmeeg
+   news
    tutorial
    license
    contact

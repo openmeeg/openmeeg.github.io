@@ -64,9 +64,12 @@
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">News</a><ul>
+<li><a class="reference internal" href="#new-with-version-2-5-upcoming">New with version 2.5 (upcoming).</a><ul>
 <li><a class="reference internal" href="#important-re-write">Important re-write</a></li>
 <li><a class="reference internal" href="#python-interface">Python interface</a></li>
 <li><a class="reference internal" href="#new-block-api">New block API</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -97,9 +100,10 @@
             
   <div class="section" id="news">
 <span id="id1"></span><h1>News<a class="headerlink" href="#news" title="Permalink to this headline">¶</a></h1>
-<p>** New with version 2.5 (upcoming).</p>
+<div class="section" id="new-with-version-2-5-upcoming">
+<h2>New with version 2.5 (upcoming).<a class="headerlink" href="#new-with-version-2-5-upcoming" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="important-re-write">
-<h2>Important re-write<a class="headerlink" href="#important-re-write" title="Permalink to this headline">¶</a></h2>
+<h3>Important re-write<a class="headerlink" href="#important-re-write" title="Permalink to this headline">¶</a></h3>
 <p>OpenMEEG internal code went through an important internal cleanup.
 Some code was factorized and reorganized. This should have no or low
 external impact except if you use this internal interface (in C++ or
@@ -109,7 +113,7 @@ not expect much changes far from dipoles). Computation times should
 not change either.</p>
 </div>
 <div class="section" id="python-interface">
-<h2>Python interface<a class="headerlink" href="#python-interface" title="Permalink to this headline">¶</a></h2>
+<h3>Python interface<a class="headerlink" href="#python-interface" title="Permalink to this headline">¶</a></h3>
 <p>Python interface should be generally much more reliable and has been extended.
 In particular, it is possible to directly provide meshes to OpenMEEG without
 relying to files.</p>
@@ -133,10 +137,11 @@ relying to files.</p>
 </div>
 </div>
 <div class="section" id="new-block-api">
-<h2>New block API<a class="headerlink" href="#new-block-api" title="Permalink to this headline">¶</a></h2>
+<h3>New block API<a class="headerlink" href="#new-block-api" title="Permalink to this headline">¶</a></h3>
 <p>With the re-write of the internal code, a new block-matrix API has been added. This is useful
 for advanced leadfield computation (e.g. for varying conductivities leadfields without redoing
 all computations). It will be soon exploited to add some new capabilities to OpenMEEG.</p>
+</div>
 </div>
 </div>
 

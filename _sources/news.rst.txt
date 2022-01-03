@@ -2,6 +2,11 @@
 
 .. role:: command
 
+.. # define a hard line break for HTML
+.. |br| raw:: html
+
+   <br />
+
 News
 ____
 
@@ -37,13 +42,10 @@ relying to files.
 
     If you need to use non-standard integrator pass it as the last parameter (un-tested yet):
 
-    :command:`gauss_order = 3`
-
-    :command:`integration_levels = 10`
-
-    :command:`tol = 0.001`
-
-    :command:`integrator = om.Integrator(gauss_order, integration_levels, tol)`
+    :command:`gauss_order = 3` |br|
+    :command:`integration_levels = 10` |br|
+    :command:`tol = 0.001` |br|
+    :command:`integrator = om.Integrator(gauss_order, integration_levels, tol)` |br|
 
 New block API
 ^^^^^^^^^^^^^

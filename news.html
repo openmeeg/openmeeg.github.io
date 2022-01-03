@@ -119,15 +119,15 @@ relying to files.</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><span class="command">om.HeadMat(geom, gauss_order)</span> =&gt; <span class="command">om.HeadMat(geom)</span></p></li>
-<li><p><span class="command">om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, “”)`=&gt; :command:`om.DipSourceMat(geom, dipoles)</span></p></li>
+<li><p><span class="command">om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, “”)</span> =&gt; <span class="command">om.DipSourceMat(geom, dipoles)</span></p></li>
 <li><p><span class="command">om.SurfSourceMat(geom, mesh, gauss_order)</span> =&gt; <span class="command">om.SurfSourceMat(geom, mesh)</span></p></li>
 </ul>
 </div></blockquote>
 <p>If you need to use non-standard integrator pass it as the last parameter (un-tested yet):</p>
-<p><span class="command">gauss_order = 3</span>
-<span class="command">integration_levels = 10</span>
-<span class="command">tol = 0.001</span>
-<span class="command">integrator = om.Integrator(gauss_order, integration_levels, tol)</span></p>
+<p><span class="command">gauss_order = 3</span></p>
+<p><span class="command">integration_levels = 10</span></p>
+<p><span class="command">tol = 0.001</span></p>
+<p><span class="command">integrator = om.Integrator(gauss_order, integration_levels, tol)</span></p>
 </div>
 </div>
 <div class="section" id="new-block-api">

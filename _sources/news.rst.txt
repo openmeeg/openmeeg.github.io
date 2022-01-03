@@ -31,7 +31,7 @@ relying to files.
 
         - :command:`om.HeadMat(geom, gauss_order)` => :command:`om.HeadMat(geom)`
 
-        - :command:`om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, "")` => :command:`om.DipSourceMat(geom, dipoles)`
+        - :command:`om.DipSourceMat(geom, dipoles, gauss_order, use_adaptive_integration, "brain")` => :command:`om.DipSourceMat(geom, dipoles, "brain")`
 
         - :command:`om.SurfSourceMat(geom, mesh, gauss_order)` => :command:`om.SurfSourceMat(geom, mesh)`
 

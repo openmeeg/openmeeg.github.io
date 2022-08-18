@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Examples &#8212; OpenMEEG</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/navy.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
+    <div style='float:left; display:inline-block'>
+        <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
+    </div>
+    <div id="title" style="display:inline-block">
+        <h1 style="font-size: 2.5em;">OpenMEEG</h1>
+        A C++ package for low-frequency bio-electromagnetism <br/>
+        solving forward problems in the field of EEG and MEG
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="http://www.inria.fr"><img src="_static/inria.png" width="200px" border="0" alt="INRIA"/></a>
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="https://github.com/openmeeg"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" title="Get OpenMEEG as Open Source package from GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
+    <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
+    <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
+    <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+    <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
+    <li><a href="contributors.html">Contributors</a>&nbsp;|&nbsp;</li>
+    <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
+    <li><a href="contact.html">Contact us</a></li>
+
+        <li class="nav-item nav-item-this"><a href="">Examples</a></li>
+
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>Assuming a head model represented by the geometry file <span class="input">head.geom</span> and the conductivity file <span class="input">head.cond</span> and EEG sensors detailed in a file <span class="input">head.eegsensors</span>.</p>
+<p>Computing the EEG gain matrix for sources distributed on a surface mesh represented by the file <span class="input">sources.tri</span> is done via the following set of commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">om_assemble</span> <span class="o">-</span><span class="n">HM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">SSM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">sources</span><span class="o">.</span><span class="n">tri</span> <span class="n">head</span><span class="o">.</span><span class="n">ssm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">h2em</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">eegsensors</span> <span class="n">head</span><span class="o">.</span><span class="n">h2em</span>
+<span class="n">om_minverser</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span>
+<span class="n">om_gain</span> <span class="o">-</span><span class="n">EEG</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span> <span class="n">head</span><span class="o">.</span><span class="n">ssm</span> <span class="n">head</span><span class="o">.</span><span class="n">h2em</span> <span class="n">head</span><span class="o">.</span><span class="n">gain</span>
+</pre></div>
+</div>
+<p>Considering now isolated dipolar sources detailed in the file <span class="input">sources.dip</span> with MEG sensors depicted in the file <span class="input">head.squids</span>. Using the same head model, the MEG gain matrix is obtained via the following set of commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">om_assemble</span> <span class="o">-</span><span class="n">HeadMat</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">DSM</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">sources</span><span class="o">.</span><span class="n">dip</span> <span class="n">head</span><span class="o">.</span><span class="n">dsm</span> <span class="n">Brain</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">h2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">geom</span> <span class="n">head</span><span class="o">.</span><span class="n">cond</span> <span class="n">head</span><span class="o">.</span><span class="n">squids</span> <span class="n">head</span><span class="o">.</span><span class="n">h2mm</span>
+<span class="n">om_assemble</span> <span class="o">-</span><span class="n">ds2mm</span> <span class="n">sources</span><span class="o">.</span><span class="n">dip</span> <span class="n">head</span><span class="o">.</span><span class="n">squids</span> <span class="n">head</span><span class="o">.</span><span class="n">ds2mm</span>
+<span class="n">om_minverser</span> <span class="n">head</span><span class="o">.</span><span class="n">hm</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span>
+<span class="n">om_gain</span> <span class="o">-</span><span class="n">MEG</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span> <span class="n">head</span><span class="o">.</span><span class="n">dsm</span> <span class="n">head</span><span class="o">.</span><span class="n">h2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">ds2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">gain</span>
+</pre></div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2009-2022, OpenMEEG Developers..
+      Last updated on Aug 18, 2022.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

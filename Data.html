@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Data format &#8212; OpenMEEG</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/navy.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
+    <div style='float:left; display:inline-block'>
+        <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
+    </div>
+    <div id="title" style="display:inline-block">
+        <h1 style="font-size: 2.5em;">OpenMEEG</h1>
+        A C++ package for low-frequency bio-electromagnetism <br/>
+        solving forward problems in the field of EEG and MEG
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="http://www.inria.fr"><img src="_static/inria.png" width="200px" border="0" alt="INRIA"/></a>
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="https://github.com/openmeeg"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" title="Get OpenMEEG as Open Source package from GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
+    <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
+    <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
+    <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+    <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
+    <li><a href="contributors.html">Contributors</a>&nbsp;|&nbsp;</li>
+    <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
+    <li><a href="contact.html">Contact us</a></li>
+
+        <li class="nav-item nav-item-this"><a href="">Data format</a></li>
+
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Data format</a><ul>
+<li><a class="reference internal" href="#vectors-and-matrices">Vectors and matrices</a></li>
+<li><a class="reference internal" href="#geometrical-model-mesh-and-conductivity-files">Geometrical model, mesh and conductivity files</a><ul>
+<li><a class="reference internal" href="#meshes">Meshes</a></li>
+<li><a class="reference internal" href="#geometry-tools">Geometry tools</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source-descriptions">Source descriptions</a><ul>
+<li><a class="reference internal" href="#isolated-dipoles">Isolated dipoles</a></li>
+<li><a class="reference internal" href="#distributed-dipoles">Distributed dipoles</a></li>
+<li><a class="reference internal" href="#source-activation">Source activation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sensors">Sensors</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="data-format">
+<h1>Data format<a class="headerlink" href="#data-format" title="Permalink to this headline">¶</a></h1>
+<p>OpenMEEG handles several file formats corresponding to different types of objects: vectors, matrices, head geometries, conductivities, meshes, dipoles, sensors.</p>
+<section id="vectors-and-matrices">
+<h2>Vectors and matrices<a class="headerlink" href="#vectors-and-matrices" title="Permalink to this headline">¶</a></h2>
+<p>By default, matrices and vectors are stored on disk using a <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> file format.
+Symmetric matrices which are not directly representable in the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> format are represented as a <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> struct.
+Other vector/matrices file formats are also supported.
+Forcing a specific file format is achieved by specifying the proper file extension.
+<code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> extension is <code class="docutils literal notranslate"><span class="pre">.mat</span></code>.
+Other useful file formats are ASCII (extension <code class="docutils literal notranslate"><span class="pre">.txt</span></code>) which generates human readable files, and BrainVisa texture file format (extension <code class="docutils literal notranslate"><span class="pre">.tex</span></code>).</p>
+<p>OpenMEEG’s own binary file format (extension <code class="docutils literal notranslate"><span class="pre">.bin</span></code>) is available solely for backward compatibility and should be considered as deprecated (as it is subsumed by the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> file format).</p>
+</section>
+<section id="geometrical-model-mesh-and-conductivity-files">
+<span id="sec-geom"></span><h2>Geometrical model, mesh and conductivity files<a class="headerlink" href="#geometrical-model-mesh-and-conductivity-files" title="Permalink to this headline">¶</a></h2>
+<p><strong>OpenMEEG geometrical models</strong> are described through several files.
+The toplevel file (generally ending with the extension <code class="docutils literal notranslate"><span class="pre">.geom</span></code>) assembles various interface descriptions to build <em>Domains</em> corresponding to head tissues.
+Empty lines or lines beginning with <code class="docutils literal notranslate"><span class="pre">#</span></code> are non-significant.</p>
+<p>The file must start with a special comment line which allows its identification (see example in <a class="reference internal" href="#fig-geom">fig.geom</a>).
+Geometrical models globally contain 2 sections, one for describing the interfaces and one for describing the domains.
+In OpenMEEG, we make the following distinction between Mesh and Interface, which is helpful for defining non nested geometries.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>“Mesh”: a collection of vertices and triangles all connected.</p></li>
+<li><p>“Interface”: a closed mesh.</p></li>
+</ul>
+</div></blockquote>
+<p>Sample <em>non-nested</em> geometry description:</p>
+<a class="reference internal image-reference" href="_images/geom1.png"><img alt="Geometry .geom" src="_images/geom1.png" style="width: 600px;" /></a>
+<p id="fig-geom">Sample <em>nested</em> geometry descriptions:</p>
+<a class="reference internal image-reference" href="_images/geom2.png"><img alt="Geometry .geom" src="_images/geom2.png" style="width: 600px;" /></a>
+<a class="reference internal image-reference" href="_images/geom3.png"><img alt="Geometry .geom" src="_images/geom3.png" style="width: 600px;" /></a>
+<p>The section starting with the keyword <code class="docutils literal notranslate"><span class="pre">MeshFile</span></code> is optional, as well as the section <code class="docutils literal notranslate"><span class="pre">Meshes</span></code>.</p>
+<ul>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">MeshFile</span></code> is found, it specifies the path to the VTK/vtp file containing the vertices and annoted triangles of your geometry. (Triangle annotations are labels that specify the mesh names).</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">Meshes</span></code> is found, it specifies the paths to the meshes that may or may not be named. Mesh file formats supported are <code class="docutils literal notranslate"><span class="pre">tri</span></code>, <code class="docutils literal notranslate"><span class="pre">bnd</span></code>, <code class="docutils literal notranslate"><span class="pre">mesh</span></code>, <code class="docutils literal notranslate"><span class="pre">off</span></code>, <code class="docutils literal notranslate"><span class="pre">gii</span></code>, and <code class="docutils literal notranslate"><span class="pre">vtk</span></code> (in case you use VTK).</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>A Mesh is defined with the keyword <code class="docutils literal notranslate"><span class="pre">Mesh</span></code> followed by an optional name and “<code class="docutils literal notranslate"><span class="pre">:</span></code>”.</p></li>
+<li><p>If no name is provided, the Mesh is named by its index (starting from 1).</p></li>
+<li><p>If none of the two sections <code class="docutils literal notranslate"><span class="pre">MeshFile</span></code> and <code class="docutils literal notranslate"><span class="pre">Meshes</span></code> are present, the next section called <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> is expected to contain the filenames of the meshes.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> section specifies the mesh descriptions of the interfaces between tissues.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>It is introduced by the keyword <code class="docutils literal notranslate"><span class="pre">Interfaces</span></code> followed by the number of such interfaces.</p></li>
+<li><p>An Interface is defined with the keyword <code class="docutils literal notranslate"><span class="pre">Interface</span></code> followed by a name and “<code class="docutils literal notranslate"><span class="pre">:</span></code>”.</p></li>
+<li><p>If no name is provided, the Interface is named by its index (starting from 1).</p></li>
+<li><p>If the sections <code class="docutils literal notranslate"><span class="pre">MeshFile</span></code> and <code class="docutils literal notranslate"><span class="pre">Meshes</span></code> were NOT specified before, a path to a mesh file is expected.</p></li>
+<li><p>In the opposite case, a sequence of mesh names is expected.</p></li>
+<li><p>These meshes are concatenated to form a closed Interface.</p></li>
+<li><p>‘+’ or ‘-’ sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Domains</span></code> section describes the head tissues and is introduced by the keyword <code class="docutils literal notranslate"><span class="pre">Domains</span></code> followed by the number of such domains.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Each domain is then described, one domain per line, by the keyword <code class="docutils literal notranslate"><span class="pre">Domain</span></code> followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).</p></li>
+<li><p>These IDs are the interface names (as depicted in previous paragraph).</p></li>
+<li><p>They must be preceeded by a ‘+’ or ‘-’ sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<p>See <a class="reference internal" href="#fig-geom">fig.geom</a> for a detailed example.</p>
+<section id="meshes">
+<span id="sec-meshes"></span><h3>Meshes<a class="headerlink" href="#meshes" title="Permalink to this headline">¶</a></h3>
+<p>Meshes are a central element of Boundary Element Methods. They are used to represent the interfaces between regions of homogeneous conductivity. For instance, in a simple three-layer head model, three meshes would be used to represent:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the inner skull surface</p></li>
+<li><p>the outer skull surface</p></li>
+<li><p>the outer scalp surface</p></li>
+</ul>
+</div></blockquote>
+<p>The recommended mesh size is approximately 600 to 800 points per surface.
+Example with three surfaces: outer scalp (gray), outer skull (blue) and inner skull (pink).</p>
+<a class="reference internal image-reference" href="_images/tete_couches_brain.png"><img alt="External surface of the cortex" src="_images/tete_couches_brain.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="_images/tete_couches_brainskullhead.png"><img alt="Example with three surfaces: outer scalp (gray)," src="_images/tete_couches_brainskullhead.png" style="width: 300px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Meshes paths can be absolute (as depicted on <a class="reference internal" href="#fig-geom">fig.geom</a>) or relative to where the command line is executed.
+For the meshes, the following formats are allowed:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>*.bnd~: bnd mesh format.</p></li>
+<li><p>*.off~: off mesh format.</p></li>
+<li><p>*.tri~: TRI format corresponding to early BrainVisa. Also handled by Anatomist.</p></li>
+<li><p>*.mesh~: MESH format corresponding to BrainVisa versions 3.0.2 and later. Also handled by Anatomist.</p></li>
+<li><p>*.vtk~: VTK mesh format.</p></li>
+<li><p>*.gii~: Gifti mesh format.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p>Files ending with the <code class="docutils literal notranslate"><span class="pre">.tri</span></code> extension follow the BrainVisa file format for meshes. Such files contain two sections,
+each section introduced by the character <code class="docutils literal notranslate"><span class="pre">-</span></code>  at the beginning of the line followed by a space followed by either one number (first section) or three times
+the same number (second section).</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">first</span> <span class="pre">section</span></code> contains a list of vertices with associated normals.
+The number on the line introducing the section is the number of points.
+Each following line corresponds to a single point. Its coordinates are the three first numbers appearing on the line.
+The normal corresponds to the following three numbers. Each point is assigned an index (starting at 0) corresponding to its order of appearance in the list.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">second</span> <span class="pre">section</span></code> contains the triangles of the mesh.
+The number (repeated three times) in the section delimiter corresponds to the number of triangles.
+Each triangle is depicted by a sequence of three integers corresponding to the indices of the points assigned as described in the previous paragraph.</p></li>
+</ul>
+<p>The following small example describes a very simple mesh containing 4 points and 4 triangles:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">-</span><span class="mf">0.5773</span> <span class="o">-</span><span class="mf">0.5773</span> <span class="o">-</span><span class="mf">0.5773</span>
+<span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span>
+<span class="o">-</span> <span class="mi">4</span> <span class="mi">4</span> <span class="mi">4</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span>
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">3</span>
+<span class="mi">0</span> <span class="mi">2</span> <span class="mi">3</span>
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</section>
+<section id="geometry-tools">
+<span id="sec-cond"></span><h3>Geometry tools<a class="headerlink" href="#geometry-tools" title="Permalink to this headline">¶</a></h3>
+<p>Interfaces are required to be closed in order for the Boundary Element Method to function correctly. This is also necessary for the source meshes when computing forward solutions using surfacic source models (see below).
+Moreover, the interface meshes must not intersect each other. Non-intersection can be checked with the command <span class="command">om_check_geom</span>.
+The command <span class="command">om_mesh_info</span> applied to a mesh provides its number of points, of triangles, minimum and maximum triangle area, and also its Euler characteristic.
+The Euler characteristic of a closed mesh of genus 0 (homotopic to a sphere) is equal to 2.
+The Euler characteristic gives an indication if a mesh is likely to be closed or not.</p>
+<p>In order to generate a VTK/vtp file, one can use the tool provided <span class="command">om_meshes_to_vtp</span>, which from a list of (closed or not) meshes and names, removes duplicated vertices and creates an easily viewable file in VTK/Paraview.</p>
+<p>In order to check a geometry file, one can use the tool provided <span class="command">om_check_geom</span>, which display the read informations.</p>
+<p>A <strong>conductivity file</strong> (generally ending with the extension <code class="docutils literal notranslate"><span class="pre">.cond</span></code>) is a simple ASCII file that contains associations between tissue names and conductivity values.
+Associations are provided one per line. Empty lines or lines beginning with <code class="docutils literal notranslate"><span class="pre">#</span></code> are non-significant. The file must start with a special comment line which allows its identification.
+The next figure provides an example conductivity file corresponding to the geometry file presented above.</p>
+<a class="reference internal image-reference" href="_images/cond.png"><img alt="Conductivities" class="align-center" src="_images/cond.png" style="width: 600px;" /></a>
+<p>Note that the tissue names are the ones appearing in the Domains descriptions of the Geometry description file (case sensitive).</p>
+</section>
+</section>
+<section id="source-descriptions">
+<span id="sec-sources"></span><h2>Source descriptions<a class="headerlink" href="#source-descriptions" title="Permalink to this headline">¶</a></h2>
+<p>Sources are defined by their geometry (position and orientation) and their magnitude.
+OpenMEEG handles two types of source models: isolated dipoles, or distributed dipoles: these two models differ in their geometry description.</p>
+<section id="isolated-dipoles">
+<h3>Isolated dipoles<a class="headerlink" href="#isolated-dipoles" title="Permalink to this headline">¶</a></h3>
+<p>Isolated dipoles are represented by a text file (extension *.dip or *.txt), in which each line defines a dipole position and orientation, encoded in 6 real values:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>three values encoding the Cartesian coordinate for the position,</p></li>
+<li><p>three values encoding the orientation of the dipole (supposed unitary).</p></li>
+</ul>
+</div></blockquote>
+<p>The following example shows a file describing 5 isolated dipoles:</p>
+<a class="reference internal image-reference" href="_images/dipolePositions_en.png"><img alt="Dipole positions" class="align-center" src="_images/dipolePositions_en.png" style="width: 600px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The referential of the coordinates should be the same as for the meshes (the MR coordinates in general).</p>
+</div>
+</section>
+<section id="distributed-dipoles">
+<h3>Distributed dipoles<a class="headerlink" href="#distributed-dipoles" title="Permalink to this headline">¶</a></h3>
+<p>Distributed dipoles are supported on a mesh, whose format must be *.mesh, or *.tri, or *.vtk.</p>
+</section>
+<section id="source-activation">
+<h3>Source activation<a class="headerlink" href="#source-activation" title="Permalink to this headline">¶</a></h3>
+<p>Source activation files are text files, in which each line corresponds to a source, and each column to a time sample.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>for isolated dipoles, the nth line corresponds to the amplitude of the nth dipole (with its fixed orientation)</p></li>
+<li><p>for distributed dipoles, the nth line correspond to the amplitude of the nth vertex in the source mesh.</p></li>
+</ul>
+</div></blockquote>
+<p>Example for isolated dipoles:</p>
+<a class="reference internal image-reference" href="_images/dipActiv.png"><img alt="Dipole positions" class="align-center" src="_images/dipActiv.png" style="width: 600px;" /></a>
+<p>For distributed sources, a source mesh describes their support. This is a detailed
+mesh generally covering the whole cortex. The mesh size should not exceed 35 000 points.
+The source amplitude is represented as continuous, and linear on each of the mesh triangles.
+The source orientation is modeled as piecewise constant, normal to each of the mesh triangles.</p>
+<a class="reference internal image-reference" href="_images/cortex.png"><img alt="Cortex" class="align-center" src="_images/cortex.png" style="width: 300px;" /></a>
+<p>Isolated sources are the superposition of current dipoles, each of which is defined by its position and its moment.</p>
+</section>
+</section>
+<section id="sensors">
+<span id="sec-sensors"></span><h2>Sensors<a class="headerlink" href="#sensors" title="Permalink to this headline">¶</a></h2>
+<p>For EEG, the sensors are defined by the list of the x-y-z coordinates of the electrode
+positions. The electrodes are considered punctual and are called <em>patches</em>.
+The MEG sensor description is more complex:
+The MEG sensor definition is provided in a text file, in which each line provides the position of the sensor, and additional information such as its orientation or its name.</p>
+<p>Sensors may have names (labels) in the first column of the file.</p>
+<p>More precisely, <em>omiting the first column which can contain a label</em> there are 4 options for defining EEG, EIT, ECoG or MEG sensors:</p>
+<blockquote>
+<div><ul>
+<li><p>1 line per sensor and 3 columns (typically for EEG/ECoG sensors or EIT punctual patches):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>1 line per sensor and 4 columns (spatially extended EIT sensors (circular patches)):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the 1st, 2nd and 3rd columns are respectively position coordinates x, y, z of sensor</p></li>
+<li><p>the 4th column is the patche radius (unit relative to the mesh)</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>1 line per sensor and 6 columns (typically for MEG sensors) :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the 1st, 2nd and 3rd are respectively position coordinates x, y, z of sensor</p></li>
+<li><p>the 4th, 5th and 6th are coordinates of vector orientation</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>1 line per integration point for each sensor and 8 columns (typically for MEG realistic sensors with coils, or gradiometers):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the 1st column is sensors names</p></li>
+<li><p>the 2nd, 3rd and 4th are respectively position coordinates x, y, z of sensor</p></li>
+<li><p>the 5th, 6th and 7th are coordinates of vector orientation</p></li>
+<li><p>the 8th is the weight to apply for numerical integration (related to sensor name)</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>An example of MEG sensor description:</p>
+<a class="reference internal image-reference" href="_images/sensors-grad.png"><img alt="Sensor description" class="align-center" src="_images/sensors-grad.png" style="width: 600px;" /></a>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2009-2022, OpenMEEG Developers..
+      Last updated on Aug 18, 2022.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

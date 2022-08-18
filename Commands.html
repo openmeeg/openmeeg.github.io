@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>OpenMEEG from the command line &#8212; OpenMEEG</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/navy.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px; min-height:150px">
+    <div style='float:left; display:inline-block'>
+        <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
+    </div>
+    <div id="title" style="display:inline-block">
+        <h1 style="font-size: 2.5em;">OpenMEEG</h1>
+        A C++ package for low-frequency bio-electromagnetism <br/>
+        solving forward problems in the field of EEG and MEG
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="http://www.inria.fr"><img src="_static/inria.png" width="200px" border="0" alt="INRIA"/></a>
+    </div>
+    <div style="float:right; display:inline-block">
+        <a href="https://github.com/openmeeg"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://github-camo.global.ssl.fastly.net/652c5b9acfaddf3a9c326fa6bde407b87f7be0f4/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6f72616e67655f6666373630302e706e67" title="Get OpenMEEG as Open Source package from GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"></a>
+    </div>
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+    <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
+    <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
+    <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
+    <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+    <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
+    <li><a href="contributors.html">Contributors</a>&nbsp;|&nbsp;</li>
+    <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
+    <li><a href="contact.html">Contact us</a></li>
+
+        <li class="nav-item nav-item-this"><a href="">OpenMEEG from the command line</a></li>
+
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">OpenMEEG from the command line</a><ul>
+<li><a class="reference internal" href="#om-assemble">om_assemble</a><ul>
+<li><a class="reference internal" href="#general-options-for-om-assemble">General options for <span class="command">om_assemble</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#om-minverser">om_minverser</a></li>
+<li><a class="reference internal" href="#om-gain">om_gain</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="openmeeg-from-the-command-line">
+<h1>OpenMEEG from the command line<a class="headerlink" href="#openmeeg-from-the-command-line" title="Permalink to this headline">¶</a></h1>
+<p>Diagram for the low level pipeline for computing leadfields (a.k.a., gain matrices) using OpenMEEG:</p>
+<a class="reference internal image-reference" href="_images/OpenMEEGSimple_new.png"><img alt="dipole positions" class="align-center" src="_images/OpenMEEGSimple_new.png" style="width: 600px;" /></a>
+<p>This section reviews the main OpenMEEG command line tools.
+The general syntax and main options are detailed for each command.</p>
+<p>Full details are available in OpenMEEG documentation.
+In this section, <span class="command">command</span> names are in <span class="command">red</span>, <span class="opt">options</span> are in <span class="opt">green</span> and <span class="output">output</span> files are shown in <span class="output">blue</span>.</p>
+<section id="om-assemble">
+<h2>om_assemble<a class="headerlink" href="#om-assemble" title="Permalink to this headline">¶</a></h2>
+<p>General syntax:</p>
+<p><span class="command">om_assemble</span> <span class="opt">Option</span> <span class="input">Parameters</span> <span class="output">Matrix</span></p>
+<p>This program assembles the different matrices to be used in later stages.
+It uses the head description (the geometrical model and the conductivities of the head see <a href="#id1"><span class="problematic" id="id2">`sec.geom`_</span></a>, and <a href="#id3"><span class="problematic" id="id4">`sec.cond`_</span></a>), the sources (see <a href="#id5"><span class="problematic" id="id6">`sec.sources`_</span></a>) and the sensors (see <a href="#id7"><span class="problematic" id="id8">`sec.sensors`_</span></a>) information.
+<span class="opt">Option</span> selects the type of matrix to assemble.
+<span class="input">Parameters</span> depends on the specific option <span class="opt">Option</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Abbreviated option names can be used, such as <span class="opt">-HM</span> or <span class="opt">-hm</span> instead of <span class="opt">-HeadMat</span>.</p>
+</div>
+<p>We now detail the possible <span class="opt">options</span> (with their abbreviated versions given in parentheses), allowing to define various matrices to assemble.</p>
+<p>A typical command is:</p>
+<p><span class="command">om_assemble</span> <span class="opt">-HeadMat</span> <span class="input">subject.geom</span> <span class="input">subject.cond</span> <span class="output">HeadMat.mat</span></p>
+<p>In the above example, the <span class="input">Parameters</span> are the two file names: <span class="input">subject.geom</span> <span class="input">subject.cond</span>. More generally, the <span class="input">Parameters</span> include two such file names describing geometry and conductivity, plus additional <span class="input">Input</span>, describe below for each <span class="opt">Option</span>.</p>
+<section id="general-options-for-om-assemble">
+<h3>General options for <span class="command">om_assemble</span><a class="headerlink" href="#general-options-for-om-assemble" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul>
+<li><p><span class="opt">–help</span> (<span class="opt">-h</span>): summarizes all possible options.</p>
+<p>Head modelling options for <span class="command">om_assemble</span>: produce matrices (called head matrices) linked to the propagation of electrical signals in the head.</p>
+</li>
+<li><p><span class="opt">-HeadMat</span> (<span class="opt">-HM</span>, <span class="opt">-hm</span>): <span class="command">om_assemble</span> computes the matrix called Head Matrix (a.k.a structure matrix) for the Symmetric BEM, linked to the electrical conduction within the head. The output matrix is symmetric.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The symmetric format only stores the lower half of a matrix.</p>
+</div>
+<p><strong>Source modelling</strong> options for <span class="command">om_assemble</span>: compute the source matrix for Symmetric BEM (right-hand side of the linear system).
+This matrix maps the representation of the sources to their associated electric potential in an infinite medium (<img class="math" src="_images/math/8483a068e5a57d36b6aefad27c28a1c2d6a3c964.png" alt="v_{\Omega_1}"/>).
+Different options exist for the 2 types of source models:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="opt">-DipSourceMat</span> (<span class="opt">-DSM</span>, <span class="opt">-dsm</span>): should be used when considering several isolated dipoles.
+This model is the most commonly used and should be used by default even if the dipoles correspond to the vertices of a cortical mesh. <span class="input">Input</span> is a file containing the dipole descriptions.
+For faster computations, one can consider giving the name of the domain (containing all dipoles) as a string as an optional parameter in the end of the command line (see Example).</p></li>
+<li><p><span class="opt">-SurfSourceMat</span> (<span class="opt">-SSM</span>, <span class="opt">-ssm</span>): should be used for continuous surfacic distributions
+of dipoles. <span class="input">Input</span> is a file containing a mesh that describes the surface.
+For faster computations, one can consider giving the name of the domain (containing all dipoles)
+as a string as an optional parameter in the end of the command line.</p></li>
+<li><p><span class="opt">-EITSourceMat</span> (<span class="opt">-EITSM</span>, <span class="opt">-EITsm</span>,): <span class="command">om_assemble</span> computes the
+right-hand side vector for a given set of scalp electrodes where current injection is applied
+(which can be used for Electrical Impedance Tomography, EIT). For this option, <span class="input">Input</span>
+is a file describing the electrode positions.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Sensor modelling</strong> options for <span class="command">om_assemble</span>: compute matrices which are needed to integrate source and sensor information with computed potentials to provide the actual solution of the forward problem. The the following situations are handled: EEG, ECoG, sEEG, MEG.</p>
+<dl class="simple">
+<dt>EEG:</dt><dd><ul class="simple">
+<li><p><span class="opt">-Head2EEGMat</span> (<span class="opt">-H2EM</span>, <span class="opt">-h2em</span>): <span class="command">om_assemble</span> computes the linear interpolation matrix that maps OpenMEEG unknown <img class="math" src="_images/math/526357396cfb51c6af0affbd4543d46cfd67074b.png" alt="\mathbf{X}"/> to the potential on the scalp at EEG sensors: <img class="math" src="_images/math/7a85aa75c7864b8bb1fc09b2919d67e6b0d454a8.png" alt="\mathbf{V_{sensors}} = \mathbf{Head2EEGMat} . \mathbf{X}"/>. <span class="input">Input</span> is a file describing the EEG sensor positions. <img class="math" src="_images/math/7a5550c5d81d0f5c474adaa7f7cbdcd03574a0ac.png" alt="\mathbf{Head2EEGMat}"/> is stored as a sparse matrix.</p></li>
+</ul>
+</dd>
+<dt>ECoG:</dt><dd><ul class="simple">
+<li><p><span class="opt">-Head2ECoGMat</span> (<span class="opt">-H2ECogM</span>, <span class="opt">-H2ECOGM</span>, <span class="opt">-h2ecogm</span>): <span class="command">om_assemble</span> computes the linear interpolation matrix that maps the OpenMEEG unknown <img class="math" src="_images/math/526357396cfb51c6af0affbd4543d46cfd67074b.png" alt="\mathbf{X}"/> to the potential on the scalp at EEG sensors: <img class="math" src="_images/math/5240a3890e98a2738f5efb85120a451b8d6afe04.png" alt="\mathbf{V_{sensors}} = \mathbf{Head2ECoGMat} . \mathbf{X}"/>. <span class="input">Input</span> contains two parameters: the file describing the ECoG sensor positions, and the name of the interface on which the ECoG electrodes should be mapped.  <img class="math" src="_images/math/cdd8eb6a402d7af284441aa1ddf1fbbe1aa43a9e.png" alt="\mathbf{Head2ECoGMat}"/> is stored as a sparse matrix.</p></li>
+</ul>
+</dd>
+<dt>sEEG:</dt><dd><ul class="simple">
+<li><p><span class="opt">-Head2InternalPotMat</span> (<span class="opt">-H2IPM</span>, <span class="opt">-h2ipm</span>): <span class="command">om_assemble</span> computes the matrix that allows
+the computation of potentials at internal positions from potentials and normal currents on head interfaces, as computed by the symmetric BEM.</p></li>
+<li><p><span class="opt">-DipSource2InternalPotMat</span> (<span class="opt">-DS2IPM</span>, <span class="opt">-ds2ipm</span>): <span class="command">om_assemble</span> computes the source  contribution to the chosen internal points. It gives the potential due to isolated dipoles, as if the medium were  infinite. For this option, <span class="input">Input</span> takes the form: <span class="input">dipoles internalPoints</span> where <span class="input">dipoles</span> contains the dipole description and <span class="input">internalPoints</span> is  a file describing the points locations.</p></li>
+</ul>
+</dd>
+<dt>MEG:</dt><dd><ul class="simple">
+<li><p><span class="opt">-Head2MEGMat</span> (<span class="opt">-H2MM</span>, <span class="opt">-h2mm</span>): <span class="command">om_assemble</span> computes the contribution of Ohmic currents to the MEG sensors. <span class="input">Input</span> is a file describing the SQUIDS geometries and characteristics.</p></li>
+<li><p><span class="opt">-SurfSource2MEGMat</span> (<span class="opt">-SS2MM</span>, <span class="opt">-ss2mm</span>): <span class="command">om_assemble</span> computes the source contribution to the MEG sensors using the same source model as the one used for the option <span class="opt">-SurfSourceMat, i.e. surfacic distribution of dipoles. For this option, :input:`Input</span> takes the form: <span class="input">mesh squids</span> where <span class="input">mesh</span> contains a mesh describing the source surface and <span class="input">squids</span> is a file  describing the SQUIDS geometries and characteristics.</p>
+<ul>
+<li><p><span class="opt">-DipSource2MEGMat</span> (<span class="opt">-DS2MM</span>, <span class="opt">-ds2mm</span>): <span class="command">om_assemble</span> computes the source contribution to the  MEG sensors using the same source model as the one used for the option <span class="opt">-DipSourceMat</span>, i.e. isolated dipoles. For this option, <span class="input">Input</span> takes the form: <span class="input">dipoles squids</span> where <span class="input">dipoles</span> contains the dipole description and <span class="input">squids</span> is a file describing  the SQUIDS geometries and characteristics.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="om-minverser">
+<h2>om_minverser<a class="headerlink" href="#om-minverser" title="Permalink to this headline">¶</a></h2>
+<p>General syntax:</p>
+<p><span class="command">om_minverser</span> <span class="input">HeadMat</span> <span class="output">HeadMatInv</span></p>
+<p>This program is used to invert the symmetric matrix as provided by the command <span class="command">om_assemble</span> with the option <span class="opt">-HeadMat</span>.</p>
+<p>This command has only one option:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="opt">–help</span> (<span class="opt">-h</span>): summarizes the usage of <span class="command">om_minverser</span>.</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The output matrix <span class="output">HeadMatInv</span> is a symmetric matrix, like <span class="input">HeadMat</span>.</p>
+</div>
+</section>
+<section id="om-gain">
+<h2>om_gain<a class="headerlink" href="#om-gain" title="Permalink to this headline">¶</a></h2>
+<p>General syntax:</p>
+<p><span class="command">om_gain</span> <span class="opt">Option</span> <span class="input">HeadMatInv</span> <span class="opt">Parameters</span> SourceMat Head2EEGMat <span class="output">GainMatrix</span></p>
+<p>This command computes the gain matrix by multiplying together matrices obtained previously (e.g. <span class="input">HeadMatInv</span> is the matrix computed using <span class="command">om_minverser</span>).
+The resulting gain matrix is stored in the file <span class="output">GainMatrix</span>.
+<span class="opt">Option</span> selects the type of matrix to build. <span class="opt">Parameters</span> depend on the specific option <span class="opt">Option</span>.</p>
+<p>General options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="opt">–help</span> (<span class="opt">-h</span>): summarizes the usage of <span class="command">om_gain</span> for all its possible options.</p></li>
+</ul>
+</div></blockquote>
+<p>Gain matrix type options: select the type of gain matrix to be computed by  <span class="command">om_gain</span>.</p>
+<blockquote>
+<div><ul>
+<li><dl class="simple">
+<dt><span class="opt">-EEG</span>: allows to compute an EEG or an ECoG gain matrix. For EEG <span class="opt">Parameters</span> are then:  <span class="input">HeadMatInv SourceMat Head2EEGMat</span>. For ECoG <span class="input">Head2EEGMat</span> should simply be replaced  by <span class="input">Head2ECoGMat</span></dt><dd><ul class="simple">
+<li><p><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
+<span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model.</p></li>
+<li><p><span class="input">Head2EEGMat</span> (resp. <span class="input">Head2ECoGMat</span>) is the matrix obtained using <span class="command">om_assemble</span> with the option <span class="opt">-Head2EEGMat</span> (resp. <span class="opt">-Head2ECoGMat</span>).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><span class="opt">-EEG</span> option is also used to compute an EIT gain matrix: in this case, <span class="input">SourceMat</span>
+should contain the output of the <span class="opt">-EITsource</span> option of <span class="command">om_assemble</span>. Multiplying
+the EIT gain matrix by the vector of applied currents at each EIT electrode yields the simulated
+potential on the EEG electrodes. The applied current on the EIT electrodes should sum to zero.</p></li>
+<li><p><span class="opt">-MEG</span>: allows to compute a MEG gain matrix. <span class="opt">Parameters</span> are then:</p>
+<blockquote>
+<div><ul>
+<li><p><span class="input">HeadMatInv SourceMat Head2MEGMat Source2MEGMat</span></p></li>
+<li><p><span class="input">SourceMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the options
+<span class="opt">-SurfSourceMat</span> or <span class="opt">-DipSourceMat</span>, depending on the source model. <span class="input">Head2MEGMat</span>
+is the matrix obtained using <span class="command">om_assemble</span> with the option <span class="opt">-HeadMEEGMat</span>.
+<span class="input">Source2MEGMat</span> is the matrix obtained using <span class="command">om_assemble</span> with either of the
+options <span class="opt">-SurfSource2MEGMat</span> or <span class="opt">-DipSource2MEGMat</span>, depending on the source model.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The magnetic field is related both to the sources and to the electric potential, according to: <img class="math" src="_images/math/530fb6788182eadc6c9a71bf4aebf2a434c365da.png" alt="\mathbf{M_{sensor}} = \mathbf{Source2MEGMat} * \mathbf{S} + \mathbf{Head2MEGMat}.\mathbf{X}"/>.</p>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><span class="opt">-InternalPotential</span>: allows to compute an internal potential gain matrix for sensors within the volume. <span class="opt">Parameters</span> are then:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><span class="input">HeadMatInv SourceMat Head2InternalPotMat Source2InternalPotMat</span></p></li>
+<li><p><span class="input">Head2InternalPotMat</span> and <span class="input">Source2InternalPotMat</span> are respectively obtained
+using <span class="command">om_assemble</span> with option <span class="opt">-Head2InternalPotMat</span> and <span class="opt">-DipSource2InternalPotMat</span>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2009-2022, OpenMEEG Developers..
+      Last updated on Aug 18, 2022.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+    </div>
+  </body>
+</html>

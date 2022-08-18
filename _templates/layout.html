@@ -3,16 +3,19 @@
 {% block relbar2 %}{% endblock %}
 
 {% block rootrellink %}
-        <li><a href="{{ pathto('index') }}">Home</a>&nbsp;|&nbsp;</li>
-        <li><a href="{{ pathto('why_openmeeg') }}">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
-        <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
-        <li><a href="{{ pathto('news') }}">News</a>&nbsp;|&nbsp;</li>
-        <li><a href="{{ pathto('tutorial') }}">Tutorial</a>&nbsp;|&nbsp;</li>
-        <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
-        <li><a href="{{ pathto('license') }}">License</a>&nbsp;|&nbsp;</li>
-        <li><a href="{{ pathto('publications') }}">Publications</a>&nbsp;|&nbsp;</li>
-        <li><a href="{{ pathto('contact') }}">Contact us</a>&nbsp;|&nbsp;</li>
-        <!-- <li><a href="{{ pathto('search') }}">Search</a></li> -->
+    <li><a href="{{ pathto('index') }}">Home</a>&nbsp;|&nbsp;</li>
+    <li><a href="{{ pathto('why_openmeeg') }}">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
+    <li><a href="{{ pathto('news') }}">News</a>&nbsp;|&nbsp;</li>
+    <li><a href="{{ pathto('tutorial') }}">Tutorial</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+    <li><a href="{{ pathto('license') }}">License</a>&nbsp;|&nbsp;</li>
+    <li><a href="{{ pathto('contributors') }}">Contributors</a>&nbsp;|&nbsp;</li>
+    <li><a href="{{ pathto('publications') }}">Publications</a>&nbsp;|&nbsp;</li>
+    <li><a href="{{ pathto('contact') }}">Contact us</a></li>
+{% endblock %}
+
+{% block relbaritems %}
 {% endblock %}
 
 {% block relbar1 %}
@@ -21,8 +24,7 @@
         <a href="{{ pathto('index') }}"><img src="{{ pathto("_static/logo.png", 1) }}" border="0" alt="openmeeg"/></a>
     </div>
     <div id="title" style="display:inline-block">
-        OpenMEEG
-         <br/>
+        <h1 style="font-size: 2.5em;">OpenMEEG</h1>
         A C++ package for low-frequency bio-electromagnetism <br/>
         solving forward problems in the field of EEG and MEG
     </div>

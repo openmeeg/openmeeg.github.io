@@ -48,4 +48,3 @@ See the following publication for more details on this comparison between differ
 .. |end-div| raw:: html
 
   </div>
-

@@ -25,10 +25,10 @@
    news
    tutorial
    license
+   contributors
+   publications
    contact
-
 
 .. only:: html
 
   .. include:: overview.rst
-

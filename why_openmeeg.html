@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Why use OpenMEEG? &#8212; OpenMEEG</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/navy.css" />
@@ -22,8 +23,7 @@
         <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
     </div>
     <div id="title" style="display:inline-block">
-        OpenMEEG
-         <br/>
+        <h1 style="font-size: 2.5em;">OpenMEEG</h1>
         A C++ package for low-frequency bio-electromagnetism <br/>
         solving forward problems in the field of EEG and MEG
     </div>
@@ -44,25 +44,27 @@
         <li class="right" >
           <a href="overview.html" title="Overview"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
-        <li><a href="#">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
-        <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
-        <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
-        <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
-        <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
-        <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
-        <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
-        <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
-        <!-- <li><a href="search.html">Search</a></li> -->
+    <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
+    <li><a href="#">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
+    <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
+    <li><a href="tutorial.html">Tutorial</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+    <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
+    <li><a href="contributors.html">Contributors</a>&nbsp;|&nbsp;</li>
+    <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
+    <li><a href="contact.html">Contact us</a></li>
 
-        <li class="nav-item nav-item-this"><a href="">Why use OpenMEEG?</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Why use OpenMEEG?</a></li>
+
       </ul>
     </div>
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Why use OpenMEEG?</a><ul>
 <li><a class="reference internal" href="#how-do-you-measure-precision">How do you measure precision?</a></li>
 <li><a class="reference internal" href="#benchmark-openmeeg-outperforms-other-implementations">Benchmark: OpenMEEG outperforms other implementations</a></li>
@@ -70,12 +72,17 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="overview.html"
-                        title="previous chapter">Overview</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="news.html"
-                        title="next chapter">News</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="overview.html"
+                          title="previous chapter">Overview</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="news.html"
+                          title="next chapter">News</a></p>
+  </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -94,18 +101,18 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="why-use-openmeeg">
+  <section id="why-use-openmeeg">
 <span id="why-openmeeg"></span><h1>Why use OpenMEEG?<a class="headerlink" href="#why-use-openmeeg" title="Permalink to this headline">¶</a></h1>
 <p>OpenMEEG offers better precision.</p>
-<div class="section" id="how-do-you-measure-precision">
+<section id="how-do-you-measure-precision">
 <h2>How do you measure precision?<a class="headerlink" href="#how-do-you-measure-precision" title="Permalink to this headline">¶</a></h2>
 <p>Relative difference measure (RDM) <em>(should be close to 0)</em> and Magnitude error (MAG) <em>(should be close to 1)</em>:</p>
 <div class="math">
 <p><img src="_images/math/0ceca5f34a82c555aa99ccfa3376b2df66c9c56c.png" alt="\mathbf{MAG} = \left\| \frac{V_{bem}}{\|V_{bem}\|_2} - \frac{V_{exact}}{\|V_{exact}\|_2} \right\| \,,\, \mathbf{RDM} = \frac{\|V_{bem}\|_2}{\|V_{exact}\|_2}"/></p>
 </div><p>A sample sphere model with 5 dipoles:</p>
 <p><div style="text-align: center; margin: -7px 0 -10px 0;">   <a class="reference internal" href="_images/sphere_dipoles_3D.png"><img alt="Sphere model with 5 dipoles" src="_images/sphere_dipoles_3D.png" style="width: 250px;" /></a>   <a class="reference internal" href="_images/sphere_dipoles_3D_zoom.png"><img alt="Sphere model with 5 dipoles (zoom)" src="_images/sphere_dipoles_3D_zoom.png" style="width: 200px;" /></a>   </div></p>
-</div>
-<div class="section" id="benchmark-openmeeg-outperforms-other-implementations">
+</section>
+<section id="benchmark-openmeeg-outperforms-other-implementations">
 <h2>Benchmark: OpenMEEG outperforms other implementations<a class="headerlink" href="#benchmark-openmeeg-outperforms-other-implementations" title="Permalink to this headline">¶</a></h2>
 <p><div style="text-align: center; margin: -7px 0 -10px 0;">   <img alt="BEM Comparison MAGs" src="_images/bem_comparison_mags.png" />   <img alt="BEM Comparison RDMs" src="_images/bem_comparison_rdms.png" />   </div></p>
 <p>See the following publication for more details on this comparison between different forward solvers:</p>
@@ -114,8 +121,8 @@
 <li><p>Gramfort, T. Papadopoulo, E. Olivi, M. Clerc. OpenMEEG: opensource software for quasistatic bioelectromagnetics, <a class="reference external" href="http://www.biomedical-engineering-online.com/content/9/1/45">BioMedical Engineering OnLine 45:9, 2010</a></p></li>
 </ol>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -126,8 +133,8 @@
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2009-2022, OpenMEEG Developers..
-      Last updated on Jan 03, 2022.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+      Last updated on Aug 18, 2022.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
   </body>
 </html>

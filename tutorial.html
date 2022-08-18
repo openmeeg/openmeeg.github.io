@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Tutorial &#8212; OpenMEEG</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/navy.css" />
@@ -22,8 +23,7 @@
         <a href="index.html"><img src="_static/logo.png" border="0" alt="openmeeg"/></a>
     </div>
     <div id="title" style="display:inline-block">
-        OpenMEEG
-         <br/>
+        <h1 style="font-size: 2.5em;">OpenMEEG</h1>
         A C++ package for low-frequency bio-electromagnetism <br/>
         solving forward problems in the field of EEG and MEG
     </div>
@@ -44,25 +44,27 @@
         <li class="right" >
           <a href="news.html" title="News"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
-        <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
-        <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
-        <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
-        <li><a href="#">Tutorial</a>&nbsp;|&nbsp;</li>
-        <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
-        <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
-        <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
-        <li><a href="contact.html">Contact us</a>&nbsp;|&nbsp;</li>
-        <!-- <li><a href="search.html">Search</a></li> -->
+    <li><a href="index.html">Home</a>&nbsp;|&nbsp;</li>
+    <li><a href="why_openmeeg.html">Why OpenMEEG?</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://files.inria.fr/OpenMEEG/download/">Download</a>&nbsp;|&nbsp;</li>
+    <li><a href="news.html">News</a>&nbsp;|&nbsp;</li>
+    <li><a href="#">Tutorial</a>&nbsp;|&nbsp;</li>
+    <li><a href="https://github.com/openmeeg/openmeeg/">Source code</a>&nbsp;|&nbsp;</li>
+    <li><a href="license.html">License</a>&nbsp;|&nbsp;</li>
+    <li><a href="contributors.html">Contributors</a>&nbsp;|&nbsp;</li>
+    <li><a href="publications.html">Publications</a>&nbsp;|&nbsp;</li>
+    <li><a href="contact.html">Contact us</a></li>
 
-        <li class="nav-item nav-item-this"><a href="">Tutorial</a></li> 
+        <li class="nav-item nav-item-this"><a href="">Tutorial</a></li>
+
       </ul>
     </div>
 
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Tutorial</a><ul>
 <li><a class="reference internal" href="#data-format">Data format</a><ul>
 <li><a class="reference internal" href="#vectors-and-matrices">Vectors and matrices</a></li>
@@ -94,12 +96,17 @@
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="news.html"
-                        title="previous chapter">News</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="license.html"
-                        title="next chapter">License</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="news.html"
+                          title="previous chapter">News</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="license.html"
+                          title="next chapter">License</a></p>
+  </div>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -118,7 +125,7 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="tutorial">
+  <section id="tutorial">
 <span id="id1"></span><h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -141,10 +148,10 @@
 <li><p><a class="reference internal" href="#examples" id="id11">Examples</a></p></li>
 </ul>
 </div>
-<div class="section" id="data-format">
+<section id="data-format">
 <h2><a class="toc-backref" href="#id2">Data format</a><a class="headerlink" href="#data-format" title="Permalink to this headline">¶</a></h2>
 <p>OpenMEEG handles several file formats corresponding to different types of objects: vectors, matrices, head geometries, conductivities, meshes, dipoles, sensors.</p>
-<div class="section" id="vectors-and-matrices">
+<section id="vectors-and-matrices">
 <h3><a class="toc-backref" href="#id3">Vectors and matrices</a><a class="headerlink" href="#vectors-and-matrices" title="Permalink to this headline">¶</a></h3>
 <p>By default, matrices and vectors are stored on disk using a <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> file format.
 Symmetric matrices which are not directly representable in the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> format are represented as a <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> struct.
@@ -153,8 +160,8 @@ Forcing a specific file format is achieved by specifying the proper file extensi
 <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> extension is <code class="docutils literal notranslate"><span class="pre">.mat</span></code>.
 Other useful file formats are ASCII (extension <code class="docutils literal notranslate"><span class="pre">.txt</span></code>) which generates human readable files, and BrainVisa texture file format (extension <code class="docutils literal notranslate"><span class="pre">.tex</span></code>).</p>
 <p>OpenMEEG’s own binary file format (extension <code class="docutils literal notranslate"><span class="pre">.bin</span></code>) is available solely for backward compatibility and should be considered as deprecated (as it is subsumed by the <code class="docutils literal notranslate"><span class="pre">MATLAB</span></code> file format).</p>
-</div>
-<div class="section" id="geometrical-model-mesh-and-conductivity-files">
+</section>
+<section id="geometrical-model-mesh-and-conductivity-files">
 <span id="sec-geom"></span><h3><a class="toc-backref" href="#id4">Geometrical model, mesh and conductivity files</a><a class="headerlink" href="#geometrical-model-mesh-and-conductivity-files" title="Permalink to this headline">¶</a></h3>
 <p><strong>OpenMEEG geometrical models</strong> are described through several files.
 The toplevel file (generally ending with the extension <code class="docutils literal notranslate"><span class="pre">.geom</span></code>) assembles various interface descriptions to build <em>Domains</em> corresponding to head tissues.
@@ -194,7 +201,7 @@ In OpenMEEG, we make the following distinction between Mesh and Interface, which
 <li><p>If the sections <code class="docutils literal notranslate"><span class="pre">MeshFile</span></code> and <code class="docutils literal notranslate"><span class="pre">Meshes</span></code> were NOT specified before, a path to a mesh file is expected.</p></li>
 <li><p>In the opposite case, a sequence of mesh names is expected.</p></li>
 <li><p>These meshes are concatenated to form a closed Interface.</p></li>
-<li><p>‘+’ or ‘-‘ sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.</p></li>
+<li><p>‘+’ or ‘-’ sign preceeding a mesh name reorients the meshes in order to form a consistently oriented interface.</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -203,13 +210,13 @@ In OpenMEEG, we make the following distinction between Mesh and Interface, which
 <div><ul class="simple">
 <li><p>Each domain is then described, one domain per line, by the keyword <code class="docutils literal notranslate"><span class="pre">Domain</span></code> followed by the domain name (which serves for identification and also appears in the conductivity description) followed by a list of IDs (names or integers).</p></li>
 <li><p>These IDs are the interface names (as depicted in previous paragraph).</p></li>
-<li><p>They must be preceeded by a ‘+’ or ‘-‘ sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).</p></li>
+<li><p>They must be preceeded by a ‘+’ or ‘-’ sign to indicate whether the domain is outside or inside the corresponding interface (as defined by the outward normal of the interface).</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 <p>See <a class="reference internal" href="#fig-geom">fig.geom</a> for a detailed example.</p>
-<div class="section" id="meshes">
+<section id="meshes">
 <span id="sec-meshes"></span><h4>Meshes<a class="headerlink" href="#meshes" title="Permalink to this headline">¶</a></h4>
 <p>Meshes are a central element of Boundary Element Methods. They are used to represent the interfaces between regions of homogeneous conductivity. For instance, in a simple three-layer head model, three meshes would be used to represent:</p>
 <blockquote>
@@ -263,8 +270,8 @@ Each triangle is depicted by a sequence of three integers corresponding to the i
 <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="geometry-tools">
+</section>
+<section id="geometry-tools">
 <span id="sec-cond"></span><h4>Geometry tools<a class="headerlink" href="#geometry-tools" title="Permalink to this headline">¶</a></h4>
 <p>Interfaces are required to be closed in order for the Boundary Element Method to function correctly. This is also necessary for the source meshes when computing forward solutions using surfacic source models (see below).
 Moreover, the interface meshes must not intersect each other. Non-intersection can be checked with the command <span class="command">om_check_geom</span>.
@@ -278,13 +285,13 @@ Associations are provided one per line. Empty lines or lines beginning with <cod
 The next figure provides an example conductivity file corresponding to the geometry file presented above.</p>
 <a class="reference internal image-reference" href="_images/cond.png"><img alt="Conductivities" class="align-center" src="_images/cond.png" style="width: 600px;" /></a>
 <p>Note that the tissue names are the ones appearing in the Domains descriptions of the Geometry description file (case sensitive).</p>
-</div>
-</div>
-<div class="section" id="source-descriptions">
+</section>
+</section>
+<section id="source-descriptions">
 <span id="sec-sources"></span><h3><a class="toc-backref" href="#id5">Source descriptions</a><a class="headerlink" href="#source-descriptions" title="Permalink to this headline">¶</a></h3>
 <p>Sources are defined by their geometry (position and orientation) and their magnitude.
 OpenMEEG handles two types of source models: isolated dipoles, or distributed dipoles: these two models differ in their geometry description.</p>
-<div class="section" id="isolated-dipoles">
+<section id="isolated-dipoles">
 <h4>Isolated dipoles<a class="headerlink" href="#isolated-dipoles" title="Permalink to this headline">¶</a></h4>
 <p>Isolated dipoles are represented by a text file (extension *.dip or *.txt), in which each line defines a dipole position and orientation, encoded in 6 real values:</p>
 <blockquote>
@@ -299,12 +306,12 @@ OpenMEEG handles two types of source models: isolated dipoles, or distributed di
 <p class="admonition-title">Note</p>
 <p>The referential of the coordinates should be the same as for the meshes (the MR coordinates in general).</p>
 </div>
-</div>
-<div class="section" id="distributed-dipoles">
+</section>
+<section id="distributed-dipoles">
 <h4>Distributed dipoles<a class="headerlink" href="#distributed-dipoles" title="Permalink to this headline">¶</a></h4>
 <p>Distributed dipoles are supported on a mesh, whose format must be *.mesh, or *.tri, or *.vtk.</p>
-</div>
-<div class="section" id="source-activation">
+</section>
+<section id="source-activation">
 <h4>Source activation<a class="headerlink" href="#source-activation" title="Permalink to this headline">¶</a></h4>
 <p>Source activation files are text files, in which each line corresponds to a source, and each column to a time sample.</p>
 <blockquote>
@@ -321,9 +328,9 @@ The source amplitude is represented as continuous, and linear on each of the mes
 The source orientation is modeled as piecewise constant, normal to each of the mesh triangles.</p>
 <a class="reference internal image-reference" href="_images/cortex.png"><img alt="Cortex" class="align-center" src="_images/cortex.png" style="width: 300px;" /></a>
 <p>Isolated sources are the superposition of current dipoles, each of which is defined by its position and its moment.</p>
-</div>
-</div>
-<div class="section" id="sensors">
+</section>
+</section>
+<section id="sensors">
 <span id="sec-sensors"></span><h3><a class="toc-backref" href="#id6">Sensors</a><a class="headerlink" href="#sensors" title="Permalink to this headline">¶</a></h3>
 <p>For EEG, the sensors are defined by the list of the x-y-z coordinates of the electrode
 positions. The electrodes are considered punctual and are called <em>patches</em>.
@@ -370,9 +377,9 @@ The MEG sensor definition is provided in a text file, in which each line provide
 </div></blockquote>
 <p>An example of MEG sensor description:</p>
 <a class="reference internal image-reference" href="_images/sensors-grad.png"><img alt="Sensor description" class="align-center" src="_images/sensors-grad.png" style="width: 600px;" /></a>
-</div>
-</div>
-<div class="section" id="openmeeg-from-the-command-line">
+</section>
+</section>
+<section id="openmeeg-from-the-command-line">
 <h2><a class="toc-backref" href="#id7">OpenMEEG from the command line</a><a class="headerlink" href="#openmeeg-from-the-command-line" title="Permalink to this headline">¶</a></h2>
 <p>Diagram for the low level pipeline for computing leadfields (a.k.a., gain matrices) using OpenMEEG:</p>
 <a class="reference internal image-reference" href="_images/OpenMEEGSimple_new.png"><img alt="dipole positions" class="align-center" src="_images/OpenMEEGSimple_new.png" style="width: 600px;" /></a>
@@ -380,7 +387,7 @@ The MEG sensor definition is provided in a text file, in which each line provide
 The general syntax and main options are detailed for each command.</p>
 <p>Full details are available in OpenMEEG documentation.
 In this section, <span class="command">command</span> names are in <span class="command">red</span>, <span class="opt">options</span> are in <span class="opt">green</span> and <span class="output">output</span> files are shown in <span class="output">blue</span>.</p>
-<div class="section" id="om-assemble">
+<section id="om-assemble">
 <h3><a class="toc-backref" href="#id8">om_assemble</a><a class="headerlink" href="#om-assemble" title="Permalink to this headline">¶</a></h3>
 <p>General syntax:</p>
 <p><span class="command">om_assemble</span> <span class="opt">Option</span> <span class="input">Parameters</span> <span class="output">Matrix</span></p>
@@ -396,7 +403,7 @@ It uses the head description (the geometrical model and the conductivities of th
 <p>A typical command is:</p>
 <p><span class="command">om_assemble</span> <span class="opt">-HeadMat</span> <span class="input">subject.geom</span> <span class="input">subject.cond</span> <span class="output">HeadMat.mat</span></p>
 <p>In the above example, the <span class="input">Parameters</span> are the two file names: <span class="input">subject.geom</span> <span class="input">subject.cond</span>. More generally, the <span class="input">Parameters</span> include two such file names describing geometry and conductivity, plus additional <span class="input">Input</span>, describe below for each <span class="opt">Option</span>.</p>
-<div class="section" id="general-options-for-om-assemble">
+<section id="general-options-for-om-assemble">
 <h4>General options for <span class="command">om_assemble</span><a class="headerlink" href="#general-options-for-om-assemble" title="Permalink to this headline">¶</a></h4>
 <blockquote>
 <div><ul>
@@ -454,9 +461,9 @@ the computation of potentials at internal positions from potentials and normal c
 </ul>
 </dd>
 </dl>
-</div>
-</div>
-<div class="section" id="om-minverser">
+</section>
+</section>
+<section id="om-minverser">
 <h3><a class="toc-backref" href="#id9">om_minverser</a><a class="headerlink" href="#om-minverser" title="Permalink to this headline">¶</a></h3>
 <p>General syntax:</p>
 <p><span class="command">om_minverser</span> <span class="input">HeadMat</span> <span class="output">HeadMatInv</span></p>
@@ -471,8 +478,8 @@ the computation of potentials at internal positions from potentials and normal c
 <p class="admonition-title">Note</p>
 <p>The output matrix <span class="output">HeadMatInv</span> is a symmetric matrix, like <span class="input">HeadMat</span>.</p>
 </div>
-</div>
-<div class="section" id="om-gain">
+</section>
+<section id="om-gain">
 <h3><a class="toc-backref" href="#id10">om_gain</a><a class="headerlink" href="#om-gain" title="Permalink to this headline">¶</a></h3>
 <p>General syntax:</p>
 <p><span class="command">om_gain</span> <span class="opt">Option</span> <span class="input">HeadMatInv</span> <span class="opt">Parameters</span> SourceMat Head2EEGMat <span class="output">GainMatrix</span></p>
@@ -529,9 +536,9 @@ using <span class="command">om_assemble</span> with option <span class="opt">-He
 </li>
 </ul>
 </div></blockquote>
-</div>
-</div>
-<div class="section" id="examples">
+</section>
+</section>
+<section id="examples">
 <h2><a class="toc-backref" href="#id11">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>Assuming a head model represented by the geometry file <span class="input">head.geom</span> and the conductivity file <span class="input">head.cond</span> and EEG sensors detailed in a file <span class="input">head.eegsensors</span>.</p>
 <p>Computing the EEG gain matrix for sources distributed on a surface mesh represented by the file <span class="input">sources.tri</span> is done via the following set of commands:</p>
@@ -551,8 +558,8 @@ using <span class="command">om_assemble</span> with option <span class="opt">-He
 <span class="n">om_gain</span> <span class="o">-</span><span class="n">MEG</span> <span class="n">head</span><span class="o">.</span><span class="n">hm_inv</span> <span class="n">head</span><span class="o">.</span><span class="n">dsm</span> <span class="n">head</span><span class="o">.</span><span class="n">h2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">ds2mm</span> <span class="n">head</span><span class="o">.</span><span class="n">gain</span>
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
             <div class="clearer"></div>
@@ -563,8 +570,8 @@ using <span class="command">om_assemble</span> with option <span class="opt">-He
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2009-2022, OpenMEEG Developers..
-      Last updated on Jan 03, 2022.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.1.2.
+      Last updated on Aug 18, 2022.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
     </div>
   </body>
 </html>

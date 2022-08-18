@@ -24,19 +24,31 @@ Using OpenMEEG
 .. raw:: html
 
   Works with:
-  <div class="logo" style="text-align: center; margin: -7px 0 -10px 0;">
+  <div class="logo" style="text-align: left; margin: -7px 0 -10px 0;">
+
+.. image:: _static/empty.png
+   :width: 50px
 
 .. image:: _static/logo_brainstorm.png
    :width: 200px
    :target: http://neuroimage.usc.edu/brainstorm
 
+.. image:: _static/empty.png
+   :width: 50px
+
 .. image:: _static/logo_fieldtrip.png
    :width: 130px
    :target: http://fieldtrip.fcdonders.nl
 
+.. image:: _static/empty.png
+   :width: 50px
+
 .. image:: _static/nutmeglogo.png
    :width: 130px
    :target: http://www.nitrc.org/plugins/mwiki/index.php/nutmeg:MainPage
+
+.. image:: _static/empty.png
+   :width: 50px
 
 .. image:: _static/pythonlogo.png
    :width: 170px

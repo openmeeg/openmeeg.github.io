@@ -66,10 +66,24 @@
     <h3><a href="index.html">Table of Contents</a></h3>
     <ul>
 <li><a class="reference internal" href="#">News</a><ul>
-<li><a class="reference internal" href="#new-with-version-2-5-upcoming">New with version 2.5 (upcoming).</a><ul>
+<li><a class="reference internal" href="#version-2-6-unreleased">Version 2.6 (unreleased)</a></li>
+<li><a class="reference internal" href="#version-2-5">Version 2.5</a><ul>
 <li><a class="reference internal" href="#important-re-write">Important re-write</a></li>
 <li><a class="reference internal" href="#python-interface">Python interface</a></li>
 <li><a class="reference internal" href="#new-block-api">New block API</a></li>
+<li><a class="reference internal" href="#app-improvments">App improvments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-2-4">Version 2.4</a><ul>
+<li><a class="reference internal" href="#enhancements">Enhancements</a></li>
+<li><a class="reference internal" href="#version-2-1">Version 2.1</a></li>
+<li><a class="reference internal" href="#id2">Enhancements</a></li>
+<li><a class="reference internal" href="#bug-fixes">Bug fixes</a></li>
+<li><a class="reference internal" href="#removed-features">Removed features</a></li>
+<li><a class="reference internal" href="#version-1-1">Version 1.1</a></li>
+<li><a class="reference internal" href="#id3">Enhancements</a></li>
+<li><a class="reference internal" href="#id4">Bug fixes</a></li>
+<li><a class="reference internal" href="#maintenance">Maintenance</a></li>
 </ul>
 </li>
 </ul>
@@ -107,8 +121,17 @@
             
   <section id="news">
 <span id="id1"></span><h1>News<a class="headerlink" href="#news" title="Permalink to this headline">¶</a></h1>
-<section id="new-with-version-2-5-upcoming">
-<h2>New with version 2.5 (upcoming).<a class="headerlink" href="#new-with-version-2-5-upcoming" title="Permalink to this headline">¶</a></h2>
+<section id="version-2-6-unreleased">
+<h2>Version 2.6 (unreleased)<a class="headerlink" href="#version-2-6-unreleased" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Many structural bugs with the Python wrappers were fixed. They should be
+more stable and usable now.</p></li>
+<li><p>Exceptions are now properly handled in OpenMP threads, which should improve
+stability.</p></li>
+</ul>
+</section>
+<section id="version-2-5">
+<h2>Version 2.5<a class="headerlink" href="#version-2-5" title="Permalink to this headline">¶</a></h2>
 <section id="important-re-write">
 <h3>Important re-write<a class="headerlink" href="#important-re-write" title="Permalink to this headline">¶</a></h3>
 <p>OpenMEEG internal code went through an important internal cleanup.
@@ -149,6 +172,98 @@ relying to files.</p>
 for advanced leadfield computation (e.g. for varying conductivities leadfields without redoing
 all computations). It will be soon exploited to add some new capabilities to OpenMEEG.</p>
 </section>
+<section id="app-improvments">
+<h3>App improvments<a class="headerlink" href="#app-improvments" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add “-d” option to om_check_geom to check if dipoles are within
+the inner interface.</p></li>
+</ul>
+</section>
+</section>
+<section id="version-2-4">
+<h2>Version 2.4<a class="headerlink" href="#version-2-4" title="Permalink to this headline">¶</a></h2>
+<section id="enhancements">
+<h3>Enhancements<a class="headerlink" href="#enhancements" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>handles non-nested geometries: domains can have several neighbors as long as their
+conductivity is constant and isotropic.</p></li>
+<li><p>handles zero-conductivity domains (modeling ventricles or silicone material)</p></li>
+<li><p>CGAL meshing tools (allowing to remesh or decimate existing meshes,
+or to mesh a levelset)</p></li>
+<li><p>can use linear algebra packages MKL and OpenBLAS, on all platforms (linux, MacOS and Windows)</p></li>
+<li><p>support for VTK mesh formats</p></li>
+</ul>
+</section>
+<section id="version-2-1">
+<h3>Version 2.1<a class="headerlink" href="#version-2-1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id2">
+<h3>Enhancements<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>added the adjoint way for computing a leadfield for either EEG, MEG or
+MEEG simultaneously. This save a lot of time and memory for big systems (&gt;1000 pts/surfaces).</p></li>
+<li><p>better ordering in computations when inverting the matrix for the memory footprint.</p></li>
+<li><p>storage now more effective using the matio library even for symmetric matrices.</p></li>
+<li><p>support for matlab7.3 file format.</p></li>
+<li><p>reducing memory footprint of DSM, Head2MEG, SurfSource2MEG and DipSource2MEG computations</p></li>
+<li><p>improved MKL detection</p></li>
+<li><p>lapack inclusion (experimental) to ease the build on architectures where
+there is no alternative.</p></li>
+</ul>
+</section>
+<section id="bug-fixes">
+<h3>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>allowance of spaces in mesh file names with a new .geom format (old
+format is still accepted).</p></li>
+<li><p>bug when loading sensor file with no empty line at the end</p></li>
+<li><p>fix leak in Mesh class</p></li>
+</ul>
+</section>
+<section id="removed-features">
+<h3>Removed features<a class="headerlink" href="#removed-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>TV inverse solver</p></li>
+</ul>
+</section>
+<section id="version-1-1">
+<h3>Version 1.1<a class="headerlink" href="#version-1-1" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="id3">
+<h3>Enhancements<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>added target for uninstalling (make uninstall).</p></li>
+<li><p>possibility of evaluating the potential at any point within inner volume.</p></li>
+<li><p>for Functional Electric Stimulation: added a new criterion to optimize: current activation.</p></li>
+<li><p>support for MKL-10.0 on MacOS.</p></li>
+<li><p>added the possibility of statically linked libraries for easier distribution (unix only).</p></li>
+<li><p>more information on mesh qualify in om_mesh_info.</p></li>
+<li><p>more tests (mostly for EIT tests).</p></li>
+<li><p>do not use optimized operator D when using OpenMP.</p></li>
+<li><p>automatic finding of fortan libraries (for unix), better blas/lapack/atlas detection.</p></li>
+<li><p>build system updated for cmake 2.6</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>Bug fixes<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>corrected a misprint help message and adding a message if not enough arguments are given.</p></li>
+<li><p>corrected the magnitude of MEG leadfields, update the tests accordingly.</p></li>
+<li><p>added some missing guards against multiple .H inclusion.</p></li>
+<li><p>correctly initialized matrices before filling them.</p></li>
+<li><p>corrected handling of single layer models.</p></li>
+<li><p>corrected the order of atlas libraries in link.</p></li>
+</ul>
+</section>
+<section id="maintenance">
+<h3>Maintenance<a class="headerlink" href="#maintenance" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>non-templated versions of the operatorsN,D,S ; the order of the parameters have been slightly changed .</p></li>
+<li><p>use namespaces everywhere, prefix include guard variables by <a href="#id5"><span class="problematic" id="id6">OPENMEEG_</span></a>.</p></li>
+<li><p>removed unnecessary info in file headers.</p></li>
+<li><p>matlab io files.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -161,8 +276,8 @@ all computations). It will be soon exploited to add some new capabilities to Ope
     </div>
     <div class="footer" role="contentinfo">
         &#169; Copyright 2009-2022, OpenMEEG Developers..
-      Last updated on Aug 18, 2022.
-      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.4.0.
+      Last updated on Aug 31, 2022.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.5.1+/8d4d47f1b.
     </div>
   </body>
 </html>
